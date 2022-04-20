@@ -15,6 +15,9 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import Button from '@mui/material/Button';
+
+import { Link } from "react-router-dom";
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -55,6 +58,17 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+
+const pages = {
+  '홈': '/', 
+  '서버 컨디션': 'server-monitoring', 
+  '부하 테스트': 'stress-test', 
+  '웹 성능': 'web-performance',
+};
+
+const handleCloseNavMenu = () => {
+  console.log('메뉴클릭');
+};
 
 export default function NavBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -175,6 +189,21 @@ export default function NavBar() {
           >
             Druid6
           </Typography>
+
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            {Object.entries(pages).map((page) => (
+              <Link to={page[1]}>
+                <Button
+                  key={page[1]}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {page[0]}
+                </Button>
+              </Link>
+            ))}
+          </Box>
+
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
