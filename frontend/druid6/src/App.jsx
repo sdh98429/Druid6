@@ -1,26 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import { Routes, Route } from "react-router-dom";
 
+import MainPage from './MainPage/MainPage';
 import NavBar from './NavBar';
 
 function App() {
   return (
     <div className="App">
       <NavBar />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          드루이드 6는 서버 모니터링 서비스입니다.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        {/* <Route path="web-performance" element={<WebPerformance />} />
+        <Route path="server-monitoring" element={<ServerMonitoring />} />
+        <Route path="stress-test" element={<StressTest />} /> */}
+      </Routes>
     </div>
   );
 }
