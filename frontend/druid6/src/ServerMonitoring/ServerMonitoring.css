@@ -1,0 +1,21 @@
+.Container {
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 50px;
+}
+
+.Comp {
+  background-color: aqua;
+  height: 300px;
+  padding: 10px;
+}
+
+.Comp-h2 {
+  margin-top: 0;
+  text-align: left;
+}
+
+.Header {
+  text-align: left;
+  display: inline-block;
+}
