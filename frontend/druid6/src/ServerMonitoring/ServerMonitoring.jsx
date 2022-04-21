@@ -16,18 +16,18 @@ export default function ServerMonitoring() {
           <div className='grid-item'></div>
         </Grid>
         <Grid item xs={4}>
-          <div className='Comp'>
-            <h2 className='Comp-h2'>CPU</h2>
+          <div className='grid-item'>
+            <h2 className='grid-item-h2'>CPU</h2>
           </div>
         </Grid>
         <Grid item xs={4}>
-          <div className='Comp'></div>
+          <div className='grid-item'></div>
         </Grid>
         <Grid item xs={4}>
-          <div className='Comp'></div>
+          <div className='grid-item'></div>
         </Grid>
         <Grid item xs={8}>
-          <div className='Comp'></div>
+          <div className='grid-item'></div>
         </Grid>
       </Grid>
     </div>

@@ -4,13 +4,13 @@
   padding-bottom: 50px;
 }
 
-.Comp {
+.grid-item {
   background-color: aqua;
   height: 300px;
   padding: 10px;
 }
 
-.Comp-h2 {
+.grid-item-h2 {
   margin-top: 0;
   text-align: left;
 }
