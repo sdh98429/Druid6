@@ -1,4 +1,4 @@
-.Container {
+.container {
   padding-left: 50px;
   padding-right: 50px;
   padding-bottom: 50px;
@@ -15,7 +15,7 @@
   text-align: left;
 }
 
-.Header {
+.header {
   text-align: left;
   display: inline-block;
 }
