@@ -4,9 +4,6 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 
-// import * as React from 'react';
-// import { styled } from '@mui/material/styles';
-// import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
@@ -17,69 +14,6 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
   color: theme.palette.text.secondary,
 }));
-
-// export default function BasicGrid() {
-//   return (
-//     <Box sx={{ flexGrow: 1 }}>
-//       <Grid container spacing={2}>
-//         <Grid item xs={8}>
-//           <Item>xs=8</Item>
-//         </Grid>
-//         <Grid item xs={4}>
-//           <Item>xs=4</Item>
-//         </Grid>
-//         <Grid item xs={4}>
-//           <Item>xs=4</Item>
-//         </Grid>
-//         <Grid item xs={8}>
-//           <Item>xs=8</Item>
-//         </Grid>
-//       </Grid>
-//     </Box>
-//   );
-// }
-
-
-// const AntTabs = styled(Tabs)({
-//   borderBottom: '1px solid #e8e8e8',
-//   '& .MuiTabs-indicator': {
-//     backgroundColor: '#1890ff',
-//   },
-// });
-
-// const AntTab = styled((props) => <Tab disableRipple {...props} />)(({ theme }) => ({
-//   textTransform: 'none',
-//   minWidth: 0,
-//   [theme.breakpoints.up('sm')]: {
-//     minWidth: 0,
-//   },
-//   fontWeight: theme.typography.fontWeightRegular,
-//   marginRight: theme.spacing(1),
-//   color: 'rgba(0, 0, 0, 0.85)',
-//   fontFamily: [
-//     '-apple-system',
-//     'BlinkMacSystemFont',
-//     '"Segoe UI"',
-//     'Roboto',
-//     '"Helvetica Neue"',
-//     'Arial',
-//     'sans-serif',
-//     '"Apple Color Emoji"',
-//     '"Segoe UI Emoji"',
-//     '"Segoe UI Symbol"',
-//   ].join(','),
-//   '&:hover': {
-//     color: '#40a9ff',
-//     opacity: 1,
-//   },
-//   '&.Mui-selected': {
-//     color: '#1890ff',
-//     fontWeight: theme.typography.fontWeightMedium,
-//   },
-//   '&.Mui-focusVisible': {
-//     backgroundColor: '#d1eaff',
-//   },
-// }));
 
 const StyledTabs = styled((props) => (
   <Tabs
@@ -124,14 +58,6 @@ export default function WebPerformance() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      {/* <Box sx={{ bgcolor: '#fff' }}>
-        <AntTabs value={value} onChange={handleChange} aria-label="ant example">
-          <AntTab label="Tab 1" />
-          <AntTab label="Tab 2" />
-          <AntTab label="Tab 3" />
-        </AntTabs>
-        <Box sx={{ p: 3 }} />
-      </Box> */}
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid item xs={6}>
@@ -154,12 +80,6 @@ export default function WebPerformance() {
               </Grid>
             </Item>
           </Grid>
-          {/* <Grid item xs={4}>
-            <Item>xs=4</Item>
-          </Grid>
-          <Grid item xs={8}>
-            <Item>xs=8</Item>
-          </Grid> */}
         </Grid>
       </Box>
       <Box sx={{ bgcolor: '#2e1534' }}>
@@ -180,12 +100,3 @@ export default function WebPerformance() {
     </Box>
   );
 }
-
-
-// export default function WebPerformance(){
-//   return (
-//     <div>
-//       <h1>웹 성능 측정</h1>
-//     </div>
-//   )
-// }
