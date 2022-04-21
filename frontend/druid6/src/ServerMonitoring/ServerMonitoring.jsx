@@ -13,7 +13,7 @@ export default function ServerMonitoring() {
       </Box>
       <Grid container spacing={3}>
         <Grid item xs={4}>
-          <div className='Comp'></div>
+          <div className='grid-item'></div>
         </Grid>
         <Grid item xs={4}>
           <div className='Comp'>
