@@ -83,7 +83,8 @@ public class SSHService {
         }
     }
     public void shell(){
-        Path currentPath = Paths.get(""); String path = currentPath.toAbsolutePath().toString(); System.out.println("현재 작업 경로: " + path);
+        Path currentPath = Paths.get("");
+        String path = currentPath.toAbsolutePath().toString(); System.out.println("현재 작업 경로: " + path);
 
         ProcessBuilder processBuilder = new ProcessBuilder();
         processBuilder.command("./src/myscript.bat");
