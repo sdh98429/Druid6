@@ -1,7 +1,7 @@
-export default function MainPage() {
+import Carousel from "./Carousel";
+
+export default function MainPage (props) {
   return (
-    <div>
-      <h1>메인 페이지</h1>
-    </div>
+    <Carousel />
   )
 }
