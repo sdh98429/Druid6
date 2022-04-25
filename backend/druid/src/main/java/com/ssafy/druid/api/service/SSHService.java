@@ -13,10 +13,10 @@ import java.nio.file.Paths;
 
 @Service
 public class SSHService {
-    private static String keyname = "pem file";
+    private static String keyname = "C:\\K6S204T.pem";
     //여기에 EC2 instance 도메인 주소를 적는다.
-    private static String publicDNS = "127.0.0.1";
-    public void SSH(){
+    private static String publicDNS = "13.124.201.190";
+    public void ssh(){
         Session session=null;
         try{
 
@@ -42,7 +42,9 @@ public class SSHService {
             session.connect();
 
             ChannelExec channel=(ChannelExec)session.openChannel("exec");
-            channel.setCommand("ping 127.0.0.1");
+        //    channel.setCommand("top");
+            channel.setCommand("TERM= top -b -n1 | head -15");
+
             channel.setErrStream(System.err);
 
             InputStream in = channel.getInputStream();

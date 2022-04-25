@@ -14,6 +14,6 @@ public class SSHConnecter {
 
     @GetMapping("/ssh")
     public void sshTest(){
-        sshService.shell();
+        sshService.ssh();
     }
 }
