@@ -1,30 +1,40 @@
 import { useState, useEffect } from "react";
 
 export function useScroll() {
-  const [lastScrollTop, setLastScrollTop] = useState(0);
-  const [bodyOffset, setBodyOffset] = useState(
-    document.body.getBoundingClientRect()
-  );
-  const [scrollY, setScrollY] = useState(window.scrollY);
-  const [scrollDirection, setScrollDirection] = useState();
-
-  const listener = e => {
-    setBodyOffset(window.bodyOffset);
-    setScrollY(window.scrollY);
-    setScrollDirection(lastScrollTop > scrollY ? "down" : "up");
-    setLastScrollTop(window.scrollY);
-  };
+  const [scrollDir, setScrollDir] = useState("scrolling down");
+  const [yNow, setYNow] = useState(0)
 
   useEffect(() => {
-    window.addEventListener("scroll", listener);
-    return () => {
-      window.removeEventListener("scroll", listener);
+    const threshold = 0;
+    let lastScrollY = window.pageYOffset;
+    let ticking = false;
+
+    const updateScrollDir = () => {
+      const scrollY = window.pageYOffset;
+
+      if (Math.abs(scrollY - lastScrollY) < threshold) {
+        ticking = false;
+        return;
+      }
+      setScrollDir(scrollY > lastScrollY ? "scrolling down" : "scrolling up");
+      lastScrollY = scrollY > 0 ? scrollY : 0;
+      ticking = false;
     };
-  });
+
+    const onScroll = () => {
+      setYNow(window.pageYOffset)
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollDir);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [scrollDir]);
 
   return {
-    scrollY,
-    scrollDirection,
-    bodyOffset
+    scrollDir,
+    yNow
   };
 }
