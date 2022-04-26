@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 
 import MainPage from './MainPage/MainPage';
 
-import NavBar from './NavBar';
+import NavBar from './Components/NavBar';
 import WebPerformance from './WebPerformance/WebPerformance';
 import ServerMonitoring from './ServerMonitoring/ServerMonitoring';
 import StressTest from './StressTest/StressTest'
