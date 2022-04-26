@@ -1,4 +1,22 @@
+import axios from 'axios';
+
 import Carousel from "./Carousel";
+
+const getPosts = async () => {
+  let result;
+  
+  await axios.get('https://jsonplaceholder.typicode.com/posts').then(
+    res => {
+      result = res;
+    }
+  ).catch(err => {
+    result = err;
+  });
+
+  return result;
+};
+
+console.log(getPosts());
 
 const posts = [
 {
@@ -31,7 +49,9 @@ export default function MainPage () {
       <Carousel />
       <div>
         <p onClick={practice}>비동기 연습입니다</p>
-        {posts.map(post => post.title)}
+        <ol>
+          {posts.map(post => <li>{post.title}</li>)}
+        </ol>
       </div>
     </div>
   );
