@@ -1,0 +1,54 @@
+.Navbar {
+  .navbar-container{
+    top: 0px;
+    width: 100%;
+    height: 100px;
+    position: fixed;
+  }
+
+  .navbar-container header {
+    width: 100%;
+    display: block;
+    position: relative;
+    margin: 0;
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .background {
+    transition: all .5s cubic-bezier(.04, .04, .12, .96);
+    // transition: opacity .6s ease,height .8s ease,box-shadow .8s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -10;
+    width: 100%;
+    height: 96px;
+    opacity: 0;
+    background: #fff;
+    box-shadow: none;
+  }
+
+  .shadow {
+    opacity: 1;
+    box-shadow: 0 15px 40px 0 rgb(0 0 0 / 8%);
+  }
+  
+  .hidden {
+    height: 0;
+    box-shadow: none;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
