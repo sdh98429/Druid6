@@ -17,5 +17,8 @@
     "default_title": "모니터링 시작",
     "default_popup": "popup.html"
   },
-  "options_page": "options.html"
+  "options_page": "options.html",
+  "permissions": [
+    "storage"
+  ]
 }
