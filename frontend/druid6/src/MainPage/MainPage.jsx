@@ -1,4 +1,3 @@
-import Carousel from "./Carousel";
 import './MainPage.scss'
 
 export default function MainPage () {
