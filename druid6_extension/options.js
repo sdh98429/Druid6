@@ -6,7 +6,7 @@ saveBtn.addEventListener("click", () => {
   chrome.storage.sync.set({
     name,
   }, () => {
-    console.log(`옵션이 ${name}로 설정되었습니다!`)
+    console.log(`이름이 ${name}로 설정되었습니다!`)
   });
 });
 
