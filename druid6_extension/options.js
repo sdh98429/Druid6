@@ -1,4 +1,5 @@
 const nameInput = document.getElementById("name-input");
+const timeInput = document.getElementById("time-input");
 const saveBtn = document.getElementById("save-btn");
 
 saveBtn.addEventListener("click", () => {
@@ -10,6 +11,7 @@ saveBtn.addEventListener("click", () => {
   });
 });
 
-chrome.storage.sync.get(["name", "test"], res => {
-  console.log(res)
+chrome.storage.sync.get(["name", "notificationTime"], res => {
+  nameInput.value = res.name ?? "???";
+  timeInput.value = res.notificationTime ?? 1000;
 });
