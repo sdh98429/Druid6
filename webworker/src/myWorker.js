@@ -18,6 +18,7 @@ export default() => {
   self.onmessage = function( e ) {
     
     for (let i = 0; i < e.data.duration; i++) {
+      console.time("timer1");
       fetch(e.data.url, {
         method: e.data.method,
         headers: {
@@ -32,6 +33,7 @@ export default() => {
         return response.json()
       })
       .then(response => {
+        console.timeEnd("timer1");
         postMessage(response)
       })
       .catch(error => {
