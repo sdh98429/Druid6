@@ -33,12 +33,18 @@ startBtn.addEventListener("click", () => {
   chrome.storage.local.set({
     isRunning: true,
   });
+  chrome.storage.local.get(["isRunning"], res => {
+    console.log(res);
+  });
 });
 
 stopBtn.addEventListener("click", () => {
-  console.log('중지')
   chrome.storage.local.set({
     isRunning: false,
+  });
+  console.log('false로 바꼈을걸?');
+  chrome.storage.local.get(["isRunning"], res => {
+    console.log(res);
   });
 });
 
@@ -46,5 +52,8 @@ resetBtn.addEventListener("click", () => {
   chrome.storage.local.set({
     timer: 0,
     isRunning: false,
+  });
+  chrome.storage.local.get(["timer", "isRunning"], res => {
+    console.log(res);
   });
 });
