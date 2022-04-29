@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "뽀모도로 타이머",
+  "version": "1.0.0",
+  "description": "뽀모도로 학습법을 위한 확장 프로그램입니다.",
+  "icons": {
+    "16": "logo.png",
+    "48": "logo.png",
+    "128": "logo.png"
+  },
+  "action": {
+    "default_icon": "logo.png",
+    "default_title": "뽀모도로 타이머",
+    "default_popup": "popup.html"
+  }
+}
