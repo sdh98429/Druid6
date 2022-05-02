@@ -15,29 +15,51 @@ export default() => {
   // .catch(function(error) {
   //     postMessage(error)
   // });
-  self.onmessage = function( e ) {
+  // self.onmessage = async function( e ) {
     
-    for (let i = 0; i < e.data.duration; i++) {
-      fetch(e.data.url, {
-        method: e.data.method,
-        headers: {
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify(
-          e.data.body
-        )
-      })
-      .then(response => {
-        postMessage(response.status)
-        return response.json()
-      })
-      .then(response => {
-        postMessage(response)
-      })
-      .catch(error => {
-        postMessage(error)
-      });
-    };
+  //   for (let i = 0; i < e.data.duration; i++) {
+  //     fetch(e.data.url, {
+  //       method: e.data.method,
+  //       headers: {
+  //         'Content-type': 'application/json'
+  //       },
+  //       body: JSON.stringify(
+  //         e.data.body
+  //       )
+  //     })
+  //     .then(response => {
+  //       return response.json()
+  //     })
+  //     .then(response => {
+  //       postMessage(response)
+  //     })
+  //     .catch(error => {
+  //       postMessage(error)
+  //     });
+  //   };
+  // }
+
+  self.onmessage = async function( e ) {
+    const response = await something(e)
+    const response2  = something2(response)
+    console.log('끝')
+  }
+  
+  const something = async(e) => {
+    const response = await fetch(e.data.url, {
+      method: e.data.method,
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(
+        e.data.body
+      )
+    })
+    return response.json()
+  }
+
+  const something2 = async(e) => {
+    console.log(e)
   }
 
 };
