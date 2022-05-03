@@ -1,0 +1,15 @@
+{
+  "name": "druid6",
+  "version": "1.0.0",
+  "description": "application monitoring service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "react": "^18.1.0",
+    "typescript": "^4.6.4"
+  }
+}
