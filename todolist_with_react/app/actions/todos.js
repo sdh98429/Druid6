@@ -23,3 +23,18 @@ export function completeAll() {
 export function clearCompleted() {
   return { type: types.CLEAR_COMPLETED };
 }
+
+export function callSshAction(command, ip, port, user, pass, key) {
+  return dispatch => { 
+    SecureShell.sshCommand(command, ip, port, user, pass, key) {
+      SecureShell.sshEmitter.on('data', data => {
+        dispatch(updateDataStream(data));
+      }).on('stderr', data => {
+        console.log(`Execute ERR: ${data.toString()}`);
+      }).on('error', error => {
+        dispatch(errorAction(error));
+        reject(error);
+      })
+    }
+  }
+}
