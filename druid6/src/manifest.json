@@ -1,0 +1,6 @@
+{
+  "manifest_version": 3,
+  "name": "Druid6",
+  "description": "Application Monitoring Service",
+  "version": "1.0.0"
+}
