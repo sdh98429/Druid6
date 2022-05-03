@@ -41,8 +41,9 @@ export default() => {
 
   self.onmessage = async function( e ) {
     const response = await something(e)
-    const response2  = something2(response)
-    console.log('끝')
+    const response2 = something2(response)
+    close()
+    
   }
   
   const something = async(e) => {
@@ -59,7 +60,7 @@ export default() => {
   }
 
   const something2 = async(e) => {
-    console.log(e)
+    postMessage(e)
   }
 
 };
