@@ -1,8 +1,8 @@
 import './App.css';
-import { useEffect } from 'react';
 import WorkerBuilder from './WorkerBuilder';
 import myWorker from './myWorker';
 import { useState } from 'react';
+
 
 function App() {
   const [userUrl, setUserUrl] = useState('');
@@ -10,9 +10,16 @@ function App() {
   const [userArrivalRate, setUserArrivalRate] = useState(0);
   const [userScenario, setUserScenario] = useState('');
 
-  const userConfirm = function () {
+  function sleep(ms) {
+    return new Promise((r) => setTimeout(r, ms));
+  }
+
+  const userConfirm = async function () {
     let instanceArr = []
     for (let i = 0; i < userArrivalRate; i++ ) {
+      if (i !== 0  && i % 200 === 0) {
+        await sleep(6000);
+      }
       instanceArr[i] = new WorkerBuilder(myWorker);
       instanceArr[i].onmessage = (message) => {
         if (message) {
@@ -29,21 +36,7 @@ function App() {
         }
       })
     }
-
   } 
-
-  // const postmessage = function () {
-    // .postMessage({
-    //   duration : 2,
-    //   url: 'http://k6s2041.p.ssafy.io:8080/api/v1/users/login',
-    //   method: "POST",
-    //   body: {
-    //     email: "test123@test.com",
-    //     password: "a123123123"
-    //   }
-    // })
-    
-  // }
 
   return (
     <div className="App">
