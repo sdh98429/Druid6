@@ -1,0 +1,34 @@
+config:
+  target: http://k6s2041.p.ssafy.io:8080/api/v1
+  phases:
+    - duration: 20
+      arrivalRate: 2000
+      name: warmup
+
+scenarios:
+  - flow:
+      # - post:
+      #     url: "/users/register"
+      #     json:
+      #       email: "guswhddlf11@gmail.com"
+      #       nickname: "SSAFY"
+      #       password: "a123123123"
+          
+      - post:
+          url: /users/login
+          json:
+            email: shaian2@naver.com
+            password: a123123123
+          capture:
+            - json: $.accessToken
+              as: token
+
+      - post:
+          url: /users/bonus
+          headers:
+            authorization: Bearer {{ token }}
+
+          
+            
+          
+          
