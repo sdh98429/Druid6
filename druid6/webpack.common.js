@@ -19,6 +19,12 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
+        loader: 'babel-loader',
+        test: /\.(js|jsx)?$/,
+        exclude: /node_modules/,
+        options: { presets: ['@babel/env', '@babel/preset-react'] },
+      },
+      {
         use: ['style-loader', 'css-loader'],
         test: /\.css$/i,
       },
