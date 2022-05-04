@@ -7,7 +7,6 @@ export default() => {
     const response = await something(e)
     const response2 = something2(response)
     close()
-    
   }
   
   const something = async(e) => {
@@ -25,6 +24,7 @@ export default() => {
 
   const something2 = async(e) => {
     postMessage(e)
+    postMessage('work end')
   }
 
 };
