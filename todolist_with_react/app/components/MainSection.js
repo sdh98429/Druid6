@@ -65,6 +65,11 @@ export default class MainSection extends Component {
     }
   }
 
+  fileInput(e) {
+    this.file = e.target.files[0];
+    console.log(this.file);
+  }
+
   render() {
     const { todos, actions } = this.props;
     const { filter } = this.state;
@@ -76,15 +81,21 @@ export default class MainSection extends Component {
     );
 
     return (
-      <section className={style.main}>
-        {this.renderToggleAll(completedCount)}
-        <ul className={style.todoList}>
-          {filteredTodos.map(todo =>
-            <TodoItem key={todo.id} todo={todo} {...actions} />
-          )}
-        </ul>
-        {this.renderFooter(completedCount)}
-      </section>
+      <div>
+        <section className={style.main}>
+          {this.renderToggleAll(completedCount)}
+          <ul className={style.todoList}>
+            {filteredTodos.map(todo =>
+              <TodoItem key={todo.id} todo={todo} {...actions} />
+            )}
+          </ul>
+          {this.renderFooter(completedCount)}
+        </section>
+        <div>
+          <h1>hi</h1>
+          <input type="file" onChange={e => this.fileInput(e)} />
+        </div>
+      </div>
     );
   }
 }
