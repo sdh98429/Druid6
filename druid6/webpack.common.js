@@ -52,7 +52,10 @@ module.exports = {
     ])
   ],
   resolve: {
-    extensions: ['.tsc', '.ts', '.js']
+    extensions: ['.tsc', '.ts', '.js'],
+    fallback: {
+      "fs": false
+    }
   },
   output: {
     filename: '[name].js',
