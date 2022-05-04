@@ -17,8 +17,8 @@ function App() {
   const userConfirm = async function () {
     let instanceArr = []
     for (let i = 0; i < userArrivalRate; i++ ) {
-      if (i !== 0  && i % 200 === 0) {
-        await sleep(6000);
+      if (i !== 0  && i % 251 === 0) {
+        await sleep(9000);
       }
       instanceArr[i] = new WorkerBuilder(myWorker);
       instanceArr[i].onmessage = (message) => {
