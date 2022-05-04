@@ -80,6 +80,15 @@
 
     // }
 
+    // 웹 퍼포먼스 모니터링 : 페이지 로딩 시간 측정
+    window.onload = function(){
+      setTimeout(function(){
+        var t = performance.timing;
+        console.log("네트워크 지연시간 (): ", t.responseEnd - t.fetchStart, "ms");
+        console.log("서버에서 페이지를 받고 페이지를 로드하는데 걸린 시간: ", t.loadEventEnd - t.responseEnd, "ms");
+        console.log("탐색과 페이지 로드의 전체 과정: ", t.loadEventEnd - t.navigationStart, "ms");
+      }, 0);
+    }
 
   </script>
 </head>
