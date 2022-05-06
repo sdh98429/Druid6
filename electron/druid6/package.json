@@ -5,12 +5,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@electron/remote": "^2.0.8",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "concurrently": "^7.1.0",
+    "cross-env": "^7.0.3",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-scripts": "5.0.1",
+    "wait-on": "^6.0.1",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
@@ -20,7 +24,9 @@
     "eject": "react-scripts eject",
     "react-start": "set BROWSER=none && yarn start",
     "electron-start": "set ELECTRON_START_URL=http://localhost:3000 && electron .",
-    "electron-pack": "yarn build && electron-builder build -c.extraMetadata.main=build/Main.js"
+    "electron-pack": "yarn build && electron-builder build -c.extraMetadata.main=build/Main.js",
+    "electron:serve": "concurrently -k \"cross-env BROWSER=none yarn start\" \"yarn electron:start\"",
+    "electron:start": "wait-on tcp:3000 && electron ."
   },
   "eslintConfig": {
     "extends": [
