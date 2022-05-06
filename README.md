@@ -2,9 +2,7 @@
 
 # electron app 실행법
 
-`yarn react-start` 
-`yarn electron-start` 
-cli 두 개를 따로 켠 후 각각 순서대로 실행해주세요
+`yarn electron:serve` 
 
 # extension 생성법
 
