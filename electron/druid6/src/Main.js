@@ -4,7 +4,9 @@ const remote = require('@electron/remote/main');
 //const path = require('path');
 const Client = require('electron-ssh2').Client;
 remote.initialize()
- 
+let resultCpu;
+let resultDisk;
+let resultMemory;
 function createWindow() {
     const win = new BrowserWindow({
         width: 800,
@@ -18,9 +20,7 @@ function createWindow() {
  
     win.loadURL('http://localhost:3000')
     const conn = new Client();
-  let resultCpu;
-  let resultDisk;
-  let resultMemory;
+  
   conn.on('ready', () => {
     console.log('Client :: ready2');
     setInterval(function (){
@@ -82,7 +82,8 @@ function createWindow() {
 
 ipcMain.on("SEND_MAIN_PING", (event, arg)=>{ 
     console.log('Main received a ping!!!'); 
-    event.reply("reply",'p')
+    console.log(resultCpu.toString());
+    event.reply('reply',resultCpu.toString());
   }) 
 app.on('ready', function(){
     createWindow();
