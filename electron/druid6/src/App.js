@@ -1,7 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
 
+
 function App() {
+  const {ipcRenderer} =window.require("electron");
+  const sendMain = () => {
+    ipcRenderer.send("SEND_MAIN_PING", 'send');
+  }
+  
+ 
+  
   return (
     <div className="App">
       <header className="App-header">
@@ -17,6 +25,8 @@ function App() {
         >
           Learn React
         </a>
+        <div id='text-box'></div>
+        <button onClick={sendMain}>Send Mail</button> 
       </header>
     </div>
   );

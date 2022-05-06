@@ -1,5 +1,5 @@
 {
-  "main": "public/Main.js",
+  "main": "src/Main.js",
   "homepage": "./",
   "name": "druid6",
   "version": "0.1.0",
@@ -48,6 +48,9 @@
   },
   "devDependencies": {
     "electron": "^18.2.0",
-    "electron-builder": "^23.0.3"
+    "electron-builder": "^23.0.3",
+    "electron-ssh2": "^0.1.2",
+    "fs": "^0.0.1-security",
+    "original-fs": "^1.1.0"
   }
 }
