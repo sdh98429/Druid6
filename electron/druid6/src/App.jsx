@@ -1,7 +1,6 @@
 import './App.css';
 
 import { HashRouter, Route } from 'react-router-dom';
-import Grid from '@mui/material/Grid';
 
 import SideBar from './SideBar';
 import Intro from './Intro';
