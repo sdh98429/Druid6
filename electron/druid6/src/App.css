@@ -28,6 +28,11 @@
   color: #02520f;
 }
 
+.grid-container {
+  display: grid;
+  grid-template-columns: 200px auto;
+}
+
 @keyframes Intro-logo-spin {
   from {
     transform: rotate(0deg);
