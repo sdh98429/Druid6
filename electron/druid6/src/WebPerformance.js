@@ -13,16 +13,16 @@ export default function WebPerformance() {
   const onChangeUrl = (e) => { setUrl(e.target.value); };
 
 
-  // api 요청값 저장하기 
-  const [mobile, setMobile] = React.useState(0);
+  // api 요청값 저장할 state 생성
+  const [mobile, setMobile] = React.useState("");
 
-  const handleChangeMobile = (event, newValue) => {
+  const handleChangeMobile = (newValue) => {
     setMobile(newValue);
   };
 
-  const [desktop, setDesktop] = React.useState(0);
+  const [desktop, setDesktop] = React.useState("");
 
-  const handleChangeDesktop = (event, newValue) => {
+  const handleChangeDesktop = (newValue) => {
     setDesktop(newValue);
   };
 
@@ -30,57 +30,32 @@ export default function WebPerformance() {
   const handleClickDetermineWebPerformance = async () => {
     console.log(`hi`);
 
-    const mobileResult = await requestWebPerformanceResult(url, 'MOBILE');
-    console.log(`hi im mobile, ${JSON.stringify(mobileResult)}`);
-    handleChangeMobile(mobileResult);
-    console.log('모바일~~' + mobile);
+    // 병렬처리
+    const getMobileResult = requestWebPerformanceResult(url, 'MOBILE');
+    const getDesktopResult = requestWebPerformanceResult(url, 'DESKTOP');
+
+    const mobileResult = await getMobileResult;
+    const desktopResult = await getDesktopResult;
     
-    const desktopResult = await requestWebPerformanceResult(url, 'DESKTOP');
+    handleChangeMobile(JSON.stringify(mobileResult));
+    handleChangeDesktop(JSON.stringify(desktopResult));
+    
+    console.log(`hi im mobile, ${JSON.stringify(mobileResult)}`);
     console.log(`hi im desktop, ${JSON.stringify(desktopResult)}`);
-    handleChangeMobile(desktopResult);
-    console.log('데스크탑~!' + desktop);
         
   };
+
 
   return (
     <div className='App'>
       <div>
-        <label>분석할 사이트 url : </label>
         <input type='text' id='url' name='url' placeholder='웹페이지 URL 입력' onChange={onChangeUrl}></input>
+        <button onClick={handleClickDetermineWebPerformance}>성능 측정하기</button>
       </div>
       <div>
-        <button onClick={handleClickDetermineWebPerformance}>성능 측정하기</button>
+        <p>모바일 = {mobile}</p>
+        <p>데스크탑 = {desktop}</p>
       </div>
     </div>
   );
 }
-
-
-// import {useState} from 'react';
-
-// function Pagespeed() {
-//   const {ipcRenderer} =window.require("electron");
-//   const sendMain = () => {
-//     ipcRenderer.send("SEND_MAIN_PING", 'send what');
-//   }
-//   const [cpuUsage,setCpuUsage] = useState('');
-//   ipcRenderer.on("reply",(event,arg)=>{
-//     console.log('asd?');
-//     setCpuUsage(arg);
-//   })
-  
-  
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <p>
-//           Edit <code>src/Pagespeed.js</code> and save to reload.
-//         </p>
-//         <div id='text-box'>{cpuUsage}</div>
-//         <button onClick={sendMain}>send request</button> 
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default Pagespeed;
