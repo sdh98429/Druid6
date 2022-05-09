@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import {useState} from 'react';
+import FileUpload from './FileUpload.jsx';
 
 function App() {
   const {ipcRenderer} =window.require("electron");
@@ -30,7 +31,8 @@ function App() {
           Learn React
         </a>
         <div id='text-box'>{cpuUsage}</div>
-        <button onClick={sendMain}>Send Mail</button> 
+        <button onClick={sendMain}>Send Mail</button>
+        <FileUpload />
       </header>
     </div>
   );

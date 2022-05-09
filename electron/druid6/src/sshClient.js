@@ -1,4 +1,4 @@
-const sshClient = (event) => {
+const sshClient = (event,hostInfo,privateKeyPath) => {
     const Client = require('electron-ssh2').Client;
     let resultCpu;
     let resultDisk;
@@ -59,7 +59,7 @@ const sshClient = (event) => {
     host: '3.38.101.66',
     port: 22,
     username: 'ubuntu',
-    privateKey: require('fs').readFileSync('/K6S204T.pem')
+    privateKey: require('fs').readFileSync(privateKeyPath)
   });
 }
 
