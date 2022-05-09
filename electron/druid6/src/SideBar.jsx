@@ -10,25 +10,39 @@ import ContentCut from '@mui/icons-material/ContentCut';
 import ContentCopy from '@mui/icons-material/ContentCopy';
 import ContentPaste from '@mui/icons-material/ContentPaste';
 import Cloud from '@mui/icons-material/Cloud';
+import { Link } from 'react-router-dom';
+
+import './SideBar.css';
 
 export default function SideBar() {
   return (
     <Paper sx={{ width: 320, maxWidth: '100%' }}>
-      <MenuList>
-        <MenuItem>
-          <ListItemIcon>
-            <ContentCut fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Cut</ListItemText>
-          <Typography variant="body2" color="text.secondary">
-            ⌘X
-          </Typography>
-        </MenuItem>
+      <MenuList className='menu-list'>
+        <Link to="/">
+          <MenuItem>
+            <ListItemIcon>
+              <Cloud fontSize="small" />
+            </ListItemIcon>
+              <ListItemText>홈페이지</ListItemText>
+          </MenuItem>
+        </Link>
+        <Divider />
+        <Link to="server-monitoring">
+          <MenuItem>
+            <ListItemIcon>
+              <ContentCut fontSize="small" />
+            </ListItemIcon>
+              <ListItemText>서버 모니터링</ListItemText>
+            <Typography variant="body2" color="text.secondary">
+              ⌘X
+            </Typography>
+          </MenuItem>
+        </Link>
         <MenuItem>
           <ListItemIcon>
             <ContentCopy fontSize="small" />
           </ListItemIcon>
-          <ListItemText>Copy</ListItemText>
+          <ListItemText>부하 테스트</ListItemText>
           <Typography variant="body2" color="text.secondary">
             ⌘C
           </Typography>
@@ -37,7 +51,7 @@ export default function SideBar() {
           <ListItemIcon>
             <ContentPaste fontSize="small" />
           </ListItemIcon>
-          <ListItemText>Paste</ListItemText>
+          <ListItemText>웹 퍼포먼스</ListItemText>
           <Typography variant="body2" color="text.secondary">
             ⌘V
           </Typography>
@@ -45,9 +59,12 @@ export default function SideBar() {
         <Divider />
         <MenuItem>
           <ListItemIcon>
-            <Cloud fontSize="small" />
+            <ContentPaste fontSize="small" />
           </ListItemIcon>
-          <ListItemText>Web Clipboard</ListItemText>
+          <ListItemText>고객센터</ListItemText>
+          <Typography variant="body2" color="text.secondary">
+            ⌘V
+          </Typography>
         </MenuItem>
       </MenuList>
     </Paper>

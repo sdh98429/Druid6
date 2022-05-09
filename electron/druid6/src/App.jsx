@@ -13,7 +13,7 @@ function App() {
       <div>
         <div className='grid-container'>
           <SideBar />
-          <Route path="/" exact component={Intro} />
+          <Route exact path="/" component={Intro} />
           <Route path="/server-monitoring" component={ServerMonitoring} />
         </div>
       </div>
