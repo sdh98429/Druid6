@@ -57,7 +57,7 @@ conn.on('ready', () => {
         host: "k6s2041.p.ssafy.io",
         username: "ubuntu",
         port: 22,
-        privateKey : readFileSync('./K6S204T.pem'),
+        privateKey : readFileSync('/K6S204T.pem'),
     });
 
 

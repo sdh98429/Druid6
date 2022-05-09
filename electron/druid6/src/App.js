@@ -7,10 +7,10 @@ function App() {
   const sendMain = () => {
     ipcRenderer.send("SEND_MAIN_PING", 'send what');
   }
-  const [m,sm] = useState('aa');
+  const [cpuUsage,setCpuUsage] = useState('');
   ipcRenderer.on("reply",(event,arg)=>{
     console.log('asd?');
-    sm(arg);
+    setCpuUsage(arg);
   })
   
   
@@ -29,7 +29,7 @@ function App() {
         >
           Learn React
         </a>
-        <div id='text-box'>{m}</div>
+        <div id='text-box'>{cpuUsage}</div>
         <button onClick={sendMain}>Send Mail</button> 
       </header>
     </div>
