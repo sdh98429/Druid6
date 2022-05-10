@@ -6,6 +6,10 @@
   "private": true,
   "dependencies": {
     "@electron/remote": "^2.0.8",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.6.2",
+    "@mui/material": "^5.6.4",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -51,6 +55,7 @@
     "electron-builder": "^23.0.3",
     "electron-ssh2": "^0.1.2",
     "fs": "^0.0.1-security",
-    "original-fs": "^1.1.0"
+    "original-fs": "^1.1.0",
+    "react-router-dom": "^6.3.0"
   }
 }
