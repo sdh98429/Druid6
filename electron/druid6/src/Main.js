@@ -45,7 +45,7 @@ ipcMain.on("OpenFile", (event, arg)=>{
     
   }).then(result=>{
     console.log(result.filePaths[0]);
-    sshClient(event,result.filePaths[0]);
+    sshClient(event,null,result.filePaths[0]);
 
 
   });
