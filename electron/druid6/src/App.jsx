@@ -1,6 +1,6 @@
 import './App.css';
 
-import { HashRouter, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 
 import SideBar from './SideBar';
 import Intro from './Intro';
@@ -12,8 +12,10 @@ function App() {
       <div>
         <div className='grid-container'>
           <SideBar />
-          <Route exact path="/" component={Intro} />
-          <Route path="/server-monitoring" component={ServerMonitoring} />
+          <Routes>
+            <Route exact path="/" component={Intro} />
+            <Route path="/server-monitoring" component={ServerMonitoring} />
+          </Routes>
         </div>
       </div>
     </HashRouter>
