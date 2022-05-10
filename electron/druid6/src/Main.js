@@ -41,7 +41,7 @@ ipcMain.on("OpenFile", (event, arg)=>{
 
 ipcMain.on("ConnectSSH", (event, arg)=>{ 
   hostInfo=arg;
-  sshClient(event,arg,filePath);
+  sshClient(event,hostInfo,filePath);
 }) 
 
 app.on('ready', function(){

@@ -3,10 +3,114 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
     let resultCpu;
     let resultDisk;
     let resultMemory;
+    let processInfo;
+    let osInfo;
+    let ramInfo;
+    let kernelRelease;
+    let kernelVersion;
+    let systemInfo;
     const conn = new Client();
   
     conn.on('ready', () => {
       console.log('Client :: ready2');
+      setTimeout(function (){
+        conn.exec(`cat /proc/cpuinfo | grep "model name" | head -1`
+        , (err, stream) => {
+          if (err) throw err;
+          stream.on('close', (code, signal) => {
+            //console.log('Stream :: close :: code: ' + code + ', signal: ' + signal);
+            //conn.end();
+          }).on('data', (data) => {
+            processInfo=data;
+            event.reply('processInfo',processInfo.toString());
+            console.log( data.toString());
+          }).stderr.on('data', (data) => {
+            console.log('STDERR: ' + data);
+          });
+        });
+      },0)
+      setTimeout(function (){
+        conn.exec(`uname -s`
+        , (err, stream) => {
+          if (err) throw err;
+          stream.on('close', (code, signal) => {
+            //console.log('Stream :: close :: code: ' + code + ', signal: ' + signal);
+            //conn.end();
+          }).on('data', (data) => {
+            osInfo=data;
+            event.reply('osInfo',osInfo.toString());
+            console.log( data.toString());
+          }).stderr.on('data', (data) => {
+            console.log('STDERR: ' + data);
+          });
+        });
+      },0)
+      setTimeout(function (){
+        conn.exec(`free -m | grep "Mem" | awk '{print $2}'
+        `
+        , (err, stream) => {
+          if (err) throw err;
+          stream.on('close', (code, signal) => {
+            //console.log('Stream :: close :: code: ' + code + ', signal: ' + signal);
+            //conn.end();
+          }).on('data', (data) => {
+            ramInfo=data;
+            
+            event.reply('ramInfo',ramInfo.toString().substr(0,2));
+            console.log( data.toString().substr(0,2));
+          }).stderr.on('data', (data) => {
+            console.log('STDERR: ' + data);
+          });
+        });
+      },0)
+      setTimeout(function (){
+        conn.exec(`uname -r`
+        , (err, stream) => {
+          if (err) throw err;
+          stream.on('close', (code, signal) => {
+            //console.log('Stream :: close :: code: ' + code + ', signal: ' + signal);
+            //conn.end();
+          }).on('data', (data) => {
+            kernelRelease=data;
+            event.reply('kernelRelease',kernelRelease.toString());
+            console.log( data.toString());
+          }).stderr.on('data', (data) => {
+            console.log('STDERR: ' + data);
+          });
+        });
+      },0)
+      setTimeout(function (){
+        conn.exec(`uname -v`
+        , (err, stream) => {
+          if (err) throw err;
+          stream.on('close', (code, signal) => {
+            //console.log('Stream :: close :: code: ' + code + ', signal: ' + signal);
+            //conn.end();
+          }).on('data', (data) => {
+            kernelVersion=data;
+            event.reply('kernelVersion',kernelVersion.toString());
+            console.log( data.toString());
+          }).stderr.on('data', (data) => {
+            console.log('STDERR: ' + data);
+          });
+        });
+      },0)
+      setTimeout(function (){
+        conn.exec(`uname -m`
+        , (err, stream) => {
+          if (err) throw err;
+          stream.on('close', (code, signal) => {
+            //console.log('Stream :: close :: code: ' + code + ', signal: ' + signal);
+            //conn.end();
+          }).on('data', (data) => {
+            systemInfo=data;
+            event.reply('systemInfo',systemInfo.toString());
+            console.log( data.toString());
+          }).stderr.on('data', (data) => {
+            console.log('STDERR: ' + data);
+          });
+        });
+      },0)
       setInterval(function (){
         conn.exec(`free -m | grep Mem | awk '{print (($2-$6)/$2)*100}'`
         , (err, stream) => {
@@ -57,6 +161,7 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
           });
         });
       },1000)
+      
     }).connect({
     host: hostInfo.hostname,
     port: 22,
