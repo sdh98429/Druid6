@@ -1,4 +1,8 @@
+
+const axios = require("axios");
+const { Worker } = require('worker_threads')
 const {app,BrowserWindow,ipcMain} = require('electron');
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
  
 const remote = require('@electron/remote/main');
 //const path = require('path');
@@ -13,70 +17,13 @@ function createWindow() {
         height: 600,
         webPreferences: {
           nodeIntegration: true,
-          contextIsolation : false
-           
+          contextIsolation : false,
+          nodeIntegrationInWorker: true,
+          preload: __dirname+'/preload.js'
         }
     })
  
     win.loadURL('http://localhost:3000')
-    const conn = new Client();
-  
-  conn.on('ready', () => {
-    console.log('Client :: ready2');
-    setInterval(function (){
-      conn.exec(`free -m | grep Mem | awk '{print (($2-$6)/$2)*100}'`
-      , (err, stream) => {
-        if (err) throw err;
-        stream.on('close', (code, signal) => {
-          //console.log('Stream :: close :: code: ' + code + ', signal: ' + signal);
-          //conn.end();
-        }).on('data', (data) => {
-          resultMemory=data;
-          console.log('MEMORY: ' + data);
-        }).stderr.on('data', (data) => {
-          console.log('STDERR: ' + data);
-        });
-      });
-    },1000)
-    setInterval(function (){
-      conn.exec(`df . | grep /dev | awk '{print $5}'`
-      , (err, stream) => {
-        if (err) throw err;
-        stream.on('close', (code, signal) => {
-          //console.log('Stream :: close :: code: ' + code + ', signal: ' + signal);
-          //conn.end();
-        }).on('data', (data) => {
-          
-          resultDisk=data;
-          console.log('DISK: ' + data);
-        }).stderr.on('data', (data) => {
-          console.log('STDERR: ' + data);
-        });
-      });
-    },1000)
-    setInterval(function (){
-      conn.exec(`top -b -n 1 | grep -Po '[0-9.]+ id' | head -1 | awk '{print 100-$1}'`
-      , (err, stream) => {
-        if (err) throw err;
-        stream.on('close', (code, signal) => {
-          //console.log('Stream :: close :: code: ' + code + ', signal: ' + signal);
-          //conn.end();
-        }).on('data', (data) => {
-          resultCpu=data;
-          
-          console.log('CPU: ' + data);
-        }).stderr.on('data', (data) => {
-          console.log('STDERR: ' + data);
-        });
-      });
-    },1000)
-  }).connect({
-  host: '3.38.101.66',
-  port: 22,
-  username: 'ubuntu',
-  privateKey: require('fs').readFileSync('/K6S204T.pem')
-});
-
     remote.enable(win.webContents);
 }
 
@@ -84,7 +31,59 @@ ipcMain.on("SEND_MAIN_PING", (event, arg)=>{
     console.log('Main received a ping!!!'); 
     console.log(resultCpu.toString());
     event.reply('reply',resultCpu.toString());
-  }) 
+}) 
+
+ipcMain.on("WORKER_RUN", async (event, arg)=>{ 
+
+  const requests = []
+
+  for (let i = 0 ; i < 100; i++) {
+    requests[i]= something();
+  }
+  try {
+    const result = await Promise.all(requests)
+    result.map((item) => {
+      console.log(item);
+    })
+  } catch (error) {
+    console.log(error);
+  }
+
+  // let workerArr = []
+  // for (let i= 0; i < 150; i++) {
+  //   workerArr[i] = new Worker( __dirname + '/myWorker.js' )
+  //   workerArr[i].on('message', (value) => {
+  //     console.log(value)
+  //   })
+  //   workerArr[i].postMessage({
+  //     duration : 2,
+  //     url: 'http://k6s2041.p.ssafy.io:8080/api/v1/users/login',
+  //     method: "POST",
+  //     body: {
+  //       email: "test123@test.com",
+  //       password: "a123123123"
+  //     }
+  //   })
+  // }
+  event.reply('workerDone','hi');
+}) 
+
+const something = async(e) => {
+  const response = await fetch('http://k6s2041.p.ssafy.io:8080/api/v1/users/login', {
+    method: "POST",
+    headers: {
+      'Content-type': 'application/json'
+    },
+    body: JSON.stringify(
+      {
+        email: "test123@test.com",
+        password: "a123123123"
+      }
+    )
+  })
+  return response.json()
+}
+
 app.on('ready', function(){
     createWindow();
  
