@@ -13,8 +13,8 @@ function App() {
         <div className='grid-container'>
           <SideBar />
           <Routes>
-            <Route exact path="/" component={Intro} />
-            <Route path="/server-monitoring" component={ServerMonitoring} />
+            <Route exact path="/" element={<Intro />} />
+            <Route path="/server-monitoring" element={<ServerMonitoring />} />
           </Routes>
         </div>
       </div>
