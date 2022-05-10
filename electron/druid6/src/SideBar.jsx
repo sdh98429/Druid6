@@ -47,15 +47,17 @@ export default function SideBar() {
             ⌘C
           </Typography>
         </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <ContentPaste fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>웹 퍼포먼스</ListItemText>
-          <Typography variant="body2" color="text.secondary">
-            ⌘V
-          </Typography>
-        </MenuItem>
+        <Link to="web-performance">
+          <MenuItem>
+            <ListItemIcon>
+              <ContentPaste fontSize="small" />
+            </ListItemIcon>
+            <ListItemText>웹 퍼포먼스</ListItemText>
+            <Typography variant="body2" color="text.secondary">
+              ⌘V
+            </Typography>
+          </MenuItem>
+          </Link>
         <Divider />
         <MenuItem>
           <ListItemIcon>
