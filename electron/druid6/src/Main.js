@@ -2,6 +2,7 @@ const {app,BrowserWindow,ipcMain} = require('electron');
 const remote = require('@electron/remote/main');
 const sshClient = require('./sshClient');
 
+
 remote.initialize()
 
 function createWindow() {
@@ -22,8 +23,35 @@ function createWindow() {
 
 ipcMain.on("SEND_MAIN_PING", (event, arg)=>{ 
     console.log('Main received a ping!!!'); 
-    sshClient(event);
+    console.log(arg.mt);
+    //sshClient(event,arg);
   }) 
+
+ipcMain.on("OpenFile", (event, arg)=>{ 
+  console.log("rec");
+  const {dialog} = require('electron');
+  const options = {
+    //title: 'Open a file or folder',
+    //defaultPath: '/path/to/something/',
+    //buttonLabel: 'Do it',
+    filters: [
+      { name: 'pem', extensions: ['pem'] }
+    ]
+    //properties: ['showHiddenFiles'],
+    //message: 'This message will only be shown on macOS'
+  };
+
+  dialog.showOpenDialog(null, options, (filePaths) => {
+    
+  }).then(result=>{
+    console.log(result.filePaths[0]);
+    sshClient(event,null,result.filePaths[0]);
+
+
+  });
+  
+
+}) 
 app.on('ready', function(){
     createWindow();
 })
