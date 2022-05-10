@@ -2,6 +2,26 @@
   text-align: center;
 }
 
+.Intro {
+  background-color: #F3F4F9;
+}
+
+.perspective-container {
+  perspective: 800px;
+}
+
+.card {
+  background-image: url(https://media.giphy.com/media/sIIhZliB2McAo/giphy.gif);
+  background-size: cover;
+  box-shadow: 0 0 140px 10px rgba(0,0,0,.5);
+  position: relative;
+  height: 300px;
+  width: 500px;
+  overflow: hidden; /* Try removing this to see how the sheen works! */
+  --sheenX: 0; /* Set these with JavaScript */
+  --sheenY: 0;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
