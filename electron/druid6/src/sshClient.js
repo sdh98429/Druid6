@@ -16,6 +16,7 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
             //conn.end();
           }).on('data', (data) => {
             resultMemory=data;
+            event.reply('memory',resultMemory.toString());
             console.log('MEMORY: ' + data);
           }).stderr.on('data', (data) => {
             console.log('STDERR: ' + data);
@@ -32,6 +33,7 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
           }).on('data', (data) => {
             
             resultDisk=data;
+            event.reply('disk',resultDisk.toString());
             console.log('DISK: ' + data);
           }).stderr.on('data', (data) => {
             console.log('STDERR: ' + data);
@@ -47,7 +49,7 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
             //conn.end();
           }).on('data', (data) => {
             resultCpu=data;
-            event.reply('reply',resultCpu.toString());
+            event.reply('cpu',resultCpu.toString());
             
             console.log('CPU: ' + data);
           }).stderr.on('data', (data) => {
@@ -56,9 +58,9 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
         });
       },1000)
     }).connect({
-    host: '3.38.101.66',
+    host: hostInfo.hostname,
     port: 22,
-    username: 'ubuntu',
+    username: hostInfo.username,
     privateKey: require('fs').readFileSync(privateKeyPath)
   });
 }

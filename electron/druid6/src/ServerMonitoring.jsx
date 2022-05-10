@@ -4,21 +4,31 @@ import FileUpload from './FileUpload.jsx';
 export default function ServerMonitoring() {
   
   const {ipcRenderer} =window.require("electron");
-  const sendMain = () => {
-    ipcRenderer.send("SEND_MAIN_PING", 'send what');
-  }
+  
   const [cpuUsage,setCpuUsage] = useState('');
-  ipcRenderer.on("reply",(event,arg)=>{
-    console.log('asd?');
+  ipcRenderer.on("cpu",(event,arg)=>{
     setCpuUsage(arg);
   })
+
+  const [DiskUsage,setDiskUsage] = useState('');
+  ipcRenderer.on("disk",(event,arg)=>{
+    setDiskUsage(arg);
+  })
+
+  const [MemoryUsage,setMemoryUsage] = useState('');
+  ipcRenderer.on("memory",(event,arg)=>{
+    setMemoryUsage(arg);
+  })
+
   return (
     <div>
       <h1>ServerMonitoring</h1>
-      <div id='text-box'>{cpuUsage}</div>
-        <button onClick={sendMain}>Send Mail</button>
-        <FileUpload />
+       <FileUpload /> 
       
+      <div>{cpuUsage}</div>
+      <div>{MemoryUsage}</div>
+      <div>{DiskUsage}</div> 
+
     </div>
   );
 }
