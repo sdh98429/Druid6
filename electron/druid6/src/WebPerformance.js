@@ -22,10 +22,17 @@ export default function WebPerformance() {
 
   const [desktop, setDesktop] = React.useState("");
 
-  const handleChangeDesktop = (newValue) => {
+  const handleChangeDesktop = async (newValue) => {
     setDesktop(newValue);
   };
 
+  React.useEffect(() => {
+    if (mobile){
+      console.log(typeof(mobile))
+      console.log("제발 되라우", mobile)
+      console.log("저녁각", mobile.data.lighthouseResult.categories.performance)
+    }
+  }, [mobile]);
 
   const handleClickDetermineWebPerformance = async () => {
     console.log(`hi`);
@@ -37,36 +44,44 @@ export default function WebPerformance() {
     const mobileResult = await getMobileResult;
     const desktopResult = await getDesktopResult;
     
-    handleChangeMobile(JSON.stringify(mobileResult));
-    handleChangeDesktop(JSON.stringify(desktopResult));
-    
-    console.log(`hi im mobile, ${JSON.stringify(mobileResult)}`);
-    console.log(`hi im desktop, ${JSON.stringify(desktopResult)}`);
-        
+    handleChangeMobile(mobileResult);
+    handleChangeDesktop(desktopResult);
+
   };
 
 
   const drawWebPerformanceResult = async () => {
-
+    
     await handleClickDetermineWebPerformance();
 
-    // console.log(mobile.data.lighthouseResult.categories.performance);
+  }
+  
+  const parsingMobileResult = () => {
+    const parseMobile = JSON.parse(mobile)
+    console.log("파싱")
+    console.log(parseMobile)
   }
 
+  const checkMobile = () => {
+    const parseMobile = JSON.parse(mobile)
+    console.log(parseMobile.data.lighthouseResult.categories.performance)
+  }
 
   return (
     <div className='App'>
       <div>
         <input type='text' id='url' name='url' placeholder='웹페이지 URL 입력' onChange={onChangeUrl}></input>
         <button onClick={drawWebPerformanceResult}>성능 측정하기</button>
+        <button onClick={checkMobile}>모바일 체크</button>
+        <button onClick={parsingMobileResult}>모바일 체크2</button>
       </div>
       {/* 측정 결과 */}
       <div>
         
       </div>
       <div>
-        <p>모바일 = {mobile}</p>
-        <p>데스크탑 = {desktop}</p>
+        {/* <p>모바일 = {mobile}</p> */}
+        {/* <p>데스크탑 = {desktop}</p> */}
       </div>
     </div>
   );
