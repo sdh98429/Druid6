@@ -46,11 +46,23 @@ export default function WebPerformance() {
   };
 
 
+  const drawWebPerformanceResult = async () => {
+
+    await handleClickDetermineWebPerformance();
+
+    // console.log(mobile.data.lighthouseResult.categories.performance);
+  }
+
+
   return (
     <div className='App'>
       <div>
         <input type='text' id='url' name='url' placeholder='웹페이지 URL 입력' onChange={onChangeUrl}></input>
-        <button onClick={handleClickDetermineWebPerformance}>성능 측정하기</button>
+        <button onClick={drawWebPerformanceResult}>성능 측정하기</button>
+      </div>
+      {/* 측정 결과 */}
+      <div>
+        
       </div>
       <div>
         <p>모바일 = {mobile}</p>
