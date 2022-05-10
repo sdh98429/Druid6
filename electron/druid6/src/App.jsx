@@ -2,9 +2,9 @@ import './App.css';
 
 import { HashRouter, Routes, Route } from 'react-router-dom';
 
-import SideBar from './SideBar';
-import Intro from './Intro';
-import ServerMonitoring from './ServerMonitoring';
+import SideBar from './components/SideBar';
+import Intro from './pages/intro/Intro';
+import ServerMonitoring from './pages/server-monitoring/ServerMonitoring';
 
 function App() {
   return (

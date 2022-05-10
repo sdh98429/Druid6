@@ -1,4 +1,4 @@
-import logo from './static/images/icon.png';
+import logo from '../../static/images/icon.png';
 
 export default function Intro() {
   return (
