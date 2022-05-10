@@ -1,10 +1,9 @@
 import './WebPerformance.css';
-import requestWebPerformanceResult from './services/api/WebPerformance';
+import requestWebPerformanceResult from '../../services/api/WebPerformance';
 import * as React from 'react';
 
 
 export default function WebPerformance() {
-
   // url input값 가져오기
   //input에서 value를 담기 위한 state 생성 
   const [url, setUrl] = React.useState(""); 

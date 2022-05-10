@@ -2,10 +2,10 @@ import './App.css';
 
 import { HashRouter, Routes, Route } from 'react-router-dom';
 
-import SideBar from './SideBar';
-import Intro from './Intro';
-import ServerMonitoring from './ServerMonitoring';
-import WebPerformance from './WebPerformance';
+import SideBar from './components/SideBar';
+import Intro from './pages/intro/Intro';
+import ServerMonitoring from './pages/server-monitoring/ServerMonitoring';
+import WebPerformance from './pages/web-performance/WebPerformance';
 
 function App() {
   return (

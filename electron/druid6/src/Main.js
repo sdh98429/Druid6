@@ -1,6 +1,6 @@
 const {app,BrowserWindow,ipcMain} = require('electron');
 const remote = require('@electron/remote/main');
-const sshClient = require('./sshClient');
+const sshClient = require('./services/sshClient');
 
 
 remote.initialize()
