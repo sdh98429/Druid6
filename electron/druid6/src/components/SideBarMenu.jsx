@@ -1,26 +1,23 @@
 import * as React from 'react';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Box from '@mui/material//Box';
-import Cloud from '@mui/icons-material/Cloud';
+import { MenuItem, ListItemText, ListItemIcon, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-import './SideBar.scss';
 
-export default function SideBar({ to, text }) {
-  
+
+export default function SideBar({ to, text, Icon }) {
   return (
     <Link to={to}>
-      <Box my={2}>
+      <Box my={2.5} ml={2} >
         <MenuItem>
           <ListItemIcon>
-            <Cloud fontSize="small" />
+            <Icon  />
           </ListItemIcon>
-          <ListItemText>{ text }</ListItemText> 
+          <Box ml={1}>
+            <ListItemText >{ text }</ListItemText> 
+          </Box>
         </MenuItem>
       </Box>
     </Link>
-    
+
   );
 }

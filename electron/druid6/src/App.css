@@ -30,7 +30,7 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: 200px auto;
+  grid-template-columns: 270px auto;
 }
 
 @keyframes Intro-logo-spin {
