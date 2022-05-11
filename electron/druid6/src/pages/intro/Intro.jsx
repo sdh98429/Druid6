@@ -6,7 +6,7 @@ export default function Intro() {
     // This creates a "distance" up to 400px each direction to offset the sheen
     const xOffset = 1 - (xRatio - 0.5) * 800;
     const yOffset = 1 - (yRatio - 0.5) * 800;
-    const target = document.getElementsByClassName('card')[0];
+    const target = document.getElementsByClassName('intro-logo')[0];
     target.style.setProperty('--sheenX', `${xOffset}px`)
     target.style.setProperty('--sheenY', `${yOffset}px`)
   }
@@ -17,7 +17,7 @@ export default function Intro() {
     // Creates angles of (-20, -20) (left, bottom) and (20, 20) (right, top)
     const yAxisDegree = event.pageX / width * 40 - 20;
     const xAxisDegree = event.pageY / height * -1 * 40 + 20;
-    const target = document.getElementsByClassName('card')[0];
+    const target = document.getElementsByClassName('intro-logo')[0];
     target.style.transform = `rotateY(${yAxisDegree}deg) rotateX(${xAxisDegree}deg)`;
     // Set the sheen position
     setSheenPosition(event.pageX / width, event.pageY / width);
@@ -26,9 +26,8 @@ export default function Intro() {
   return (
     <div className="Intro" onMouseMove={handleMouseMove}>
       <header className="Intro-header">
-        <img src={logo} className="Intro-logo" alt="logo" />
         <div class="perspective-container">
-          <div class="card"></div>
+          <img src={logo} className="intro-logo" alt="logo" />
         </div>
         <p>
           최고의 애플리케이션 모니터링 솔루션, Druid6 입니다.
