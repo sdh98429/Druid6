@@ -1,73 +1,43 @@
 import * as React from 'react';
-import Divider from '@mui/material/Divider';
-import Paper from '@mui/material/Paper';
-import MenuList from '@mui/material/MenuList';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Typography from '@mui/material/Typography';
-import ContentCut from '@mui/icons-material/ContentCut';
-import ContentCopy from '@mui/icons-material/ContentCopy';
-import ContentPaste from '@mui/icons-material/ContentPaste';
-import Cloud from '@mui/icons-material/Cloud';
 import { Link } from 'react-router-dom';
-
-import './SideBar.css';
+// components
+import SideBarMenu from './SideBarMenu';
+// mui components
+import { Paper, MenuList, Box, Divider } from '@mui/material';
+// mui-icons
+import HomeIcon from '@mui/icons-material/Home';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
+import SpeedIcon from '@mui/icons-material/Speed';
+import NetworkCheckIcon from '@mui/icons-material/NetworkCheck';
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
+// scss
+import './SideBar.scss';
+// imgs
+import logo from '../static/images/icon.png';
 
 export default function SideBar() {
+
   return (
-    <Paper sx={{ width: 320, maxWidth: '100%' }}>
+    <Paper className="side-bar" >
+      <Link to="/">
+        <div className='logo-wrapper'> 
+          <img src={logo} alt="" className='logo-img'/>
+          <div className='logo-desc'>Druid6</div>
+        </div>
+      </Link>
+      <br />
+      <Divider/>
+      <br />
       <MenuList className='menu-list'>
-        <Link to="/">
-          <MenuItem>
-            <ListItemIcon>
-              <Cloud fontSize="small" />
-            </ListItemIcon>
-              <ListItemText>홈페이지</ListItemText>
-          </MenuItem>
-        </Link>
-        <Divider />
-        <Link to="server-monitoring">
-          <MenuItem>
-            <ListItemIcon>
-              <ContentCut fontSize="small" />
-            </ListItemIcon>
-              <ListItemText>서버 모니터링</ListItemText>
-            <Typography variant="body2" color="text.secondary">
-              ⌘X
-            </Typography>
-          </MenuItem>
-        </Link>
-        <MenuItem>
-          <ListItemIcon>
-            <ContentCopy fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>부하 테스트</ListItemText>
-          <Typography variant="body2" color="text.secondary">
-            ⌘C
-          </Typography>
-        </MenuItem>
-        <Link to="web-performance">
-          <MenuItem>
-            <ListItemIcon>
-              <ContentPaste fontSize="small" />
-            </ListItemIcon>
-            <ListItemText>웹 퍼포먼스</ListItemText>
-            <Typography variant="body2" color="text.secondary">
-              ⌘V
-            </Typography>
-          </MenuItem>
-          </Link>
-        <Divider />
-        <MenuItem>
-          <ListItemIcon>
-            <ContentPaste fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>고객센터</ListItemText>
-          <Typography variant="body2" color="text.secondary">
-            ⌘V
-          </Typography>
-        </MenuItem>
+        <div className="category">Monitoring</div>
+        <SideBarMenu to={"/"} text={"대시보드"} Icon={ DashboardIcon }/>
+        <SideBarMenu to={"server-monitoring"} text={"서버 모니터링"} Icon={ MonitorHeartIcon }/>
+        <div className="category">Testing Tools</div>
+        <SideBarMenu to={"web-performance"} text={"부하 테스트"} Icon={ NetworkCheckIcon }/>
+        <SideBarMenu to={"web-performance"} text={"웹 퍼포먼스"} Icon={ SpeedIcon }/>
+        <div className="category">Support</div>
+        <SideBarMenu to={"web-performance"} text={"고객센터"} Icon={ SupportAgentIcon }/>
       </MenuList>
     </Paper>
   );

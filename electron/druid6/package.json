@@ -15,6 +15,7 @@
     "@testing-library/user-event": "^13.2.1",
     "concurrently": "^7.1.0",
     "cross-env": "^7.0.3",
+    "node-fetch": "^3.2.4",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-scripts": "5.0.1",
@@ -55,6 +56,7 @@
     "electron": "^18.2.0",
     "electron-builder": "^23.0.3",
     "electron-ssh2": "^0.1.2",
+    "eslint": "^8.15.0",
     "fs": "^0.0.1-security",
     "original-fs": "^1.1.0",
     "react-router-dom": "^6.3.0"
