@@ -55,6 +55,7 @@
     "electron": "^18.2.0",
     "electron-builder": "^23.0.3",
     "electron-ssh2": "^0.1.2",
+    "eslint": "^8.15.0",
     "fs": "^0.0.1-security",
     "original-fs": "^1.1.0",
     "react-router-dom": "^6.3.0"

@@ -6,6 +6,7 @@ import React, {
   useEffect
 } from "react";
 import "./DragDrop.scss";
+import { ReactComponent as UploadIcon } from '../static/images/file-upload.svg';
 
 interface IFileTypes {
   id: number;
@@ -123,7 +124,9 @@ const DragDrop = () => {
         htmlFor="fileUpload"
         ref={dragRef}
       >
-        <div>파일 첨부</div>
+        <UploadIcon className="upload-icon" />
+        <label htmlFor="fileUpload" className="upload-btn">.pem 파일 업로드</label>
+        <p className="upload-instruction">또는 드래그로 파일 놓기</p>
       </label>
 
       <div className="DragDrop-Files">
