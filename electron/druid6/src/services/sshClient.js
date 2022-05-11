@@ -161,6 +161,22 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
           });
         });
       },1000)
+      setTimeout(function (){
+        conn.exec(`vnstat -l -i eth0`
+        , (err, stream) => {
+          if (err) throw err;
+          stream.on('close', (code, signal) => {
+            //console.log('Stream :: close :: code: ' + code + ', signal: ' + signal);
+            //conn.end();
+          }).on('data', (data) => {
+            
+            event.reply('network',data.toString());
+            console.log( data.toString());
+          }).stderr.on('data', (data) => {
+            console.log('STDERR: ' + data);
+          });
+        });
+      },0)
       
     }).connect({
     host: hostInfo.hostname,
