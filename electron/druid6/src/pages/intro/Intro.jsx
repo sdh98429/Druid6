@@ -27,7 +27,7 @@ export default function Intro() {
   return (
     <div className="Intro" onMouseMove={handleMouseMove}>
       <header className="Intro-header">
-        <div class="perspective-container">
+        <div className="perspective-container">
           <img src={logo} className="intro-logo" alt="logo" />
         </div>
         <p>

@@ -32,8 +32,9 @@
   color: rgb(12, 12, 12);
 }
 
-.App-link {
-  color: #02520f;
+.Intro-link {
+  color: #006FAD;
+  font-size: 1.2rem;
 }
 
 @keyframes App-logo-spin {
