@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 import SideBar from './components/SideBar';
 import RouteWrapper from './RouteWrapper';
 import Intro from './pages/intro/Intro';
+import StressTest from './pages/stress-test/StressTest';
 import ServerMonitoring from './pages/server-monitoring/ServerMonitoring';
 import WebPerformance from './pages/web-performance/WebPerformance';
 
@@ -18,6 +19,7 @@ function App() {
             <NavBar />
             <Routes>
               <Route exact path="/" element={<RouteWrapper Component={Intro} />} />
+              <Route path="/stress-test" element={<StressTest />} />
               <Route path="/server-monitoring" element={<ServerMonitoring />} />
               <Route path="/web-performance" element={<WebPerformance />} />
             </Routes>
