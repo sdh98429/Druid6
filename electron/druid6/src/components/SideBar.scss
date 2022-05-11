@@ -1,4 +1,34 @@
-.menu-list a {
-  text-decoration: none;
-  color: rgb(12, 12, 12);
+.side-bar {
+  
+  a {
+    text-decoration: none;
+  }
+
+  .menu-list a {
+    color: rgb(12, 12, 12);
+  }
+
+  .category {
+    color: gray;
+    margin-left: 0.8rem;
+  }
+
+  .logo-wrapper {
+    
+    display: flex;
+    margin: 1.3rem 0 0 2.2rem;
+    line-height: 3rem;
+  }
+  .logo-img {
+    height:3rem;
+    margin-right: 0.4rem;
+    justify-content: center;
+  }
+  .logo-desc{
+    font-family: "Vollkorn SC";
+    font-weight: 900;
+    font-size: 30px;
+    color: #007105;
+  }
 }
+
