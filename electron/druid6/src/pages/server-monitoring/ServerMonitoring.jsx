@@ -1,6 +1,8 @@
 import {useState} from 'react';
 import FileUpload from './FileUpload.jsx';
 
+import "./ServerMonitoring.scss";
+
 export default function ServerMonitoring() {
   
   const {ipcRenderer} =window.require("electron");
@@ -50,8 +52,20 @@ export default function ServerMonitoring() {
     setKernelRelease(arg);
   })
 
+  const [networkRealTime,setNetworkRealTime] = useState('');
+  ipcRenderer.on("networkRealTime",(event,arg)=>{
+    setNetworkRealTime(arg);
+  })
+
+  const [networkHours,setNetworkHours] = useState('');
+  ipcRenderer.on("networkHours",(event,arg)=>{
+    let h=arg.replace('/\t/g','aaa');
+
+    setNetworkHours(h);
+  })
+
   return (
-    <div>
+    <div className='ServerMonitoring'>
       <h1>ServerMonitoring</h1>
        <FileUpload /> 
       <div>프로세스 정보 : {processInfo}</div>
@@ -64,7 +78,8 @@ export default function ServerMonitoring() {
       <div>cpu사용량 : {cpuUsage}%</div>
       <div>memory사용량 : {MemoryUsage}%</div>
       <div>disk 사용량 : {DiskUsage}</div> 
-
+      <div>실시간 트래픽 : {networkRealTime}</div>
+      <div>하루 트래픽 : {networkHours}</div>
     </div>
   );
 }

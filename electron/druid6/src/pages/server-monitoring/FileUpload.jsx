@@ -6,6 +6,10 @@ export default function FileUpload() {
         ipcRenderer.send("OpenFile","open");
     }
 
+    const allowInstall = () =>{
+        ipcRenderer.send("AllowInstall","allow");
+    }
+
     const [filePath,setFilePath] = useState('');
     ipcRenderer.on("filePath",(event,arg)=>{
         setFilePath(arg);
@@ -40,6 +44,7 @@ export default function FileUpload() {
             <div>{filePath}</div>
 
             <button onClick = {connectSSH}>접속</button>
+            <button onClick = {allowInstall}>접속허가</button>
         </div>
         //버튼 클릭하면 ConnectSSH 접속
     );
