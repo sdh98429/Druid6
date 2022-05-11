@@ -1,4 +1,5 @@
 import logo from '../../static/images/icon.png';
+import DragDrop from '../../components/DragDrop.tsx';
 import './Intro.css'
 
 export default function Intro() {
@@ -40,6 +41,7 @@ export default function Intro() {
         >
           Learn Druid6
         </a>
+        <DragDrop />
       </header>
     </div>
   );
