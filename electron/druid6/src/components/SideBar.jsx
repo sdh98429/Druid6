@@ -38,6 +38,7 @@ export default function SideBar() {
             </Typography>
           </MenuItem>
         </Link>
+        <Link to="stress-test">
         <MenuItem>
           <ListItemIcon>
             <ContentCopy fontSize="small" />
@@ -46,7 +47,8 @@ export default function SideBar() {
           <Typography variant="body2" color="text.secondary">
             ⌘C
           </Typography>
-        </MenuItem>
+          </MenuItem>
+        </Link>
         <Link to="web-performance">
           <MenuItem>
             <ListItemIcon>
