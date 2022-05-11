@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+.Intro {
+  background-color: #F3F4F9;
+}
+
+.perspective-container {
+  perspective: 800px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
