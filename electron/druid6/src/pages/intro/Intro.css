@@ -1,8 +1,9 @@
-.App {
+/* .App {
   text-align: center;
-}
+} */
 
 .Intro {
+  height: 90vh;
   background-color: #F3F4F9;
 }
 
@@ -10,10 +11,14 @@
   perspective: 800px;
 }
 
-.App-logo {
-  height: 40vmin;
+.intro-logo {
+  height: 30vmin;
   pointer-events: none;
-  margin: 3rem;
+  margin: 1rem;
+}
+
+.product-introduction {
+  margin: 0;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -22,7 +27,7 @@
   }
 }
 
-.App-header {
+/* .App-header {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -30,7 +35,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: rgb(12, 12, 12);
-}
+} */
 
 .Intro-link {
   color: #006FAD;

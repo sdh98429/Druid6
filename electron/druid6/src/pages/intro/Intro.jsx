@@ -30,7 +30,7 @@ export default function Intro() {
         <div className="perspective-container">
           <img src={logo} className="intro-logo" alt="logo" />
         </div>
-        <p>
+        <p className="product-introduction">
           최고의 애플리케이션 모니터링 솔루션, Druid6 입니다.
         </p>
         <a
