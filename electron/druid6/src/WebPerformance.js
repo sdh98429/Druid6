@@ -51,7 +51,7 @@ export default function WebPerformance() {
 
 
   const drawWebPerformanceResult = async () => {
-    
+
     await handleClickDetermineWebPerformance();
 
   }
@@ -62,9 +62,30 @@ export default function WebPerformance() {
     console.log(parseMobile)
   }
 
+  // if (mobile){
+  //   const SI = mobile.data.lighthouseResult.audit["speed-index"]
+  // }
+
+  const anything = "any"
+
   const checkMobile = () => {
-    const parseMobile = JSON.parse(mobile)
-    console.log(parseMobile.data.lighthouseResult.categories.performance)
+    // const parseMobile = JSON.parse(mobile)
+    // console.log(parseMobile.data.lighthouseResult.categories.performance)
+    const audit = mobile.data.lighthouseResult.audits
+    console.log("체크 버튼 클릭", mobile.data.lighthouseResult.audits)
+    console.log("First Contentful Paint")
+    const FCP = audit["first-contentful-paint"]
+    console.log(audit["first-contentful-paint"].displayValue)
+    console.log(audit["first-contentful-paint"].numericValue + " " + audit["first-contentful-paint"].numericUnit)
+    const div01 = document.getElementById("SI")
+    
+    const SI = audit["speed-index"]
+    const LCP = audit["largest-contentful-paint"]
+    const TTI = audit["interactive"]
+    const TBT = audit["total-blocking-time"]
+    const CLS = audit["cumulative-layout-shift"]
+
+    const hSI = <h1>{SI}</h1>
   }
 
   return (
@@ -77,9 +98,11 @@ export default function WebPerformance() {
       </div>
       {/* 측정 결과 */}
       <div>
-        
+        {/* {SI} */}
+        {anything}
       </div>
       <div>
+        <div id="div01"></div>
         {/* <p>모바일 = {mobile}</p> */}
         {/* <p>데스크탑 = {desktop}</p> */}
       </div>
