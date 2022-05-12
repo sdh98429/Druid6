@@ -9,6 +9,7 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { faker } from '@faker-js/faker';
+import { range } from '../../services/utils';
 
 import './DailyTrafficChart.scss';
 
@@ -38,14 +39,6 @@ export const options = {
     },
   },
 };
-
-function range(start, count) {
-  let array = [];
-  while(count--) {
-    array.push(start++);
-  }
-  return array;
-}
 
 const labels = range(1, 31);
 
