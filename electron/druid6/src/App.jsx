@@ -19,9 +19,9 @@ function App() {
             <NavBar />
             <Routes>
               <Route exact path="/" element={<RouteWrapper Component={Intro} />} />
-              <Route path="/stress-test" element={<StressTest />} />
-              <Route path="/server-monitoring" element={<ServerMonitoring />} />
-              <Route path="/web-performance" element={<WebPerformance />} />
+              <Route path="/stress-test" element={<RouteWrapper Component={StressTest} />} />
+              <Route path="/server-monitoring" element={<RouteWrapper Component={ServerMonitoring} />} />
+              <Route path="/web-performance" element={<RouteWrapper Component={WebPerformance} />} />
             </Routes>
           </div>
         </div>
