@@ -42,17 +42,22 @@ export const options = {
 
 const labels = range(1, 31);
 
+const transmitData = labels.map(() => faker.datatype.number({ min: 0, max: 1000 }));
+const recieveData = labels.map(() => faker.datatype.number({ min: 0, max: 1000 }));
+const txRxSumData = labels.map((ele, idx) => transmitData[idx] + recieveData[idx]);
+
+console.log(transmitData, recieveData, txRxSumData);
 export const data = {
   labels,
   datasets: [
     {
       label: 'Transmit',
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
+      data: transmitData,
       backgroundColor: 'rgb(255, 99, 132)',
     },
     {
       label: 'Receive',
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
+      data: recieveData,
       backgroundColor: 'rgb(75, 192, 192)',
     },
   ],
