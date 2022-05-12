@@ -16,7 +16,6 @@ function createWindow() {
         webPreferences: {
           nodeIntegration: true,
           contextIsolation : false
-           
         }
     })
  
@@ -41,8 +40,9 @@ ipcMain.on("OpenFile", (event, arg)=>{
 
   dialog.showOpenDialog(null, options, (filePaths) => {  
   }).then(result=>{
-    filePath=result.filePaths[0];
-    event.reply('filePath',filePath);
+    filePath = result.filePaths[0];
+    console.log(filePath);
+    event.reply('filePath', filePath);
   });
 
 }) 
@@ -75,6 +75,7 @@ ipcMain.on("AllowInstall", (event, arg)=>{
 
 ipcMain.on("ConnectSSH", (event, arg)=>{ 
   hostInfo=arg;
+  console.log(hostInfo);
   sshClient(event,hostInfo,filePath);
   network(event,hostInfo,filePath);
 })

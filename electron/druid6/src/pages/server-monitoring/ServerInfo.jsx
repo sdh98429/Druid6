@@ -12,7 +12,7 @@ export default function ServerInfo({
     networkRealTime,
     networkHours
 }}) {
-  console.log(osInfo);
+
   return (
     <div>
       <div>프로세스 정보 : {processInfo}</div>
