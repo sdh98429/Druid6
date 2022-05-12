@@ -170,7 +170,7 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
             //conn.end();
           }).on('data', (data) => {
             
-            event.reply('network',data.toString());
+            event.reply('networkRealTime',data.toString());
             console.log( data.toString());
           }).stderr.on('data', (data) => {
             console.log('STDERR: ' + data);
