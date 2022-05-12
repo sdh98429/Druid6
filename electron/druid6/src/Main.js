@@ -4,7 +4,7 @@ const sshClient = require('./services/sshClient');
 const install = require('./services/Install');
 const network = require('./services/network');
 const { FloodTwoTone, Login } = require('@mui/icons-material');
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+// const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 
 remote.initialize()
@@ -27,9 +27,9 @@ function createWindow() {
 
 let filePath;
 let hostInfo;
-let scenarioInfo;
-let baseURL;
-let vusers;
+// let scenarioInfo;
+// let baseURL;
+// let vusers;
 
 ipcMain.on("OpenFile", (event, arg)=>{ 
   const {dialog} = require('electron');
@@ -60,7 +60,7 @@ ipcMain.on("AllowInstall", (event, arg)=>{
   };
 
   dialog.showMessageBox(null, options, (response, checkboxChecked) => {  
- 
+
     console.log(response);
     console.log(checkboxChecked);
   
@@ -79,13 +79,28 @@ ipcMain.on("ConnectSSH", (event, arg)=>{
   network(event,hostInfo,filePath);
 })
 
-ipcMain.on("StartScenario", async (event, arg)=>{ 
-  scenarioInfo = arg;
-  baseURL = scenarioInfo.domainname + ":" + scenarioInfo.portname;
-  vusers = scenarioInfo.vusers;
-  let flows = scenarioInfo.flows;
-  let response = await something(flows[0]);
-  console.log("response: ", response);
+app.on('ready', function(){
+    createWindow();
+})
+ 
+app.on('window-all-closed', function() {
+    if(process.platform !== 'darwin') {
+        app.quit()
+    }
+})
+ 
+app.on('activate', function() {
+    if(BrowserWindow.getAllWindows().length === 0) createWindow()
+})
+
+
+// ipcMain.on("StartScenario", async (event, arg)=>{ 
+//   scenarioInfo = arg;
+//   baseURL = scenarioInfo.domainname + ":" + scenarioInfo.portname;
+//   vusers = scenarioInfo.vusers;
+//   let flows = scenarioInfo.flows;
+//   let response = await something(flows[0]);
+//   console.log("response: ", response);
   
 // login(baseURL, data){
 //   return apiController({
@@ -103,32 +118,18 @@ ipcMain.on("StartScenario", async (event, arg)=>{
     
   // }
 
-}) 
+// }) 
 
-const something = async (e) => {
-  console.log(e.name)
-  console.log(e.method)
-  console.log(e.data)
-  const res = await fetch(baseURL + '/' + e.name, {
-    method: e.method,
-    headers: {
-      'Content-type' : 'application/json'
-    },
-    body: JSON.stringify(e.data)
-  })
-  return res.json()
-}
-
-app.on('ready', function(){
-    createWindow();
-})
- 
-app.on('window-all-closed', function() {
-    if(process.platform !== 'darwin') {
-        app.quit()
-    }
-})
- 
-app.on('activate', function() {
-    if(BrowserWindow.getAllWindows().length === 0) createWindow()
-})
+// const something = async (e) => {
+//   console.log(e.name)
+//   console.log(e.method)
+//   console.log(e.data)
+//   const res = await fetch(baseURL + '/' + e.name, {
+//     method: e.method,
+//     headers: {
+//       'Content-type' : 'application/json'
+//     },
+//     body: JSON.stringify(e.data)
+//   })
+//   return res.json()
+// }

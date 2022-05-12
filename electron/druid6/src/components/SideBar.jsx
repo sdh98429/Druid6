@@ -34,7 +34,7 @@ export default function SideBar() {
         <SideBarMenu to={"/"} text={"대시보드"} Icon={ DashboardIcon }/>
         <SideBarMenu to={"server-monitoring"} text={"서버 모니터링"} Icon={ MonitorHeartIcon }/>
         <div className="category">Testing Tools</div>
-        <SideBarMenu to={"web-performance"} text={"부하 테스트"} Icon={ NetworkCheckIcon }/>
+        <SideBarMenu to={"stress-test"} text={"부하 테스트"} Icon={ NetworkCheckIcon }/>
         <SideBarMenu to={"web-performance"} text={"웹 퍼포먼스"} Icon={ SpeedIcon }/>
         <div className="category">Support</div>
         <SideBarMenu to={"web-performance"} text={"고객센터"} Icon={ SupportAgentIcon }/>
