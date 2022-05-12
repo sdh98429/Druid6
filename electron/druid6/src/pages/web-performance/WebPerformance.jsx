@@ -24,13 +24,14 @@ export default function WebPerformance() {
     setDesktop(newValue);
   };
 
-  useEffect(() => {
-    if (mobile){
-      // console.log(typeof(mobile))
-      // console.log("제발 되라우", mobile)
-      // console.log("저녁각", mobile.data.lighthouseResult.categories.performance)
-    }
-  }, [mobile]);
+  // useEffect(() => {
+  //   if (mobile){
+  //     // console.log(typeof(mobile))
+  //     // console.log("제발 되라우", mobile)
+  //     // console.log("저녁각", mobile.data.lighthouseResult.categories.performance)
+  //     setPerformanceReport(checkMobile());
+  //   }
+  // }, [mobile]);
 
   const handleClickDetermineWebPerformance = async () => {
     console.log(`hi`);
@@ -64,7 +65,7 @@ export default function WebPerformance() {
   //   const SI = mobile.data.lighthouseResult.audit["speed-index"]
   // }
 
-  const anything = "any"
+  // const anything = "any"
 
   const checkMobile = () => {
     const performanceReport = {};
@@ -101,24 +102,40 @@ export default function WebPerformance() {
   const [ performanceReport, setPerformanceReport ] = useState(initialPerformanceReport);
 
 
-  const handleClickCheckMobile = () => {
-    setPerformanceReport(checkMobile());
-  };
+  // const handleClickCheckMobile = () => {
+  //   setPerformanceReport(checkMobile());
+  // };
+
+  useEffect(() => {
+    if (mobile){
+      // console.log(typeof(mobile))
+      // console.log("제발 되라우", mobile)
+      // console.log("저녁각", mobile.data.lighthouseResult.categories.performance)
+      setPerformanceReport(checkMobile());
+    }
+  }, [mobile]);
 
   const { FCP, SI, LCP, TTI, TBT, CLS } = performanceReport;
   
   return (
-    <div className='web-performance'>
+    <div className='App'>
       <div>
         <input type='text' id='url' name='url' placeholder='웹페이지 URL 입력' onChange={onChangeUrl}></input>
         <button onClick={drawWebPerformanceResult}>성능 측정하기</button>
-        <button onClick={handleClickCheckMobile}>모바일 체크</button>
+        {/* <button onClick={handleClickCheckMobile}>모바일 체크</button> */}
         <button onClick={parsingMobileResult}>모바일 체크2</button>
       </div>
       {/* 측정 결과 */}
       <div>
-        {`SI is ${JSON.stringify(SI)}`}
-        {anything}
+        <div>score</div>
+        <div>{`FCP : ${FCP.displayValue}`}</div>
+        <div>{`SI : ${SI.displayValue}`}</div>
+        <div>{`LCP : ${LCP.displayValue}`}</div>
+        <div>{`TTI : ${TTI.displayValue}`}</div>
+        <div>{`TBT : ${TBT.displayValue}`}</div>
+        <div>{`CLS : ${CLS.displayValue}`}</div>
+        
+        {/* {anything} */}
       </div>
       <div>
         <div id="div01"></div>
