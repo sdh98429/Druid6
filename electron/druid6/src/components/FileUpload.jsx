@@ -39,7 +39,7 @@ export default function FileUpload() {
             
             <input id="username" name="username" onChange={onChangeHostInfo}/>
             <button onClick={openFile}>pem키 등록해주세요</button>
-            <div id="filePath" name="filePath" onChange={onChangeHostInfo}>{filePath}</div>
+            <div id="filePath" name="filePath">{filePath}</div>
 
             <button onClick={connectSSH}>접속</button>
             <button onClick={allowInstall}>접속허가</button>

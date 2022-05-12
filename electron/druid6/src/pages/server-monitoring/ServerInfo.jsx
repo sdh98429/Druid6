@@ -10,7 +10,6 @@ export default function ServerInfo({
     memory,
     disk,
     networkRealTime,
-    networkHours
 }}) {
 
   return (
@@ -25,7 +24,6 @@ export default function ServerInfo({
       <div>memory사용량 : {memory}%</div>
       <div>disk 사용량 : {disk}</div> 
       <div>실시간 트래픽 : {networkRealTime}</div>
-      <div>하루 트래픽 : {networkHours}</div>
     </div>
   );
 }
