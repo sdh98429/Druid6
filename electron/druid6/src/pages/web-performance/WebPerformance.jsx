@@ -108,7 +108,7 @@ export default function WebPerformance() {
   const { FCP, SI, LCP, TTI, TBT, CLS } = performanceReport;
   
   return (
-    <div className='App'>
+    <div className='web-performance'>
       <div>
         <input type='text' id='url' name='url' placeholder='웹페이지 URL 입력' onChange={onChangeUrl}></input>
         <button onClick={drawWebPerformanceResult}>성능 측정하기</button>
