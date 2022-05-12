@@ -5,7 +5,7 @@ const network = (event,hostInfo,privateKeyPath) => {
     
     conn.on('ready', () => {
       console.log('Client :: ready2');
-      setTimeout(function (){
+      setInterval(function (){
         conn.exec(`vnstat -h`
         , (err, stream) => {
           if (err) throw err;
@@ -20,7 +20,7 @@ const network = (event,hostInfo,privateKeyPath) => {
             console.log('STDERR: ' + data);
           });
         });
-      },0)
+      },5000)
     
       setTimeout(function (){
         conn.exec(`vnstat -l -i eth0`
