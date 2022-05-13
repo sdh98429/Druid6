@@ -1,12 +1,11 @@
 import {useState} from 'react';
 import { Line } from "react-chartjs-2";
-
 import "./ServerMonitoring.scss";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 
 export default function ServerMonitoring() {
-  //ChartJS.register(ArcElement, Tooltip, Legend);
+  ChartJS.register(ArcElement, Tooltip, Legend);
   
   const {ipcRenderer} =window.require("electron");
   
