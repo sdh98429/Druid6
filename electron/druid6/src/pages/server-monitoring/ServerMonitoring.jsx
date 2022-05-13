@@ -1,10 +1,13 @@
 import {useState} from 'react';
+import { Line } from "react-chartjs-2";
+
+import "./ServerMonitoring.scss";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
-import "./ServerMonitoring.scss";
 
 export default function ServerMonitoring() {
-  ChartJS.register(ArcElement, Tooltip, Legend);
+  //ChartJS.register(ArcElement, Tooltip, Legend);
+  
   const {ipcRenderer} =window.require("electron");
   
   const [cpuUsage,setCpuUsage] = useState('');
@@ -86,14 +89,17 @@ export default function ServerMonitoring() {
     responsive: false,
     
   }
+ 
+  
+ 
+
   return (
-    <div className='ServerMonitoring'>
-      <h1>ServerMonitoring</h1>
-      <div>
-      <Doughnut data={data} options={options} />
+     <div className='ServerMonitoring'>
+       <h1>ServerMonitoring</h1> 
+      <div className="Apap">
+       <Doughnut data={data} options={options} /> 
       
-      
-      </div>
+       </div>
 
       <div>프로세스 정보 : {processInfo}</div>
       <div>운영체제 정보 : {osInfo}</div>
@@ -106,7 +112,7 @@ export default function ServerMonitoring() {
       <div>memory사용량 : {MemoryUsage}%</div>
       <div>disk 사용량 : {DiskUsage}</div> 
       <div>실시간 트래픽 : {networkRealTime}</div>
-      <div>하루 트래픽 : {networkHours}</div>
+      <div>하루 트래픽 : {networkHours}</div> 
     </div>
   );
 }
