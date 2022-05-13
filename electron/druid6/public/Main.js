@@ -1,11 +1,12 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const remote = require('@electron/remote/main');
-const sshClient = require('./services/sshClient');
-const install = require('./services/Install');
-const network = require('./services/network');
+const path = require('path');
+const isDev = require('electron-is-dev');
+const install = require('./Install');
+const network = require('./network');
 const { FloodTwoTone, Login } = require('@mui/icons-material');
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
-
+const sshClient = require('./sshClient');
 
 remote.initialize()
 
@@ -15,12 +16,12 @@ function createWindow() {
         height: 600,
         webPreferences: {
           nodeIntegration: true,
-          contextIsolation : false
-           
+          contextIsolation: false,
+         
         }
     })
  
-    win.loadURL('http://localhost:3000')
+    win.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`)
   
     remote.enable(win.webContents);
 }

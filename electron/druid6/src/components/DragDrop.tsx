@@ -13,9 +13,13 @@ interface IFileTypes {
   object: File;
 }
 
-const DragDrop = () => {
+const DragDrop = ({ hostInfo }) => {
+  console.log(hostInfo);
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [files, setFiles] = useState<IFileTypes[]>([]);
+  // hostInfo.filePath=files[0]['object']['path'];
+
+  console.log(hostInfo);
 
   const dragRef = useRef<HTMLLabelElement | null>(null);
   const fileId = useRef<number>(0);
@@ -134,12 +138,12 @@ const DragDrop = () => {
           files.map((file: IFileTypes) => {
             const {
               id,
-              object: { name }
+              object: { path }
             } = file;
 
             return (
               <div key={id}>
-                <div>{name}</div>
+                <div>{path}</div>
                 <div
                   className="DragDrop-Files-Filter"
                   onClick={() => handleFilterFile(id)}

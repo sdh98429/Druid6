@@ -1,6 +1,6 @@
 import logo from '../../static/images/icon.png';
-import DragDrop from '../../components/DragDrop.tsx';
 import './Intro.css'
+import FileUpload from '../../components/FileUpload';
 
 export default function Intro() {
   function setSheenPosition(xRatio, yRatio) {
@@ -41,7 +41,7 @@ export default function Intro() {
         >
           Learn Druid6
         </a>
-        <DragDrop />
+        {/* <FileUpload /> */}
       </header>
     </div>
   );
