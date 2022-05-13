@@ -12,11 +12,6 @@ export default() => {
       for ( const res of saveReqResponse) {
         savedResponse['$.' + res] = response[res]
       }
-
-      if (response) {
-        postMessage(response)
-      }
-      
     }
     postMessage('work end');
     close()
@@ -29,9 +24,11 @@ export default() => {
     }
 
     // body 검사
-    for (let [key, value] of Object.entries(e.body)){
-      if (typeof value === 'string' && value.substr(0,2) === "$.") {
-        e.body[key] = savedResponse[value]
+    if (e.body) { 
+      for (let [key, value] of Object.entries(e.body)){
+        if (typeof value === 'string' && value.substr(0,2) === "$.") {
+          e.body[key] = savedResponse[value]
+        }
       }
     }
     // url 검사 후 response 내부 변수 사용시 변경

@@ -19,25 +19,24 @@ export default function StressTest() {
         },
       },
       {
-        url: "http://k6s2041.p.ssafy.io:8080/api/v1/users/bonus/",
+        url: "http://k6s2041.p.ssafy.io:8080/api/v1/users/bonus",
         method: "POST",
         token: "$.accessToken",
-        body: {
-          email: '$.accessToken'
-        }
+        useResponse: [],
       },
     ],
   });
 
   const onChangeScenarioInfo = (e) => {
-    setScenarioInfo({
-      ...scenarioInfo,
-      [e.target.name]: e.target.value,
+    setScenarioInfo((prevState) => {
+      return {
+        ...prevState,
+        [e.target.name]: e.target.value,
+      }
     });
-    console.log(scenarioInfo);
   };
 
-  let instanceArr = []
+  let WorkerArr = []
   const responseStatus = {
     '1' : 0,
     '2' : 0,
@@ -46,21 +45,23 @@ export default function StressTest() {
     '5' : 0,
   }
   const startScenario = async function () {
+    const startTime = Date.now()
     for (let i = 0; i < scenarioInfo.vusers; i++ ) {
-      instanceArr[i] = new WorkerBuilder(myWorker);
-      instanceArr[i].onmessage = (message) => {
+      WorkerArr[i] = new WorkerBuilder(myWorker);
+      WorkerArr[i].onmessage = (message) => {
         if (message.data === "work end"){
-          instanceArr.pop()
-          if (instanceArr.length === 0){
+          WorkerArr.pop()
+          if (WorkerArr.length === 0){
+            // TODO : worker가 모두 일을 끝낼을때 무엇을 할지 
             console.log(responseStatus)
+            console.log(Date.now() - startTime)
           }
         }
         else {
-          console.log(message)
           responseStatus[(message.data+'')[0]] += 1
         }
       };
-      instanceArr[i].postMessage(scenarioInfo.flows)
+      WorkerArr[i].postMessage(scenarioInfo.flows)
     }
   }
   const checkStatus = () => {
