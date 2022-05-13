@@ -42,7 +42,7 @@ export default function Intro() {
         >
           Learn Druid6
         </a>
-        <FileUpload />
+        {/* <FileUpload /> */}
       </header>
     </div>
   );
