@@ -1,6 +1,7 @@
 import logo from '../../static/images/icon.png';
 import './Intro.css'
 import FileUpload from '../../components/FileUpload';
+import HostInput from './HostInput.jsx';
 
 export default function Intro() {
   function setSheenPosition(xRatio, yRatio) {

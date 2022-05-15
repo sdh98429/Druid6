@@ -13,7 +13,7 @@ export default() => {
         savedResponse['$.' + res] = response[res]
       }
     }
-    postMessage('work end');
+    postMessage({'workEnd' : 'workEnd'});
     close()
   }
   
@@ -34,6 +34,9 @@ export default() => {
     // url 검사 후 response 내부 변수 사용시 변경
     e.url = checkUrl(e.url)
 
+    // latency 측정용 startTime
+    const startTime = Date.now()
+
     try {
       const response = await fetch(e.url, {
         method: e.method,
@@ -45,7 +48,8 @@ export default() => {
           e.body
         )
       })
-      postMessage(response.status)
+      postMessage( { "latencySended" : Date.now()-startTime } )
+      postMessage({ "statusCode" : response.status })
       const statusCode = (response.status + '')[0]
       if ( e.useResponse.length && statusCode !== '4' && statusCode !== '5' ) {
         return response.json()
