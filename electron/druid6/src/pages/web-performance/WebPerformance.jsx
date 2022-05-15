@@ -225,7 +225,7 @@ export default function WebPerformance() {
 
       <div>
         <button disabled={disableButton} onClick={moveToSolutions}>솔루션 페이지로 이동</button>
-        <Solutions displaySolutions={displaySolutions}></Solutions>
+        <Solutions displaySolutions={displaySolutions} mobile={mobile}></Solutions>
       </div>
     </div>
   );
