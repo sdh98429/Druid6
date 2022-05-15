@@ -1,11 +1,12 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const remote = require('@electron/remote/main');
-const sshClient = require('./services/sshClient');
-const install = require('./services/Install');
-const network = require('./services/network');
+const path = require('path');
+const isDev = require('electron-is-dev');
+const install = require('./Install');
+const network = require('./network');
 const { FloodTwoTone, Login } = require('@mui/icons-material');
-// const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
-
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+const sshClient = require('./sshClient');
 
 remote.initialize()
 
@@ -15,22 +16,21 @@ function createWindow() {
         height: 600,
         webPreferences: {
           nodeIntegration: true,
-          enableRemoteModule: true,
           contextIsolation: false,
-          preload: __dirname + '/preload.js',
+         
         }
     })
  
-    win.loadURL('http://localhost:3000')
+    win.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`)
   
     remote.enable(win.webContents);
 }
 
 let filePath;
 let hostInfo;
-// let scenarioInfo;
-// let baseURL;
-// let vusers;
+let scenarioInfo;
+let baseURL;
+let vusers;
 
 ipcMain.on("OpenFile", (event, arg)=>{ 
   const {dialog} = require('electron');
@@ -42,9 +42,8 @@ ipcMain.on("OpenFile", (event, arg)=>{
 
   dialog.showOpenDialog(null, options, (filePaths) => {  
   }).then(result=>{
-    filePath = result.filePaths[0];
-    console.log(filePath);
-    event.reply('filePath', filePath);
+    filePath=result.filePaths[0];
+    event.reply('filePath',filePath);
   });
 
 }) 
@@ -62,7 +61,7 @@ ipcMain.on("AllowInstall", (event, arg)=>{
   };
 
   dialog.showMessageBox(null, options, (response, checkboxChecked) => {  
-
+ 
     console.log(response);
     console.log(checkboxChecked);
   
@@ -77,33 +76,17 @@ ipcMain.on("AllowInstall", (event, arg)=>{
 
 ipcMain.on("ConnectSSH", (event, arg)=>{ 
   hostInfo=arg;
-  console.log(hostInfo);
   sshClient(event,hostInfo,filePath);
   network(event,hostInfo,filePath);
 })
 
-app.on('ready', function(){
-    createWindow();
-})
- 
-app.on('window-all-closed', function() {
-    if(process.platform !== 'darwin') {
-        app.quit()
-    }
-})
- 
-app.on('activate', function() {
-    if(BrowserWindow.getAllWindows().length === 0) createWindow()
-})
-
-
-// ipcMain.on("StartScenario", async (event, arg)=>{ 
-//   scenarioInfo = arg;
-//   baseURL = scenarioInfo.domainname + ":" + scenarioInfo.portname;
-//   vusers = scenarioInfo.vusers;
-//   let flows = scenarioInfo.flows;
-//   let response = await something(flows[0]);
-//   console.log("response: ", response);
+ipcMain.on("StartScenario", async (event, arg)=>{ 
+  scenarioInfo = arg;
+  baseURL = scenarioInfo.domainname + ":" + scenarioInfo.portname;
+  vusers = scenarioInfo.vusers;
+  let flows = scenarioInfo.flows;
+  let response = await something(flows[0]);
+  console.log("response: ", response);
   
 // login(baseURL, data){
 //   return apiController({
@@ -121,18 +104,32 @@ app.on('activate', function() {
     
   // }
 
-// }) 
+}) 
 
-// const something = async (e) => {
-//   console.log(e.name)
-//   console.log(e.method)
-//   console.log(e.data)
-//   const res = await fetch(baseURL + '/' + e.name, {
-//     method: e.method,
-//     headers: {
-//       'Content-type' : 'application/json'
-//     },
-//     body: JSON.stringify(e.data)
-//   })
-//   return res.json()
-// }
+const something = async (e) => {
+  console.log(e.name)
+  console.log(e.method)
+  console.log(e.data)
+  const res = await fetch(baseURL + '/' + e.name, {
+    method: e.method,
+    headers: {
+      'Content-type' : 'application/json'
+    },
+    body: JSON.stringify(e.data)
+  })
+  return res.json()
+}
+
+app.on('ready', function(){
+    createWindow();
+})
+ 
+app.on('window-all-closed', function() {
+    if(process.platform !== 'darwin') {
+        app.quit()
+    }
+})
+ 
+app.on('activate', function() {
+    if(BrowserWindow.getAllWindows().length === 0) createWindow()
+})
