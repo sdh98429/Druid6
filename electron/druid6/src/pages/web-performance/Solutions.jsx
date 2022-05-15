@@ -3,24 +3,34 @@ import React, { useEffect } from 'react';
 export default function Solutions(props) {
   
   const mobile = props.mobile;
-
+  
   useEffect(() => {
     if (mobile) {
       checkMobileSolutions();
     }
   }, [mobile]);
-
+  
   const checkMobileSolutions = () => {
     
     // 파싱
-    console.log("----------------------------------------");
-    console.log(JSON.stringify(mobile));
-    const audits = mobile.data.lighthouseResult.audits
+    const audits = mobile.data.lighthouseResult.audits;
+    const auditsArray = [];
     
-    for(let key in audits) {
+    for (let key in audits) {
+
+      try {
+        let overallSavingsMs = audits[key]['details']['overallSavingsMs'];
+        if (overallSavingsMs >= 100) {
+          auditsArray.push(audits[key]);
+        }
+      } catch (err) {
+        continue;
+      }
       // console.log('key:' + key + ' / value:' + audits[key]);
     }
 
+    console.log(JSON.stringify(mobile));
+    console.log(auditsArray);
     /*
     response = requests.get('https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url='+<url>+'&strategy='+<desktop or mobile>+'&key='+<api_key>)
     js = response.json()
@@ -169,7 +179,7 @@ export default function Solutions(props) {
       {
         props.displaySolutions === true ? 
         <div>
-
+          
         </div>
         : <div>렌더링 전</div>
       }
