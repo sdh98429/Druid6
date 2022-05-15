@@ -1,5 +1,6 @@
 import './WebPerformance.scss';
 import requestWebPerformanceResult from '../../services/api/WebPerformance';
+import Solutions from './Solutions';
 import React, { useEffect, useState } from 'react';
 
 export default function WebPerformance() {
@@ -28,6 +29,13 @@ export default function WebPerformance() {
 
   const handleChangeDisplaySolutions = (newValue) => {
     setDisplaySolutions(newValue);
+  }
+
+  // 솔루션 페이지로 이동 버튼 비활성화 조건
+  const [disableButton, setDisableButton] = useState(true);
+
+  const handleChangeDisableButton = (newValue) => {
+    setDisableButton(newValue);
   }
 
   const handleClickDetermineWebPerformance = async () => {
@@ -103,6 +111,7 @@ export default function WebPerformance() {
       // console.log("제발 되라우", mobile)
       // console.log("저녁각", mobile.data.lighthouseResult.categories.performance)
       setPerformanceReport(checkMobile());
+      handleChangeDisableButton(false);
     }
   }, [mobile]);
 
@@ -137,6 +146,11 @@ export default function WebPerformance() {
   const TBTDetail = "TBT는 마우스 클릭, 화면 탭 또는 키보드 누름과 같은 사용자 입력으로부터 페이지가 응답하지 못하도록 차단된 총 시간을 측정합니다. 합계는 최초 콘텐츠풀 페인트와 상호 작용까지의 시간 사이의 모든 긴 작업의 차단 부분을 더하여 계산합니다. 50ms 이상 실행되는 모든 작업은 긴 작업입니다. 50ms 이후의 시간이 차단 부분입니다. 예를 들어 Lighthouse가 70ms 길이의 작업을 감지하면 차단 부분은 20ms가 됩니다."
   const LCPDetail = "최대 콘텐츠풀 페인트(LCP)는 페이지의 메인 콘텐츠가 로드되었을 가능성이 있을 때 페이지 로드 타임라인에 해당 시점을 표시하므로 사용자가 감지하는 로드 속도를 측정할 수 있는 중요한 사용자 중심 메트릭입니다. LCP가 빠르면 사용자가 해당 페이지를 사용할 수 있다고 인지하는 데 도움이 됩니다."
   const CLSDetail = "누적 레이아웃 이동(CLS)은 사용자가 예상치 못한 레이아웃 이동을 경험하는 빈도를 수량화하므로 시각적 안정성을 측정할 때 중요한 사용자 중심 메트릭입니다. CLS가 낮으면 우수한 사용자 경험을 보장하는 데 도움이 됩니다."
+
+  // 솔루션 페이지로 이동 버튼
+  const moveToSolutions = () => {
+    handleChangeDisplaySolutions(true);
+  }
 
   return (
     <div className='WebPerformance'>
@@ -210,7 +224,8 @@ export default function WebPerformance() {
       </div>
 
       <div>
-        <button onClick={displaySolutions}>페이지 이동</button>
+        <button disabled={disableButton} onClick={moveToSolutions}>솔루션 페이지로 이동</button>
+        <Solutions displaySolutions={displaySolutions}></Solutions>
       </div>
     </div>
   );
