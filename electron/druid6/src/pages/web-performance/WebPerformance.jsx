@@ -24,6 +24,12 @@ export default function WebPerformance() {
     setDesktop(newValue);
   };
 
+  const [displaySolutions, setDisplaySolutions] = useState(false);
+
+  const handleChangeDisplaySolutions = (newValue) => {
+    setDisplaySolutions(newValue);
+  }
+
   const handleClickDetermineWebPerformance = async () => {
     console.log(`hi`);
 
@@ -203,7 +209,9 @@ export default function WebPerformance() {
         </div>
       </div>
 
-
+      <div>
+        <button onClick={displaySolutions}>페이지 이동</button>
+      </div>
     </div>
   );
 }
