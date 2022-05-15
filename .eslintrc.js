@@ -28,7 +28,7 @@ module.exports = {
     "object-curly-spacing": ["error", "always"], // {} 안 1space
     "eol-last": ["error", "always"], // 파일 막줄 공백 라인
     "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0, "maxBOF": 0 }], // 공백라인 최대 1줄로
-    
+
     // emotion rules
     "@emotion/syntax-preference": [2, "string"],
     "@emotion/no-vanilla": "error",
