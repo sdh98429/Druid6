@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function Solutions(props) {
   
   const mobile = props.mobile;
+
+  const [ recommendationArray, setRecommendationArray ] = useState([]);
   
   useEffect(() => {
     if (mobile) {
@@ -14,14 +16,13 @@ export default function Solutions(props) {
     
     // 파싱
     const audits = mobile.data.lighthouseResult.audits;
-    const auditsArray = [];
     
     for (let key in audits) {
 
       try {
         let overallSavingsMs = audits[key]['details']['overallSavingsMs'];
         if (overallSavingsMs >= 100) {
-          auditsArray.push(audits[key]);
+          setRecommendationArray(recommendationArray.push(audits[key]));
         }
       } catch (err) {
         continue;
@@ -30,7 +31,7 @@ export default function Solutions(props) {
     }
 
     console.log(JSON.stringify(mobile));
-    console.log(auditsArray);
+    console.log(recommendationArray);
     /*
     response = requests.get('https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url='+<url>+'&strategy='+<desktop or mobile>+'&key='+<api_key>)
     js = response.json()
@@ -179,7 +180,7 @@ export default function Solutions(props) {
       {
         props.displaySolutions === true ? 
         <div>
-          
+          {recommendationArray}
         </div>
         : <div>렌더링 전</div>
       }
