@@ -22,31 +22,19 @@ export default function Solutions({ mobileData }) {
   const checkMobileSolutions = () => {
     // SelectAudits
     const audits = mobileData.data.lighthouseResult.audits;
-    console.log(Object.values(audits).length);
 
+    let selectedAudits = [];
     Object.values(audits).forEach((value) => {
       try {
         const overallSavingMs = value["details"]["overallSavingsMs"];
         if (overallSavingMs >= 100) {
-          console.log("it is more than 100!");
-          setRecommendations([...recommendations, value]);
+          selectedAudits.push(value);
         }
-        console.log(recommendations.length);
       } catch {
         //
       }
     });
-
-    // for (let key in audits) {
-    //   try {
-    //     let overallSavingsMs = audits[key]["details"]["overallSavingsMs"];
-    //     if (overallSavingsMs >= 100) {
-    //       setRecommendations([...recommendations, audits[key]]);
-    //     }
-    //   } catch (err) {
-    //     continue;
-    //   }
-    // }
+    setRecommendations(selectedAudits);
   };
 
   return (
