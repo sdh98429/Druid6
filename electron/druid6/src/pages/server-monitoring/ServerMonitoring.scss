@@ -7,7 +7,7 @@
     padding: 1vh 1.5vh;
     background-color: #fcf9f9;
     border-radius: 3vh;
-    width: 80vh;
+    width: 90%;
     height: 26vh;
     box-shadow: 0.15rem 0.15rem 4px rgb(194, 193, 193);
     &:hover {
@@ -19,10 +19,12 @@
     }
   }
   .badgeShort {
-    margin: 2rem;
+    margin: 1rem;
     display: flex;
     padding: 1vh 1.5vh;
     flex: 1;
+    display: inline-block;
+    text-align: center;
     background-color: #fcf9f9;
     border-radius: 3vh;
     width:  25vh;
@@ -33,7 +35,8 @@
       transform: translateY(-0.3rem);
     }
   
-    .badge-title {
+    .badge-content {
+      
     }
   }
   .badgeContainer {

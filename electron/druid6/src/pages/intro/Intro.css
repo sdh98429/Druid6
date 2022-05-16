@@ -41,3 +41,9 @@
     transform: rotate(-360deg);
   }
 }
+
+.introContainer{
+  text-align: left;
+  font-size: 1rem;
+
+}

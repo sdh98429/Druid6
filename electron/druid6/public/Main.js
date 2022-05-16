@@ -54,19 +54,14 @@ ipcMain.on("AllowInstall", (event, arg)=>{
     buttons: ['Cancel', 'Yes, please', 'No, thanks'],
     defaultId: 2,
     title: 'Question',
-    message: 'Do you want to do this?',
-    detail: 'It does not really matter',
-    checkboxLabel: 'Remember my answer',
-    checkboxChecked: true,
+    message: 'vnstat를 사용 하시겠습니까?',
+    detail: 'vnstat를 사용하지 않으면 네트워크 모니터링 서비스를 제공받으실수 없습니다.',
+    
   };
 
   dialog.showMessageBox(null, options, (response, checkboxChecked) => {  
- 
-    console.log(response);
-    console.log(checkboxChecked);
-  
   }).then(result=>{
-    if(result.response == 1){
+    if(result.response === 1){
       install(event,hostInfo,filePath);
     }else{
       console.log('노다운');
