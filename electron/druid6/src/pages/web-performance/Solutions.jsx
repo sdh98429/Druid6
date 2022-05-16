@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 function Recommendation({ recommendation }) {
   return (
     <div>
-      <b>{recommendation.title}</b>{" "}
+      <b>{recommendation.title}</b>
       <span>({recommendation.details.overallSavingsMs})</span>
     </div>
   );

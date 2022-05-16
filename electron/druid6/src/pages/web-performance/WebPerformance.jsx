@@ -2,37 +2,43 @@ import "./WebPerformance.scss";
 import requestWebPerformanceResult from "../../services/api/WebPerformance";
 import Solutions from "./Solutions";
 import React, { useEffect, useState } from "react";
-import CoreValue from "./CoreValue";
-import coreValues from "../../static/coreValues";
+
+import ResultContents from "./ResultContents";
+const initialPerformanceReport = {
+  FCP: "",
+  SI: "",
+  LCP: "",
+  TTI: "",
+  TBT: "",
+  CLS: "",
+  screenshot: "",
+  performanceScore: 0,
+};
 
 export default function WebPerformance() {
+  const [performanceReport, setPerformanceReport] = useState(
+    initialPerformanceReport
+  );
+
   // url input값 가져오기
   //input에서 value를 담기 위한 state 생성
   const [url, setUrl] = useState("");
+  const [desktop, setDesktop] = useState("");
+
+  // api 요청값 저장할 state 생성
+  const [mobile, setMobile] = useState("");
 
   //input에 입력될 때마다 account state값 변경되게 하는 함수
   const onChangeUrl = (e) => {
     setUrl(e.target.value);
   };
 
-  // api 요청값 저장할 state 생성
-  const [mobile, setMobile] = useState("");
-
   const handleChangeMobile = (newValue) => {
     setMobile(newValue);
   };
 
-  const [desktop, setDesktop] = useState("");
-
   const handleChangeDesktop = async (newValue) => {
     setDesktop(newValue);
-  };
-
-  // 솔루션 페이지로 이동 버튼 비활성화 조건
-  const [disableButton, setDisableButton] = useState(true);
-
-  const handleChangeDisableButton = (newValue) => {
-    setDisableButton(newValue);
   };
 
   const handleClickDetermineWebPerformance = async () => {
@@ -85,44 +91,13 @@ export default function WebPerformance() {
     return performanceReport;
   };
 
-  const initialPerformanceReport = {
-    FCP: "",
-    SI: "",
-    LCP: "",
-    TTI: "",
-    TBT: "",
-    CLS: "",
-    screenshot: "",
-    performanceScore: 0,
-  };
-  const [performanceReport, setPerformanceReport] = useState(
-    initialPerformanceReport
-  );
-
-  // const handleClickCheckMobile = () => {
-  //   setPerformanceReport(checkMobile());
-  // };
-
   useEffect(() => {
     if (mobile) {
-      // console.log(typeof(mobile))
-      // console.log("제발 되라우", mobile)
-      // console.log("저녁각", mobile.data.lighthouseResult.categories.performance)
       setPerformanceReport(checkMobile());
-      handleChangeDisableButton(false);
     }
   }, [mobile]);
 
-  const { FCP, SI, LCP, TTI, TBT, CLS, screenshot, performanceScore } =
-    performanceReport;
-
-  const [coreValueDetail, setCoreValueDetail] = useState(
-    "각 메트릭을 클릭하면 세부 설명을 볼 수 있습니다."
-  );
-
-  const handleChangeCoreValueDetail = (newValue) => {
-    setCoreValueDetail(newValue);
-  };
+  const { screenshot, performanceScore } = performanceReport;
 
   const changeColor = () => {
     if (performanceScore) {
@@ -144,10 +119,6 @@ export default function WebPerformance() {
   // 솔루션 페이지로 이동 버튼
   const moveToSolutions = () => {
     displaySolutions = true;
-  };
-
-  const handleClick = () => {
-    console.log("click");
   };
 
   return (
@@ -175,27 +146,9 @@ export default function WebPerformance() {
             <img src={`${screenshot}`} alt="" />
           </div>
         </div>
-        <div className="api-detail">
-          <div className="represent">
-            <ul>
-              {coreValues.map((coreValue) => {
-                return (
-                  <CoreValue
-                    value={performanceReport[coreValue.value]}
-                    valueTitle={coreValue.valueTitle}
-                    valueDescription={coreValue.valueDescription}
-                    handleClick={handleClick}
-                  />
-                );
-              })}
-            </ul>
-          </div>
-          <div className="description">
-            <div></div>
-            <div>{`${coreValueDetail}`}</div>
-          </div>
-        </div>
       </div>
+
+      <ResultContents performanceReport={performanceReport} />
 
       <div>
         <button disabled={displaySolutions} onClick={moveToSolutions}>
