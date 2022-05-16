@@ -5,12 +5,16 @@ import { useEffect, useState } from "react";
 function Recommendation({ recommendation }) {
   return (
     <div className="item container">
-      <div>
-        <b>{recommendation.title}</b>
-      </div>
+      <div>{recommendation.title}</div>
       <div>차트.js</div>
       <div>
-        <span>({recommendation.details.overallSavingsMs})</span>
+        <span>
+          {Math.round(
+            (recommendation.details.overallSavingsMs / 1000 + Number.EPSILON) *
+              100
+          ) / 100}{" "}
+          s
+        </span>
       </div>
     </div>
   );
