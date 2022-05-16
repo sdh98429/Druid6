@@ -26,13 +26,16 @@ export default function Solutions({ mobileData }) {
     let selectedAudits = [];
     Object.values(audits).forEach((value) => {
       try {
-        const overallSavingMs = value["details"]["overallSavingsMs"];
-        if (overallSavingMs >= 100) {
+        const overallSavingsMs = value["details"]["overallSavingsMs"];
+        if (overallSavingsMs >= 100) {
           selectedAudits.push(value);
         }
       } catch {
         //
       }
+    });
+    selectedAudits.sort(function (a, b) {
+      return b.details.overallSavingsMs - a.details.overallSavingsMs;
     });
     setRecommendations(selectedAudits);
   };
