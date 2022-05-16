@@ -1,44 +1,63 @@
-import {useState} from 'react';
+import { useSelector } from "react-redux";
 import "./ServerMonitoring.scss";
+import { updateReduxInfo } from "./updateInfo";
 export default function ServerInfo() {
-  const {ipcRenderer} =window.require("electron");
-  const [processInfo,setProcessInfo] = useState('');
-  ipcRenderer.on("processInfo",(event,arg)=>{
-    setProcessInfo(arg);
-  })
+  const { ipcRenderer } = window.require("electron");
 
-  const [osInfo,setOsInfo] = useState('');
-  ipcRenderer.on("osInfo",(event,arg)=>{
-    setOsInfo(arg);
-  })
+  const { serverInfo } = useSelector((state) => ({
+    serverInfo: state.serverInfo,
+  }));
 
-  const [ramInfo,setRamInfo] = useState('');
-  ipcRenderer.on("ramInfo",(event,arg)=>{
-    setRamInfo(arg);
-  })
+  ipcRenderer.on("processInfo", (event, arg) => {
+    console.log("잘들어와요");
+    updateReduxInfo({
+      key: "processInfo",
+      value: arg,
+    });
+  });
 
-  const [systemInfo,setSystemInfo] = useState('');
-  ipcRenderer.on("systemInfo",(event,arg)=>{
-    setSystemInfo(arg);
-  })
+  ipcRenderer.on("osInfo", (event, arg) => {
+    updateReduxInfo({
+      key: "osInfo",
+      value: arg,
+    });
+  });
 
-  const [kernelVersion,setKernelVersion] = useState('');
-  ipcRenderer.on("kernelVersion",(event,arg)=>{
-    setKernelVersion(arg);
-  })
+  ipcRenderer.on("ramInfo", (event, arg) => {
+    updateReduxInfo({
+      key: "ramInfo",
+      value: arg,
+    });
+  });
 
-  const [kernelRelease,setKernelRelease] = useState('');
-  ipcRenderer.on("kernelRelease",(event,arg)=>{
-    setKernelRelease(arg);
-  })
+  ipcRenderer.on("systemInfo", (event, arg) => {
+    updateReduxInfo({
+      key: "systemInfo",
+      value: arg,
+    });
+  });
+
+  ipcRenderer.on("kernelVersion", (event, arg) => {
+    updateReduxInfo({
+      key: "kernelVersion",
+      value: arg,
+    });
+  });
+
+  ipcRenderer.on("kernelRelease", (event, arg) => {
+    updateReduxInfo({
+      key: "kernelRelease",
+      value: arg,
+    });
+  });
   return (
-    <div className='badgeLong'>
-    <div>프로세스 정보 : {processInfo}</div>
-    <div>운영체제 정보 : {osInfo}</div>
-    <div>설치된 램 : {ramInfo} gb</div>
-    <div>커널 릴리즈 버젼 : {kernelRelease}</div>
-    <div>커널 버젼 : {kernelVersion}</div>
-    <div>시스템 종류 : {systemInfo}</div>
-  </div>
+    <div className="badgeLong">
+      <div>프로세스 정보 : {serverInfo.processInfo}</div>
+      <div>운영체제 정보 : {serverInfo.osInfo}</div>
+      <div>설치된 램 : {serverInfo.ramInfo} gb</div>
+      <div>커널 릴리즈 버젼 : {serverInfo.kernelRelease}</div>
+      <div>커널 버젼 : {serverInfo.kernelVersion}</div>
+      <div>시스템 종류 : {serverInfo.systemInfo}</div>
+    </div>
   );
 }
