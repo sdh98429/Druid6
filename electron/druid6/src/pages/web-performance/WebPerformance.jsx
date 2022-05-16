@@ -16,6 +16,8 @@ const initialPerformanceReport = {
 };
 
 export default function WebPerformance() {
+  const [displaySolutions, setDisplaySolutions] = useState(false);
+
   const [performanceReport, setPerformanceReport] = useState(
     initialPerformanceReport
   );
@@ -23,22 +25,14 @@ export default function WebPerformance() {
   // url input값 가져오기
   //input에서 value를 담기 위한 state 생성
   const [url, setUrl] = useState("");
-  const [desktop, setDesktop] = useState("");
+  const [desktopData, setDesktopData] = useState("");
 
   // api 요청값 저장할 state 생성
-  const [mobile, setMobile] = useState("");
+  const [mobileData, setMobileData] = useState("");
 
   //input에 입력될 때마다 account state값 변경되게 하는 함수
   const onChangeUrl = (e) => {
     setUrl(e.target.value);
-  };
-
-  const handleChangeMobile = (newValue) => {
-    setMobile(newValue);
-  };
-
-  const handleChangeDesktop = async (newValue) => {
-    setDesktop(newValue);
   };
 
   const handleClickDetermineWebPerformance = async () => {
@@ -51,22 +45,18 @@ export default function WebPerformance() {
     const mobileResult = await getMobileResult;
     const desktopResult = await getDesktopResult;
 
-    handleChangeMobile(mobileResult);
-    handleChangeDesktop(desktopResult);
+    setMobileData(mobileResult);
+    setDesktopData(desktopResult);
   };
 
   const drawWebPerformanceResult = async () => {
     await handleClickDetermineWebPerformance();
   };
 
-  const parsingMobileResult = () => {
-    const parseMobile = JSON.parse(mobile);
-  };
-
   const checkMobile = () => {
     const performanceReport = {};
 
-    const audit = mobile.data.lighthouseResult.audits;
+    const audit = mobileData.data.lighthouseResult.audits;
 
     performanceReport["FCP"] = audit["first-contentful-paint"];
     performanceReport["SI"] = audit["speed-index"];
@@ -86,16 +76,14 @@ export default function WebPerformance() {
 
     performanceReport["screenshot"] = audit["final-screenshot"].details.data;
 
-    // const hSI = <h1>{SI}</h1>
-
     return performanceReport;
   };
 
   useEffect(() => {
-    if (mobile) {
+    if (mobileData) {
       setPerformanceReport(checkMobile());
     }
-  }, [mobile]);
+  }, [mobileData]);
 
   const { screenshot, performanceScore } = performanceReport;
 
@@ -115,12 +103,6 @@ export default function WebPerformance() {
 
   const Color = changeColor();
 
-  let displaySolutions = false;
-  // 솔루션 페이지로 이동 버튼
-  const moveToSolutions = () => {
-    displaySolutions = true;
-  };
-
   return (
     <div className="WebPerformance">
       <div>
@@ -132,7 +114,6 @@ export default function WebPerformance() {
           onChange={onChangeUrl}
         ></input>
         <button onClick={drawWebPerformanceResult}>성능 측정하기</button>
-        <button onClick={parsingMobileResult}>모바일 체크2</button>
       </div>
 
       <div className="api-result">
@@ -148,17 +129,27 @@ export default function WebPerformance() {
         </div>
       </div>
 
-      <ResultContents performanceReport={performanceReport} />
-
-      <div>
-        <button disabled={displaySolutions} onClick={moveToSolutions}>
-          솔루션 페이지로 이동
-        </button>
-        <Solutions
-          displaySolutions={displaySolutions}
-          mobile={mobile}
-        ></Solutions>
-      </div>
+      {displaySolutions ? (
+        <div>
+          <Solutions mobileData={mobileData}></Solutions>
+          <button
+            disabled={!displaySolutions}
+            onClick={() => setDisplaySolutions(false)}
+          >
+            Result 페이지로 이동
+          </button>
+        </div>
+      ) : (
+        <div>
+          <button
+            disabled={displaySolutions}
+            onClick={() => setDisplaySolutions(true)}
+          >
+            솔루션 페이지로 이동
+          </button>
+          <ResultContents performanceReport={performanceReport} />
+        </div>
+      )}
     </div>
   );
 }

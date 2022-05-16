@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 // 추천 항목 당 컴포넌트
 function Recommendation({ recommendation }) {
@@ -10,41 +10,50 @@ function Recommendation({ recommendation }) {
   );
 }
 
-export default function Solutions(props) {
-  const mobile = props.mobile;
-
-  const [recommendationArray, setRecommendationArray] = useState([]);
+export default function Solutions({ mobileData }) {
+  const [recommendations, setRecommendations] = useState([]);
 
   useEffect(() => {
-    if (mobile) {
+    if (mobileData) {
       checkMobileSolutions();
     }
-  }, [mobile]);
+  }, [mobileData]);
 
   const checkMobileSolutions = () => {
-    // 파싱
-    const audits = mobile.data.lighthouseResult.audits;
-    for (let key in audits) {
+    // SelectAudits
+    const audits = mobileData.data.lighthouseResult.audits;
+    console.log(Object.values(audits).length);
+
+    Object.values(audits).forEach((value) => {
       try {
-        let overallSavingsMs = audits[key]["details"]["overallSavingsMs"];
-        if (overallSavingsMs >= 100) {
-          setRecommendationArray([...recommendationArray, audits[key]]);
+        const overallSavingMs = value["details"]["overallSavingsMs"];
+        if (overallSavingMs >= 100) {
+          console.log("it is more than 100!");
+          setRecommendations([...recommendations, value]);
         }
-      } catch (err) {
-        continue;
+        console.log(recommendations.length);
+      } catch {
+        //
       }
-    }
+    });
+
+    // for (let key in audits) {
+    //   try {
+    //     let overallSavingsMs = audits[key]["details"]["overallSavingsMs"];
+    //     if (overallSavingsMs >= 100) {
+    //       setRecommendations([...recommendations, audits[key]]);
+    //     }
+    //   } catch (err) {
+    //     continue;
+    //   }
+    // }
   };
 
   return (
     <div>
-      {props.displaySolutions === true ? (
-        recommendationArray.map((recommendation, idx) => {
-          return <Recommendation recommendation={recommendation} key={idx} />;
-        })
-      ) : (
-        <div>렌더링 전</div>
-      )}
+      {recommendations.map((recommendation, idx) => (
+        <Recommendation recommendation={recommendation} key={idx} />
+      ))}
     </div>
   );
 }
