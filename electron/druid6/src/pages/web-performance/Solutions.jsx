@@ -1,5 +1,6 @@
 import "./Solutions.scss";
 import Recommendation from "./Recommendation";
+import SavingsMsChart from "./SavingsMsChart";
 import { useEffect, useState } from "react";
 
 export default function Solutions({ mobileData }) {
@@ -43,6 +44,7 @@ export default function Solutions({ mobileData }) {
           <Recommendation recommendation={recommendation} key={idx} />
         ))}
       </div>
+      <SavingsMsChart />
     </div>
   );
 }
