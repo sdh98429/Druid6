@@ -41,9 +41,13 @@ export default function SavingsMsChart({ overallSavingsMs, xScaleMaxValue }) {
     },
     scales: {
       x: {
+        reverse: true,
+        ticks: {
+          display: false,
+        },
         grid: {
           display: false,
-          // drawTicks: false,
+          drawBorder: false,
         },
         axis: "x", // x축(가로축)인지 y축(세로축)인지 표시합니다.
         max: xScaleMaxValue, // 축의 최대값을 강제합니다.
@@ -52,6 +56,7 @@ export default function SavingsMsChart({ overallSavingsMs, xScaleMaxValue }) {
       y: {
         grid: {
           display: false,
+          drawBorder: false,
         },
       },
     },
@@ -62,7 +67,7 @@ export default function SavingsMsChart({ overallSavingsMs, xScaleMaxValue }) {
     labels,
     datasets: [
       {
-        label: "Dataset 1",
+        // label: "Dataset 1",
         data: labels.map(() => overallSavingsMs),
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
