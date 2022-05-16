@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import { Button } from '@mui/material';
+import { Button,TextField } from '@mui/material';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 export default function FileUpload() {
 
@@ -38,14 +38,23 @@ export default function FileUpload() {
     
     return (
         <div>
-            <input id="hostname" name="hostname" onChange={onChangeHostInfo}/> 
-            
-            <input id="username" name="username" onChange={onChangeHostInfo}/>
+           
+            <TextField id="hostname" name='hostname' label="hostname" variant="outlined"  onChange={onChangeHostInfo}/>
+            <TextField id="username" name='username' label="username" variant="outlined"  onChange={onChangeHostInfo}/>
             <Button
-        
-        startIcon={<UploadFileIcon />} onClick={openFile}>pem키 등록해주세요</Button>
-            <div id="filePath" name="filePath">{filePath}</div>
-
+            startIcon={<UploadFileIcon />} onClick={openFile}>pem키 등록해주세요</Button>
+            <div id="filePath" name="filePath">
+                <TextField
+                id="outlined-read-only-input"
+                label="File Path"
+               
+                value={filePath}
+                size="small"
+                InputProps={{
+                    readOnly: true,
+                }}
+        />      </div>
+            
             <Button variant="contained" onClick={connectSSH}>접속</Button>
             <Button onClick={allowInstall}>접속허가</Button>
         </div>

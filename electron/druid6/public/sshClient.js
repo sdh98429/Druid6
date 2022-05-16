@@ -137,7 +137,7 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
           }).on('data', (data) => {
             
             resultDisk=data;
-            event.reply('disk',resultDisk.toString());
+            event.reply('disk',resultDisk.toString().substr(0,resultDisk.toString().length-2));
             console.log('DISK: ' + data);
           }).stderr.on('data', (data) => {
             console.log('STDERR: ' + data);
@@ -154,30 +154,12 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
           }).on('data', (data) => {
             resultCpu=data;
             event.reply('cpu',resultCpu.toString());
-            
             console.log('CPU: ' + data);
           }).stderr.on('data', (data) => {
             console.log('STDERR: ' + data);
           });
         });
-      },1000)
-      // setInterval(function (){
-      //   conn.exec(`vnstat -l -i eth0`
-      //   , (err, stream) => {
-      //     if (err) throw err;
-      //     stream.on('close', (code, signal) => {
-      //       //console.log('Stream :: close :: code: ' + code + ', signal: ' + signal);
-      //       //conn.end();
-      //     }).on('data', (data) => {
-            
-      //       event.reply('network',data.toString());
-      //       console.log( data.toString());
-      //     }).stderr.on('data', (data) => {
-      //       console.log('STDERR: ' + data);
-      //     });
-      //   });
-      // },5000)
-      
+      },1000)   
     }).connect({
     host: hostInfo.hostname,
     port: 22,

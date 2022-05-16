@@ -1,3 +1,45 @@
 .ServerMonitoring{
     white-space: pre-wrap;
+    
 }
+.badgeLong {
+    margin: 2rem;
+    padding: 1vh 1.5vh;
+    background-color: #fcf9f9;
+    border-radius: 3vh;
+    width: 80vh;
+    height: 26vh;
+    box-shadow: 0.15rem 0.15rem 4px rgb(194, 193, 193);
+    &:hover {
+      cursor: pointer;
+      transform: translateY(-0.3rem);
+    }
+  
+    .badge-title {
+    }
+  }
+  .badgeShort {
+    margin: 2rem;
+    display: flex;
+    padding: 1vh 1.5vh;
+    flex: 1;
+    background-color: #fcf9f9;
+    border-radius: 3vh;
+    width:  25vh;
+    height: 30vh;
+    box-shadow: 0.15rem 0.15rem 4px rgb(194, 193, 193);
+    &:hover {
+      cursor: pointer;
+      transform: translateY(-0.3rem);
+    }
+  
+    .badge-title {
+    }
+  }
+  .badgeContainer {
+    margin: 2rem;
+    display: flex;
+   
+    flex: 1;
+    
+  }
