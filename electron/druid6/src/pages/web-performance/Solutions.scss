@@ -1,0 +1,16 @@
+.Solutions {
+  	
+  .container {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 50px 50px;
+  }
+
+  .item {
+    background-color: lightblue;
+    border: 1px solid darkblue;
+    color: blue;
+    text-align: center;
+  }
+
+}

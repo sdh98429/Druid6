@@ -128,7 +128,7 @@ export default function WebPerformance() {
         </div>
       ) : (
         <div>
-          {/* 내가 옮겼다 */}
+          {/* 옮겼습니다 */}
           <div className="api-result">
             <div className="api-graph">
               <div className="api-score">
@@ -141,7 +141,7 @@ export default function WebPerformance() {
               </div>
             </div>
           </div>
-          {/* 내가 옮겼다 */}
+          {/* 옮겼습니다 */}
           <button
             disabled={displaySolutions}
             onClick={() => setDisplaySolutions(true)}
