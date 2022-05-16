@@ -118,13 +118,13 @@ export default function WebPerformance() {
 
       {displaySolutions ? (
         <div>
-          <Solutions mobileData={mobileData}></Solutions>
           <button
             disabled={!displaySolutions}
             onClick={() => setDisplaySolutions(false)}
           >
             Result 페이지로 이동
           </button>
+          <Solutions mobileData={mobileData}></Solutions>
         </div>
       ) : (
         <div>
@@ -142,13 +142,13 @@ export default function WebPerformance() {
             </div>
           </div>
           {/* 옮겼습니다 */}
+          <ResultContents performanceReport={performanceReport} />
           <button
             disabled={displaySolutions}
             onClick={() => setDisplaySolutions(true)}
           >
             솔루션 페이지로 이동
           </button>
-          <ResultContents performanceReport={performanceReport} />
         </div>
       )}
     </div>
