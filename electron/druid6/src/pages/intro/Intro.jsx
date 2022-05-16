@@ -2,6 +2,8 @@ import logo from "../../static/images/icon.png";
 import "./Intro.css";
 import FileUpload from "../../components/FileUpload";
 import HostInput from "./HostInput.jsx";
+import { useSelector } from "react-redux";
+import ServerInfo from "../server-monitoring/ServerInfo";
 
 export default function Intro() {
   function setSheenPosition(xRatio, yRatio) {
@@ -25,6 +27,10 @@ export default function Intro() {
     setSheenPosition(event.pageX / width, event.pageY / width);
   }
 
+  const { serverInfo } = useSelector((state) => ({
+    serverInfo: state.serverInfo,
+  }));
+
   return (
     <div className="Intro" onMouseMove={handleMouseMove}>
       <header className="Intro-header">
@@ -42,7 +48,9 @@ export default function Intro() {
         >
           Learn Druid6
         </a>
-        <FileUpload />
+        <div className="introContainer">
+          {serverInfo.osInfo === "" ? <FileUpload /> : <ServerInfo />}
+        </div>
       </header>
     </div>
   );
