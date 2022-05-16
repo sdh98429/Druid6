@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
+// 추천 항목 당 컴포넌트
+function Recommendation({ recommendation }) {
+  return (
+    <div>
+      <b>{recommendation.title}</b> <span>({recommendation.details.overallSavingsMs})</span>
+    </div>
+  );
+}
+
 export default function Solutions(props) {
   
   const mobile = props.mobile;
@@ -22,7 +31,7 @@ export default function Solutions(props) {
       try {
         let overallSavingsMs = audits[key]['details']['overallSavingsMs'];
         if (overallSavingsMs >= 100) {
-          setRecommendationArray(recommendationArray.push(audits[key]));
+          setRecommendationArray([...recommendationArray, audits[key]]);
         }
       } catch (err) {
         continue;
@@ -30,8 +39,11 @@ export default function Solutions(props) {
       // console.log('key:' + key + ' / value:' + audits[key]);
     }
 
+
     console.log(JSON.stringify(mobile));
     console.log(recommendationArray);
+    console.log(typeof(recommendationArray));
+
     /*
     response = requests.get('https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url='+<url>+'&strategy='+<desktop or mobile>+'&key='+<api_key>)
     js = response.json()
@@ -179,9 +191,11 @@ export default function Solutions(props) {
     <div>
       {
         props.displaySolutions === true ? 
-        <div>
-          {recommendationArray}
-        </div>
+        recommendationArray.map((recommendation) => { 
+          // return recommendation.title;
+          console.log(recommendationArray);
+          return <Recommendation recommendation={recommendation} key={recommendation.title} />
+        })
         : <div>렌더링 전</div>
       }
     </div>
