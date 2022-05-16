@@ -15,11 +15,10 @@ export const options = {
 };
 
 export default function RxTxChart() {
-  const { ipcRenderer } = window.require("electron");
   const [networkTx, setNetworkTx] = useState(0);
   const [networkRx, setNetworkRx] = useState(0);
 
-  ipcRenderer.on("networkRealTime", (event, arg) => {
+  window.ipcRenderer.on("networkRealTime", (event, arg) => {
     let realtime = arg.replace("[1G[2K", "");
     let realtimeArray = realtime.split(" ");
     setNetworkRx(realtimeArray[7]);

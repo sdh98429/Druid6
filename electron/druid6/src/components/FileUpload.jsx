@@ -3,18 +3,17 @@ import { Button, TextField } from "@mui/material";
 import { updateReduxInfo } from "../pages/server-monitoring/updateInfo";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 export default function FileUpload() {
-  const { ipcRenderer } = window.require("electron");
 
   const openFile = () => {
-    ipcRenderer.send("OpenFile", "open");
+    window.ipcRenderer.send("OpenFile", "open");
   };
 
   const allowInstall = () => {
-    ipcRenderer.send("AllowInstall", "allow");
+    window.ipcRenderer.send("AllowInstall", "allow");
   };
 
   const [filePath, setFilePath] = useState("");
-  ipcRenderer.on("filePath", (event, arg) => {
+  window.ipcRenderer.on("filePath", (event, arg) => {
     setFilePath(arg);
   });
 
@@ -33,44 +32,44 @@ export default function FileUpload() {
   };
 
   const connectSSH = () => {
-    ipcRenderer.send("ConnectSSH", hostInfo);
+    window.ipcRenderer.send("ConnectSSH", hostInfo);
   };
-  ipcRenderer.on("processInfo", (event, arg) => {
+  window.ipcRenderer.on("processInfo", (event, arg) => {
     updateReduxInfo({
       key: "processInfo",
       value: arg,
     });
   });
 
-  ipcRenderer.on("osInfo", (event, arg) => {
+  window.ipcRenderer.on("osInfo", (event, arg) => {
     updateReduxInfo({
       key: "osInfo",
       value: arg,
     });
   });
 
-  ipcRenderer.on("ramInfo", (event, arg) => {
+  window.ipcRenderer.on("ramInfo", (event, arg) => {
     updateReduxInfo({
       key: "ramInfo",
       value: arg,
     });
   });
 
-  ipcRenderer.on("systemInfo", (event, arg) => {
+  window.ipcRenderer.on("systemInfo", (event, arg) => {
     updateReduxInfo({
       key: "systemInfo",
       value: arg,
     });
   });
 
-  ipcRenderer.on("kernelVersion", (event, arg) => {
+  window.ipcRenderer.on("kernelVersion", (event, arg) => {
     updateReduxInfo({
       key: "kernelVersion",
       value: arg,
     });
   });
 
-  ipcRenderer.on("kernelRelease", (event, arg) => {
+  window.ipcRenderer.on("kernelRelease", (event, arg) => {
     updateReduxInfo({
       key: "kernelRelease",
       value: arg,

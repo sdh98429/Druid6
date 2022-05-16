@@ -2,8 +2,6 @@ import { useSelector } from "react-redux";
 import "./ServerMonitoring.scss";
 
 export default function ServerInfo() {
-  const { ipcRenderer } = window.require("electron");
-
   const { serverInfo } = useSelector((state) => ({
     serverInfo: state.serverInfo,
   }));

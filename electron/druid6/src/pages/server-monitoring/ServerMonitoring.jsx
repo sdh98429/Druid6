@@ -6,30 +6,35 @@ import { Doughnut } from "react-chartjs-2";
 
 export default function ServerMonitoring() {
   ChartJS.register(ArcElement, Tooltip, Legend);
-
-  const { ipcRenderer } = window.require("electron");
-
-  const [cpuUsage, setCpuUsage] = useState("");
-  ipcRenderer.on("cpu", (event, arg) => {
+  
+  const [cpuUsage,setCpuUsage] = useState('');
+  window.ipcRenderer.on("cpu",(event,arg)=>{
     setCpuUsage(arg);
   });
 
-  const [DiskUsage, setDiskUsage] = useState("");
-  ipcRenderer.on("disk", (event, arg) => {
+
+  const [DiskUsage,setDiskUsage] = useState('');
+  window.ipcRenderer.on("disk",(event,arg)=>{
     setDiskUsage(arg);
   });
 
-  const [MemoryUsage, setMemoryUsage] = useState("");
-  ipcRenderer.on("memory", (event, arg) => {
+
+  const [MemoryUsage,setMemoryUsage] = useState('');
+  window.ipcRenderer.on("memory",(event,arg)=>{
     setMemoryUsage(arg);
   });
 
-  const [networkHours, setNetworkHours] = useState("");
-  ipcRenderer.on("networkHours", (event, arg) => {
-    let h = arg.replace("/\t/g", "aaa");
+  const [networkRealTime,setNetworkRealTime] = useState('');
+  window.ipcRenderer.on("networkRealTime",(event,arg)=>{
+    setNetworkRealTime(arg);
+  })
 
+  const [networkHours,setNetworkHours] = useState('');
+  window.ipcRenderer.on("networkHours",(event,arg)=>{
+    let h=arg.replace('/\t/g','aaa');
     setNetworkHours(h);
   });
+  
   const cpuData = {
     labels: ["used", "unuse"],
     datasets: [
