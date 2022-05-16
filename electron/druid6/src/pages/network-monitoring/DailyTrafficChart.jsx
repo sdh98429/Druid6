@@ -11,6 +11,7 @@ import {
 import { Bar } from "react-chartjs-2";
 import { faker } from "@faker-js/faker";
 import { range } from "../../services/utils";
+import { useSelector } from "react-redux";
 
 import "./DailyTrafficChart.scss";
 
@@ -43,13 +44,9 @@ export const options = {
 };
 
 const labels = range(1, 31);
-
-const transmitData = labels.map(() =>
-  faker.datatype.number({ min: 0, max: 1000 })
-);
-const recieveData = labels.map(() =>
-  faker.datatype.number({ min: 0, max: 1000 })
-);
+const data2 = [0, 1, 2, 3, 4, 5, 5, 6, 8, 1, 2, 3, 4, 5, 6];
+const transmitData = labels.map(() => 2);
+const recieveData = labels.map((idx) => data2[idx]);
 const txRxSumData = labels.map(
   (ele, idx) => transmitData[idx] + recieveData[idx]
 );
@@ -70,8 +67,11 @@ export const data = {
     },
   ],
 };
-
 export default function DailyTrafficChart() {
+  const { traffic } = useSelector((state) => ({
+    traffic: state.traffic,
+  }));
+  console.log(traffic.split("\n"));
   return (
     <div className="DailyTrafficChart">
       <Bar options={options} data={data} />

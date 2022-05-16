@@ -5,8 +5,8 @@ const network = (event,hostInfo,privateKeyPath) => {
     
     conn.on('ready', () => {
       console.log('Client :: ready2');
-      setInterval(function (){
-        conn.exec(`vnstat -h`
+      setTimeout(function (){
+        conn.exec(`vnstat -d`
         , (err, stream) => {
           if (err) throw err;
           stream.on('close', (code, signal) => {
@@ -14,13 +14,14 @@ const network = (event,hostInfo,privateKeyPath) => {
             //conn.end();
           }).on('data', (data) => {
             
-            event.reply('networkHours',data.toString());
-            console.log( data.toString());
+            event.reply('networkDays',data.toString());
+            let log=data.toString();
+            console.log( log.split(" "));
           }).stderr.on('data', (data) => {
             console.log('STDERR: ' + data);
           });
         });
-      },5000)
+      },0)
     
       setTimeout(function (){
         conn.exec(`vnstat -l -i eth0`

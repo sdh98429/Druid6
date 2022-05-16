@@ -13,8 +13,8 @@ const initialState = {
     systemInfo: '',
     kernelVersion: '',
     kernelRelease: ''
-  }
-
+  },
+  traffic:''
 };
 
 export default function reducer(state = initialState, action) {
@@ -40,6 +40,11 @@ export default function reducer(state = initialState, action) {
           [key]: value
         }
       }
+  }else if (action.type === 'updateNetworkInfo'){
+    return{
+      ...state,
+      traffic:action.payload.traffic.value
+    }
   }
 
   return state;
