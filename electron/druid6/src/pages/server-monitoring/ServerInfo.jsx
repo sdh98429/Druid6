@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import "./ServerMonitoring.scss";
-import { updateReduxInfo } from "./updateInfo";
+
 export default function ServerInfo() {
   const { ipcRenderer } = window.require("electron");
 
@@ -8,48 +8,6 @@ export default function ServerInfo() {
     serverInfo: state.serverInfo,
   }));
 
-  ipcRenderer.on("processInfo", (event, arg) => {
-    console.log("잘들어와요");
-    updateReduxInfo({
-      key: "processInfo",
-      value: arg,
-    });
-  });
-
-  ipcRenderer.on("osInfo", (event, arg) => {
-    updateReduxInfo({
-      key: "osInfo",
-      value: arg,
-    });
-  });
-
-  ipcRenderer.on("ramInfo", (event, arg) => {
-    updateReduxInfo({
-      key: "ramInfo",
-      value: arg,
-    });
-  });
-
-  ipcRenderer.on("systemInfo", (event, arg) => {
-    updateReduxInfo({
-      key: "systemInfo",
-      value: arg,
-    });
-  });
-
-  ipcRenderer.on("kernelVersion", (event, arg) => {
-    updateReduxInfo({
-      key: "kernelVersion",
-      value: arg,
-    });
-  });
-
-  ipcRenderer.on("kernelRelease", (event, arg) => {
-    updateReduxInfo({
-      key: "kernelRelease",
-      value: arg,
-    });
-  });
   return (
     <div className="badgeLong">
       <div>프로세스 정보 : {serverInfo.processInfo}</div>

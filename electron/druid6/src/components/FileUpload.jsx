@@ -36,7 +36,6 @@ export default function FileUpload() {
     ipcRenderer.send("ConnectSSH", hostInfo);
   };
   ipcRenderer.on("processInfo", (event, arg) => {
-    console.log("잘들어와요");
     updateReduxInfo({
       key: "processInfo",
       value: arg,
