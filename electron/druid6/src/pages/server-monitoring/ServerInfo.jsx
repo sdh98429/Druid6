@@ -1,34 +1,34 @@
 import {useState} from 'react';
 import "./ServerMonitoring.scss";
 export default function ServerInfo() {
-  const {ipcRenderer} =window.require("electron");
+  // const {ipcRenderer} =window.require("electron");
   const [processInfo,setProcessInfo] = useState('');
-  ipcRenderer.on("processInfo",(event,arg)=>{
+  window.ipcRenderer.on("processInfo",(event,arg)=>{
     setProcessInfo(arg);
   })
 
   const [osInfo,setOsInfo] = useState('');
-  ipcRenderer.on("osInfo",(event,arg)=>{
+  window.ipcRenderer.on("osInfo",(event,arg)=>{
     setOsInfo(arg);
   })
 
   const [ramInfo,setRamInfo] = useState('');
-  ipcRenderer.on("ramInfo",(event,arg)=>{
+  window.ipcRenderer.on("ramInfo",(event,arg)=>{
     setRamInfo(arg);
   })
 
   const [systemInfo,setSystemInfo] = useState('');
-  ipcRenderer.on("systemInfo",(event,arg)=>{
+  window.ipcRenderer.on("systemInfo",(event,arg)=>{
     setSystemInfo(arg);
   })
 
   const [kernelVersion,setKernelVersion] = useState('');
-  ipcRenderer.on("kernelVersion",(event,arg)=>{
+  window.ipcRenderer.on("kernelVersion",(event,arg)=>{
     setKernelVersion(arg);
   })
 
   const [kernelRelease,setKernelRelease] = useState('');
-  ipcRenderer.on("kernelRelease",(event,arg)=>{
+  window.ipcRenderer.on("kernelRelease",(event,arg)=>{
     setKernelRelease(arg);
   })
   return (

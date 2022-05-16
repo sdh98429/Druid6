@@ -3,23 +3,24 @@ import { useState } from "react";
 import myWorker from "./web-worker/myWorker";
 import WorkerBuilder from "./web-worker/WorkerBuilder";
 // scss
-import './StressTest.scss'
+import "./StressTest.scss";
 // components
 import UrlInput from "./components/UrlInput";
-import Chips from "./components/Chips";
+import Tags from "./components/Tags";
+import JsonTextArea from "./components/JsonTextArea";
 // mui
-import Switch from '@mui/material/Switch';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import { createTheme } from '@mui/material/styles';
+import Switch from "@mui/material/Switch";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import { createTheme } from "@mui/material/styles";
 
 export default function StressTest() {
-  const [ tagActivated, setTagActivated ] = useState('body');
-  const [ useToken, setUseToken ] = useState(false);
+  const [tagActivated, setTagActivated] = useState("body");
+  const [useToken, setUseToken] = useState(false);
   const handleChangeUseToken = () => {
-    setUseToken(!useToken)
-  }
-  const [ scenarioInfo, setScenarioInfo ] = useState({
+    setUseToken(!useToken);
+  };
+  const [scenarioInfo, setScenarioInfo] = useState({
     vusers: 1,
     flows: [
       {
@@ -72,10 +73,10 @@ export default function StressTest() {
       // TODO : 워커 한명이 일을 끝냈을 때
       WorkerArr.pop();
       if (WorkerArr.length === 0) {
-        // TODO : worker가 모두 일을 끝낼을때 무엇을 할지  
+        // TODO : worker가 모두 일을 끝낼을때 무엇을 할지
         workDoneTime = Date.now() - startTime;
         console.log(responseStatus);
-        console.log('workDoneTime = ' + workDoneTime)
+        console.log("workDoneTime = " + workDoneTime);
         console.log("responseLatencies = " + responseLatencies);
       }
     } else if (key === "latencySended") {
@@ -85,20 +86,20 @@ export default function StressTest() {
       // 그것도 아닐 경우 받아올 postMessage가 status 하나밖에 없으므로 responseStatus 객체 값에 + 1을 해줌.
       responseStatus[(value + "")[0]] += 1;
     }
-  }
+  };
 
   const handleClickChipTags = (msg) => {
-    if (msg === 'bodyTagClicked') {
-      setTagActivated('body')
-    } else if(msg === 'responseTagClicked') {
-      setTagActivated('response')
+    if (msg === "bodyTagClicked") {
+      setTagActivated("body");
+    } else if (msg === "responseTagClicked") {
+      setTagActivated("response");
     }
-  }
+  };
 
   const theme = createTheme({
     palette: {
       mygreen: {
-        main: '#f44336',
+        main: "#f44336",
       },
     },
   });
@@ -107,32 +108,29 @@ export default function StressTest() {
     <div className="StressTest">
       <div className="stress-test-wrapper">
         <div className="left-side-wrapper">
-          <UrlInput/>
+          <UrlInput />
           <div className="tags-switch-area">
-            <Chips 
-              handleClickChipTags = { handleClickChipTags }
-              tagActivated = { tagActivated }
+            <Tags
+              handleClickChipTags={handleClickChipTags}
+              tagActivated={tagActivated}
             />
             <FormGroup>
-              <FormControlLabel 
-              control = 
-                {
+              <FormControlLabel
+                control={
                   <Switch
                     checked={useToken}
                     onChange={handleChangeUseToken}
-                    inputProps={{ 'aria-label': 'controlled' }}
+                    inputProps={{ "aria-label": "controlled" }}
                     color="success"
                   />
-                } 
-              label="Use Token" />
+                }
+                label="Use Token"
+              />
             </FormGroup>
-            
-            
           </div>
+          <JsonTextArea />
         </div>
-        <div className="right-side-wrapper">
-
-        </div>
+        <div className="right-side-wrapper"></div>
       </div>
     </div>
   );

@@ -8,6 +8,7 @@
     "@electron/remote": "^2.0.8",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "@monaco-editor/react": "^4.4.5",
     "@mui/icons-material": "^5.6.2",
     "@mui/material": "^5.6.4",
     "@testing-library/jest-dom": "^5.14.1",
@@ -17,6 +18,7 @@
     "concurrently": "^7.1.0",
     "cross-env": "^7.0.3",
     "electron-is-dev": "^2.0.0",
+    "electron-ssh2": "^0.1.2",
     "node-fetch": "^3.2.4",
     "react": "^18.1.0",
     "react-chartjs-2": "^4.1.0",
@@ -26,8 +28,7 @@
     "redux-thunk": "^2.4.1",
     "sass": "^1.51.0",
     "wait-on": "^6.0.1",
-    "web-vitals": "^2.1.0",
-    "electron-ssh2": "^0.1.2"
+    "web-vitals": "^2.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -39,7 +40,7 @@
     "electron-pack": "yarn build && electron-builder build -c.extraMetadata.main=build/Main.js",
     "electron:serve": "concurrently -k \"cross-env BROWSER=none yarn start\" \"yarn electron:start\"",
     "electron:start": "wait-on tcp:3000 && electron .",
-    "electron:build" : "yarn build && electron-builder -c.extraMetadata.main=src/Main.js"
+    "electron:build": "yarn build && electron-builder -c.extraMetadata.main=src/Main.js"
   },
   "build": {
     "productName": "NB",
@@ -86,17 +87,10 @@
     ]
   },
   "devDependencies": {
-    "@faker-js/faker": "^6.3.1",
-    "electron": "^18.2.0",
-    "electron-builder": "^23.0.3",
-    "electron-ssh2": "^0.1.2",
-    "eslint": "^8.15.0",
-    "fs": "^0.0.1-security",
-    "original-fs": "^1.1.0",
-    "react-router-dom": "^6.3.0",
     "@electron/remote": "^2.0.8",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "@faker-js/faker": "^6.3.1",
     "@mui/icons-material": "^5.6.2",
     "@mui/material": "^5.6.4",
     "@testing-library/jest-dom": "^5.14.1",
@@ -105,11 +99,18 @@
     "chart.js": "^3.7.1",
     "concurrently": "^7.1.0",
     "cross-env": "^7.0.3",
+    "electron": "^18.2.0",
+    "electron-builder": "^23.0.3",
     "electron-is-dev": "^2.0.0",
+    "electron-ssh2": "^0.1.2",
+    "eslint": "^8.15.0",
+    "fs": "^0.0.1-security",
     "node-fetch": "^3.2.4",
+    "original-fs": "^1.1.0",
     "react": "^18.1.0",
     "react-chartjs-2": "^4.1.0",
     "react-dom": "^18.1.0",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "sass": "^1.51.0",
     "wait-on": "^6.0.1",

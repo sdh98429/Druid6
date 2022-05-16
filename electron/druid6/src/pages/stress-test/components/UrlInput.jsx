@@ -1,24 +1,24 @@
 // redux
-import { useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 // mui
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import OutlinedInput from '@mui/material/OutlinedInput';
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import OutlinedInput from "@mui/material/OutlinedInput";
 // scss
-import './UrlInput.scss'
+import "./UrlInput.scss";
 // my js file
 import { updateReduxSTInputs } from "../updateInput";
 
 export default function UrlInput() {
   const { stressTestInputs } = useSelector((state) => ({
-    stressTestInputs : state.stressTestInputs
-  }))
+    stressTestInputs: state.stressTestInputs,
+  }));
 
   const handleChangeInput = (e) => {
-    updateReduxSTInputs(e)
+    updateReduxSTInputs(e);
   };
 
   return (
@@ -39,7 +39,7 @@ export default function UrlInput() {
           </Select>
         </FormControl>
       </Box>
-      <Box sx={{ width: 500}}>
+      <Box sx={{ width: 500 }}>
         <FormControl size="small">
           <InputLabel htmlFor="component-outlined">URL</InputLabel>
           <OutlinedInput
@@ -49,7 +49,7 @@ export default function UrlInput() {
             value={stressTestInputs.url}
             onChange={handleChangeInput}
             label="URL"
-            sx={{ width: 500}}
+            sx={{ width: 500 }}
           />
         </FormControl>
       </Box>

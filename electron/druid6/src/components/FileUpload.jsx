@@ -3,18 +3,18 @@ import { Button,TextField } from '@mui/material';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 export default function FileUpload() {
 
-    const {ipcRenderer} =window.require("electron");
+    // const {ipcRenderer} = window.require("electron");
    
     const openFile = () =>{
-        ipcRenderer.send("OpenFile", "open");
+        window.ipcRenderer.send("OpenFile", "open");
     }
 
     const allowInstall = () =>{
-        ipcRenderer.send("AllowInstall","allow");
+        window.ipcRenderer.send("AllowInstall","allow");
     }
 
     const [filePath,setFilePath] = useState('');
-    ipcRenderer.on("filePath",(event,arg)=>{
+    window.ipcRenderer.on("filePath",(event,arg)=>{
         setFilePath(arg);
     })
 
@@ -33,7 +33,7 @@ export default function FileUpload() {
     }
 
     const connectSSH = () =>{
-        ipcRenderer.send('ConnectSSH',hostInfo);
+        window.ipcRenderer.send('ConnectSSH',hostInfo);
     }
     
     return (
