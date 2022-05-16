@@ -4,9 +4,14 @@ import { useEffect, useState } from "react";
 // 추천 항목 당 컴포넌트
 function Recommendation({ recommendation }) {
   return (
-    <div>
-      <b>{recommendation.title}</b>
-      <span>({recommendation.details.overallSavingsMs})</span>
+    <div className="item container">
+      <div>
+        <b>{recommendation.title}</b>
+      </div>
+      <div>차트.js</div>
+      <div>
+        <span>({recommendation.details.overallSavingsMs})</span>
+      </div>
     </div>
   );
 }
@@ -44,17 +49,14 @@ export default function Solutions({ mobileData }) {
   return (
     <div className="Solutions">
       <div className="container">
-        <div className="item item1">1</div>
-        <div className="item item2">2</div>
-        <div className="item item3">3</div>
-        <div className="item item4">4</div>
-        <div className="item item5">5</div>
-        <div className="item item6">6</div>
+        <div className="item">
+          <span>추천 항목</span>
+          <span>예상 절감 시간</span>
+        </div>
+        {recommendations.map((recommendation, idx) => (
+          <Recommendation recommendation={recommendation} key={idx} />
+        ))}
       </div>
-
-      {recommendations.map((recommendation, idx) => (
-        <Recommendation recommendation={recommendation} key={idx} />
-      ))}
     </div>
   );
 }
