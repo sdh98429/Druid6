@@ -1,24 +1,6 @@
 import "./Solutions.scss";
+import Recommendation from "./Recommendation";
 import { useEffect, useState } from "react";
-
-// 추천 항목 당 컴포넌트
-function Recommendation({ recommendation }) {
-  return (
-    <div className="item container">
-      <div>{recommendation.title}</div>
-      <div>차트.js</div>
-      <div>
-        <span>
-          {Math.round(
-            (recommendation.details.overallSavingsMs / 1000 + Number.EPSILON) *
-              100
-          ) / 100}{" "}
-          s
-        </span>
-      </div>
-    </div>
-  );
-}
 
 export default function Solutions({ mobileData }) {
   const [recommendations, setRecommendations] = useState([]);
