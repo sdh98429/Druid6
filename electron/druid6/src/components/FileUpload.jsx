@@ -47,7 +47,8 @@ export default function FileUpload() {
                 <TextField
                 id="outlined-read-only-input"
                 label="File Path"
-                defaultValue={filePath}
+               
+                value={filePath}
                 size="small"
                 InputProps={{
                     readOnly: true,
