@@ -24,16 +24,6 @@ export default function ServerMonitoring() {
     setMemoryUsage(arg);
   });
 
-  const [networkRealTime, setNetworkRealTime] = useState("");
-  ipcRenderer.on("networkRealTime", (event, arg) => {
-    let realtime = arg.replace("[1G[2K", "");
-    let realtimeArray = realtime.split(" ");
-    let rx = realtimeArray[7] + realtimeArray[8];
-
-    let tx = realtimeArray[27] + realtimeArray[9];
-    setNetworkRealTime(realtime);
-  });
-
   const [networkHours, setNetworkHours] = useState("");
   ipcRenderer.on("networkHours", (event, arg) => {
     let h = arg.replace("/\t/g", "aaa");
@@ -112,7 +102,6 @@ export default function ServerMonitoring() {
         </div>
       </div>
 
-      <div>실시간 트래픽 : {networkRealTime}</div>
       <div>하루 트래픽 : {networkHours}</div>
     </div>
   );
