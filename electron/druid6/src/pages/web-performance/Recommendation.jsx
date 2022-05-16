@@ -1,16 +1,26 @@
-export default function Recommendation({ recommendation }) {
+import SavingsMsChart from "./SavingsMsChart";
+
+export default function Recommendation({
+  recommendation,
+  maxOverallSavingsMs,
+}) {
+  let overallSavingsMs =
+    Math.round(
+      (recommendation.details.overallSavingsMs / 1000 + Number.EPSILON) * 100
+    ) / 100;
+
+  const xScaleMaxValue = maxOverallSavingsMs >= 20 ? 20 : maxOverallSavingsMs;
   return (
     <div className="item container">
       <div>{recommendation.title}</div>
-      <div>차트.js</div>
       <div>
-        <span>
-          {Math.round(
-            (recommendation.details.overallSavingsMs / 1000 + Number.EPSILON) *
-              100
-          ) / 100}{" "}
-          s
-        </span>
+        <SavingsMsChart
+          overallSavingsMs={overallSavingsMs}
+          xScaleMaxValue={xScaleMaxValue}
+        />
+      </div>
+      <div>
+        <span>{overallSavingsMs} s</span>
       </div>
     </div>
   );

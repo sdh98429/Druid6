@@ -20,45 +20,55 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
-  indexAxis: "y",
-  elements: {
-    bar: {
-      borderWidth: 2,
+export default function SavingsMsChart({ overallSavingsMs, xScaleMaxValue }) {
+  const options = {
+    indexAxis: "y",
+    elements: {
+      bar: {
+        borderWidth: 2,
+      },
     },
-  },
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "right",
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+        position: "right",
+      },
+      title: {
+        display: false,
+        text: "Chart.js Horizontal Bar Chart",
+      },
     },
-    title: {
-      display: true,
-      text: "Chart.js Horizontal Bar Chart",
+    scales: {
+      x: {
+        grid: {
+          display: false,
+          // drawTicks: false,
+        },
+        axis: "x", // x축(가로축)인지 y축(세로축)인지 표시합니다.
+        max: xScaleMaxValue, // 축의 최대값을 강제합니다.
+        min: 0, // 축의 최소값을 강제합니다.
+      },
+      y: {
+        grid: {
+          display: false,
+        },
+      },
     },
-  },
-};
+  };
 
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
+  const labels = [" "];
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "Dataset 1",
+        data: labels.map(() => overallSavingsMs),
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+      },
+    ],
+  };
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "Dataset 1",
-      data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-      borderColor: "rgb(255, 99, 132)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-    },
-    {
-      label: "Dataset 2",
-      data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-      borderColor: "rgb(53, 162, 235)",
-      backgroundColor: "rgba(53, 162, 235, 0.5)",
-    },
-  ],
-};
-
-export default function SavingsMsChart() {
   return <Bar options={options} data={data} />;
 }

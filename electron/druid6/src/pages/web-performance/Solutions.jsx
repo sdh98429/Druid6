@@ -1,10 +1,10 @@
 import "./Solutions.scss";
 import Recommendation from "./Recommendation";
-import SavingsMsChart from "./SavingsMsChart";
 import { useEffect, useState } from "react";
 
 export default function Solutions({ mobileData }) {
   const [recommendations, setRecommendations] = useState([]);
+  const [maxOverallSavingsMs, setMaxOverallSavingsMs] = useState(0);
 
   useEffect(() => {
     if (mobileData) {
@@ -30,7 +30,14 @@ export default function Solutions({ mobileData }) {
     selectedAudits.sort(function (a, b) {
       return b.details.overallSavingsMs - a.details.overallSavingsMs;
     });
+
     setRecommendations(selectedAudits);
+    setMaxOverallSavingsMs(
+      Math.round(
+        (selectedAudits[0].details.overallSavingsMs / 1000 + Number.EPSILON) *
+          100
+      ) / 100
+    );
   };
 
   return (
@@ -41,10 +48,13 @@ export default function Solutions({ mobileData }) {
           <span>예상 절감 시간</span>
         </div>
         {recommendations.map((recommendation, idx) => (
-          <Recommendation recommendation={recommendation} key={idx} />
+          <Recommendation
+            recommendation={recommendation}
+            maxOverallSavingsMs={maxOverallSavingsMs}
+            key={idx}
+          />
         ))}
       </div>
-      <SavingsMsChart />
     </div>
   );
 }
