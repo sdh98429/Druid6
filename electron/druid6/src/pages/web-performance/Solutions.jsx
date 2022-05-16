@@ -42,7 +42,7 @@ export default function Solutions({ mobileData }) {
 
   return (
     <div className="Solutions">
-      <div className="container">
+      <div className="container table-size">
         <div className="item">
           <span>추천 항목</span>
           <span>예상 절감 시간</span>

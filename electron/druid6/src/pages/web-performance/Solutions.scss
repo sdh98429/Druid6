@@ -1,8 +1,12 @@
 .Solutions {
-  	
+  
+  .table-size {
+    width: 90%;
+  }
+
   .container {
     display: grid;
-    grid-template-columns: 200px 200px 200px;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 
   .item {
@@ -10,4 +14,16 @@
     grid-column-end: 4; 
     background-color: lightblue;
   }
+
+  canvas{
+    height: 50px !important;
+    width: 98% !important;
+    // width:100px !important;
+    // height: 1vh !important;
+  }
+
+  // .flexbox {
+  //   display: flex;
+  //   justify-content: center;
+  // }
 }

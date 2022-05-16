@@ -9,7 +9,6 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import faker from "faker";
 
 ChartJS.register(
   CategoryScale,
@@ -25,10 +24,11 @@ export default function SavingsMsChart({ overallSavingsMs, xScaleMaxValue }) {
     indexAxis: "y",
     elements: {
       bar: {
-        borderWidth: 2,
+        borderWidth: 0,
       },
     },
     responsive: true,
+    maintainAspectRatio: false, // 비율 유지?
     plugins: {
       legend: {
         display: false,
@@ -75,5 +75,9 @@ export default function SavingsMsChart({ overallSavingsMs, xScaleMaxValue }) {
     ],
   };
 
-  return <Bar options={options} data={data} />;
+  return (
+    <div className="SavingsMsChart">
+      <Bar options={options} data={data} />
+    </div>
+  );
 }
