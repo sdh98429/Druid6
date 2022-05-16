@@ -116,19 +116,6 @@ export default function WebPerformance() {
         <button onClick={drawWebPerformanceResult}>성능 측정하기</button>
       </div>
 
-      <div className="api-result">
-        <div className="api-graph">
-          <div className="api-score">
-            <div className="coreValueBody" style={{ color: `${Color}` }}>
-              {performanceScore}
-            </div>
-          </div>
-          <div className="final-image">
-            <img src={`${screenshot}`} alt="" />
-          </div>
-        </div>
-      </div>
-
       {displaySolutions ? (
         <div>
           <Solutions mobileData={mobileData}></Solutions>
@@ -141,6 +128,20 @@ export default function WebPerformance() {
         </div>
       ) : (
         <div>
+          {/* 내가 옮겼다 */}
+          <div className="api-result">
+            <div className="api-graph">
+              <div className="api-score">
+                <div className="coreValueBody" style={{ color: `${Color}` }}>
+                  {performanceScore}
+                </div>
+              </div>
+              <div className="final-image">
+                <img src={`${screenshot}`} alt="" />
+              </div>
+            </div>
+          </div>
+          {/* 내가 옮겼다 */}
           <button
             disabled={displaySolutions}
             onClick={() => setDisplaySolutions(true)}
