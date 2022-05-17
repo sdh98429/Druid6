@@ -1,4 +1,7 @@
 import * as React from "react";
+
+import { useNavigate } from "react-router-dom";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -15,10 +18,12 @@ import AdbIcon from "@mui/icons-material/Adb";
 import logo from "../static/logo.png";
 import "./AppBar.scss";
 
-const pages = ["Products", "Pricing", "Docs", "Blog"];
+const pages = ["products", "pricing", "docs", "blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const ResponsiveAppBar = () => {
+  const navigate = useNavigate();
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -29,7 +34,8 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (to) => {
+    navigate(to);
     setAnchorElNav(null);
   };
 
@@ -119,7 +125,7 @@ const ResponsiveAppBar = () => {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => handleCloseNavMenu(page)}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page}

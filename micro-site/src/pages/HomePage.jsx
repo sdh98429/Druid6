@@ -1,4 +1,3 @@
-import ResponsiveAppBar from "../components/ResponsiveAppBar";
 import DownloadBtn from "./DownloadBtn";
 
 import "./HomePage.scss";
@@ -6,7 +5,6 @@ import "./HomePage.scss";
 export default function HomePage() {
   return (
     <div className="HomePage">
-      <ResponsiveAppBar />
       <header className="header">
         <div className="header-background">
           <div className="header-title">
