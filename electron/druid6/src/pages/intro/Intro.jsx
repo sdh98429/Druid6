@@ -1,9 +1,9 @@
 import logo from "../../static/images/icon.png";
-import "./Intro.css";
+import "./Intro.scss";
 import FileUpload from "../../components/FileUpload";
 import HostInput from "./HostInput.jsx";
 import { useSelector } from "react-redux";
-import ServerInfo from "../server-monitoring/ServerInfo";
+import ServerInfo from "../../components/ServerInfo";
 
 export default function Intro() {
   function setSheenPosition(xRatio, yRatio) {
@@ -48,9 +48,13 @@ export default function Intro() {
         >
           Learn Druid6
         </a>
-        <div className="introContainer">
-          {serverInfo.osInfo === "" ? <FileUpload /> : <ServerInfo />}
-        </div>
+        {serverInfo.osInfo === "" ? (
+          <FileUpload />
+        ) : (
+          <div className="server-info">
+            <ServerInfo />
+          </div>
+        )}
       </header>
     </div>
   );

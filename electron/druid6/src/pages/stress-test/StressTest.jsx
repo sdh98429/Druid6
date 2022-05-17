@@ -5,9 +5,10 @@ import WorkerBuilder from "./web-worker/WorkerBuilder";
 // scss
 import "./StressTest.scss";
 // components
-import UrlInput from "./components/UrlInput";
+import MySelect from "./components/MySelect";
 import Tags from "./components/Tags";
 import JsonTextArea from "./components/JsonTextArea";
+import MyInput from "./components/MyInput";
 // mui
 import Switch from "@mui/material/Switch";
 import FormGroup from "@mui/material/FormGroup";
@@ -108,7 +109,10 @@ export default function StressTest() {
     <div className="StressTest">
       <div className="stress-test-wrapper">
         <div className="left-side-wrapper">
-          <UrlInput />
+          <div className="method-url-area">
+            <MySelect />
+            <MyInput width="41vw" title="URL" param="url" />
+          </div>
           <div className="tags-switch-area">
             <Tags
               handleClickChipTags={handleClickChipTags}
@@ -128,7 +132,24 @@ export default function StressTest() {
               />
             </FormGroup>
           </div>
-          <JsonTextArea />
+          <div className="main-area">
+            <JsonTextArea />
+          </div>
+          <div className="footer-area">
+            <MyInput width="30vw" title="Bearer Token" param="token" />
+            <MyInput
+              width="10vw"
+              title="Scenario Title"
+              param="scenarioTitle"
+            />
+          </div>
+          <div style={{ width: "300px" }}>
+            <MyInput
+              width="100%"
+              title="Scenario Title"
+              param="scenarioTitle"
+            />
+          </div>
         </div>
         <div className="right-side-wrapper"></div>
       </div>

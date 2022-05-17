@@ -10,7 +10,6 @@ export default function StressTestResult() {
         <ResultIcon />
         <ResultChart />
       </div>
-
       <div className="badgeContainer">
         <ResultSummary />
       </div>
