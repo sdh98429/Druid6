@@ -30,3 +30,11 @@ export function updateNetworkInfo(traffic){
     }
   }
 }
+export function updateMenuTitle(title){
+  return {
+    type : 'updateMenuTitle',
+    payload : {
+      title
+    }
+  }
+}

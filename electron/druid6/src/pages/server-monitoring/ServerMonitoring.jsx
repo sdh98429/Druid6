@@ -3,6 +3,9 @@ import "./ServerMonitoring.scss";
 import ServerInfo from "../../components/ServerInfo";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { updateMenuTitle } from "../../redux/actions";
 
 export default function ServerMonitoring() {
   ChartJS.register(ArcElement, Tooltip, Legend);
@@ -75,14 +78,19 @@ export default function ServerMonitoring() {
     responsive: true,
   };
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(updateMenuTitle("서버 모니터링"));
+  }, []);
+
   return (
     <div className="ServerMonitoring">
-      <h1>ServerMonitoring</h1>
       <div className="server-info">
         <ServerInfo />
       </div>
       <div className="badge-container">
-        <div className="badgeShort">
+        <div className="badge-short">
           <div className="badge-title">CPU 사용량</div>
           <div className="doughnut">
             <Doughnut className="canvas" data={cpuData} options={options} />
@@ -92,7 +100,7 @@ export default function ServerMonitoring() {
             {cpuUsage ? "%" : ""}
           </div>
         </div>
-        <div className="badgeShort">
+        <div className="badge-short">
           <div className="badge-title">RAM 사용량</div>
           <div className="doughnut">
             <Doughnut className="canvas" data={MemoryData} options={options} />
@@ -102,7 +110,7 @@ export default function ServerMonitoring() {
             {MemoryUsage ? "%" : ""}
           </div>
         </div>
-        <div className="badgeShort">
+        <div className="badge-short">
           <div className="badge-title">DISK 사용량</div>
           <div className="doughnut">
             <Doughnut className="canvas" data={DiskData} options={options} />
@@ -114,7 +122,7 @@ export default function ServerMonitoring() {
         </div>
       </div>
 
-      <div>하루 트래픽 : {networkHours}</div>
+      {/* <div>하루 트래픽 : {networkHours}</div> */}
     </div>
   );
 }

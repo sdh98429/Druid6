@@ -16,7 +16,8 @@ const initialState = {
     kernelVersion: '',
     kernelRelease: ''
   },
-  traffic:''
+  traffic:'',
+  currentMenuTitle: 'Druid6'
 };
 
 export default function reducer(state = initialState, action) {
@@ -59,6 +60,12 @@ export default function reducer(state = initialState, action) {
           capturedResponse
         ]
       }
+    }
+  }
+  else if(action.type === 'updateMenuTitle') {
+    return {
+      ...state,
+      currentMenuTitle : action.payload.title
     }
   }
 

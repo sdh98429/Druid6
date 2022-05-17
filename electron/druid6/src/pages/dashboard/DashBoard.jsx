@@ -5,8 +5,15 @@ import networkMonitoringLogo from "../../static/images/network-monitoring-thumbn
 import docsLogo from "../../static/images/docs-thumbnail.svg";
 import "./DashBoard.scss";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { updateMenuTitle } from "../../redux/actions";
 
 export default function DashBoard() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(updateMenuTitle("대시보드"));
+  }, []);
   return (
     <div className="DashBoard">
       <div className="navbar"></div>

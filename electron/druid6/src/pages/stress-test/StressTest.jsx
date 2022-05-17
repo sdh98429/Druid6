@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { updateMenuTitle } from "../../redux/actions";
 // worker javascript files
 import myWorker from "./web-worker/myWorker";
 import WorkerBuilder from "./web-worker/WorkerBuilder";
@@ -101,6 +103,10 @@ export default function StressTest() {
       setTagActivated("response");
     }
   };
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(updateMenuTitle("시나리오 테스트"));
+  }, []);
 
   return (
     <div className="StressTest">
