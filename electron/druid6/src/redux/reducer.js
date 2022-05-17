@@ -4,7 +4,8 @@ const initialState = {
     url: '',
     body: '',
     savedResponse: '',
-    useToken: false,
+    token: '',
+    scenarioTitle : '',
   },
   serverInfo: {
     processInfo:'',
