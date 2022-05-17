@@ -40,7 +40,7 @@ export default function ServerMonitoring() {
       {
         label: "# of Votes",
         data: [cpuUsage, 100 - cpuUsage],
-        backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(0, 0, 0, 0)"],
+        backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
         borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
         borderWidth: 1,
       },
@@ -52,7 +52,7 @@ export default function ServerMonitoring() {
       {
         label: "# of Votes",
         data: [MemoryUsage, 100 - MemoryUsage],
-        backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(0, 0, 0, 0)"],
+        backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
         borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
         borderWidth: 1,
       },
@@ -64,7 +64,7 @@ export default function ServerMonitoring() {
       {
         label: "# of Votes",
         data: [DiskUsage, 100 - DiskUsage],
-        backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(0, 0, 0, 0)"],
+        backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
         borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
         borderWidth: 1,
       },
@@ -81,25 +81,36 @@ export default function ServerMonitoring() {
       <div className="server-info">
         <ServerInfo />
       </div>
-      <div className="badgeContainer">
+      <div className="badge-container">
         <div className="badgeShort">
+          <div className="badge-title">CPU 사용량</div>
           <div className="doughnut">
             <Doughnut className="canvas" data={cpuData} options={options} />
           </div>
-
-          <div className="badge-content">{cpuUsage}</div>
+          <div className="badge-content">
+            {cpuUsage}
+            {cpuUsage ? "%" : ""}
+          </div>
         </div>
         <div className="badgeShort">
+          <div className="badge-title">RAM 사용량</div>
           <div className="doughnut">
             <Doughnut className="canvas" data={MemoryData} options={options} />
           </div>
-          <div className="badge-content"> {MemoryUsage}</div>
+          <div className="badge-content">
+            {MemoryUsage}
+            {MemoryUsage ? "%" : ""}
+          </div>
         </div>
         <div className="badgeShort">
+          <div className="badge-title">DISK 사용량</div>
           <div className="doughnut">
             <Doughnut className="canvas" data={DiskData} options={options} />
           </div>
-          <div className="badge-content">{DiskUsage}</div>
+          <div className="badge-content">
+            {DiskUsage}
+            {DiskUsage ? "%" : ""}
+          </div>
         </div>
       </div>
 
