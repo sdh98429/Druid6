@@ -22,7 +22,7 @@ export default function Recommendation({
               xScaleMaxValue={xScaleMaxValue}
             />
           </div>
-          <div>
+          <div className="ms">
             <span>{overallSavingsMs} s</span>
           </div>
         </div>

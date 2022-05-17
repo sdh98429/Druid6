@@ -2,6 +2,7 @@ import "./WebPerformance.scss";
 import requestWebPerformanceResult from "../../services/api/WebPerformance";
 import Solutions from "./Solutions";
 import React, { useEffect, useState } from "react";
+import { Button } from "@mui/material";
 
 import ResultContents from "./ResultContents";
 const initialPerformanceReport = {
@@ -121,16 +122,17 @@ export default function WebPerformance() {
               type="text"
               id="url"
               name="url"
-              placeholder="웹페이지 URL 입력"
+              placeholder="Enter web page URL"
               onChange={onChangeUrl}
               className="searchbar-input"
             ></input>
-            <button
+            <Button
               className="searchbar-btn"
+              variant="contained"
               onClick={drawWebPerformanceResult}
             >
               분석
-            </button>
+            </Button>
           </div>
 
           {displaySolutions ? (
