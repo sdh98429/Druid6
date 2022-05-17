@@ -90,6 +90,7 @@
 .container-tosolution-result {
   display: flex;
   flex-direction: row;
+  height: 100%;
 }
 
 .tab {
@@ -109,6 +110,8 @@
   align-items: center;
   height: 100%;
   border-right: 1px solid gray;
+  padding-right: 5px;
+  padding-left: 5px;
 }
 
 .btn-mobile {
@@ -121,5 +124,37 @@
 }
 
 .container-search-tosolution-result {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
   width: 100%
+}
+
+.btn-toresult {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50px;
+}
+
+.table-solutions {
+  width: 100%;
+}
+
+.searchbar {
+  padding-left: 55px;
+  padding-right: 55px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  display: flex;
+}
+
+.searchbar-input {
+  width: 100%;
+}
+
+.searchbar-btn {
+  width: 60px;
+  margin-left: 5px;
 }

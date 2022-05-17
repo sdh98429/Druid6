@@ -116,26 +116,33 @@ export default function WebPerformance() {
           </div>
         </div>
         <div className="container-search-tosolution-result">
-          <div>
+          <div className="searchbar">
             <input
               type="text"
               id="url"
               name="url"
               placeholder="웹페이지 URL 입력"
               onChange={onChangeUrl}
+              className="searchbar-input"
             ></input>
-            <button onClick={drawWebPerformanceResult}>성능 측정하기</button>
+            <button
+              className="searchbar-btn"
+              onClick={drawWebPerformanceResult}
+            >
+              분석
+            </button>
           </div>
 
           {displaySolutions ? (
             <div className="container-tosolution-result">
-              <button
+              <div
+                className="btn-toresult"
                 disabled={!displaySolutions}
                 onClick={() => setDisplaySolutions(false)}
               >
-                Result 페이지로 이동
-              </button>
-              <div>
+                <span>&lt;</span>
+              </div>
+              <div className="table-solutions">
                 <Solutions mobileData={mobileData}></Solutions>
               </div>
             </div>
