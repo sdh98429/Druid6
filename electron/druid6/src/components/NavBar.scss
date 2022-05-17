@@ -17,10 +17,11 @@
 
   .current-menu-title{
     display: flex;
+    height: 1rem;
   }
 
   .menu-text{
-    padding: 5px;
+    line-height: 1rem;
     margin-left: 0.5rem;
     font-weight: bold;
     color: #009FF9;
