@@ -30,3 +30,19 @@ export function updateNetworkInfo(traffic){
     }
   }
 }
+export function updateStressTestScenarios(scenario) {
+  return {
+    type : 'updateStressTestScenarios',
+    payload : {
+      scenario
+    }
+  }
+}
+export function updateVusers(vusers) {
+  return {
+    type : 'updateVusers',
+    payload : {
+      vusers
+    }
+  }
+}

@@ -7,8 +7,21 @@ import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 // scss
 import "./VusersArea.scss";
+// redux
+import { updateVusers } from "../../../redux/actions";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
-export default function VusersArea({ vusers, setVusers }) {
+export default function VusersArea({ startScenario }) {
+  const { vusers } = useSelector((state) => ({
+    vusers: state.vusers,
+  }));
+  const dispatch = useDispatch();
+
+  const handleChangeVusers = (e) => {
+    dispatch(updateVusers(e.target.value));
+  };
+
   return (
     <div className="VusersArea">
       <Box fullWidth>
@@ -19,7 +32,7 @@ export default function VusersArea({ vusers, setVusers }) {
             placeholder="10"
             id="component-outlined"
             value={vusers}
-            onChange={(e) => setVusers(e.target.value)}
+            onChange={(e) => handleChangeVusers(e)}
             label="virtual users"
             sx={{ width: 120 }}
             type="number"
@@ -32,6 +45,7 @@ export default function VusersArea({ vusers, setVusers }) {
         color="success"
         endIcon={<SendIcon />}
         sx={{ width: 120 }}
+        onClick={() => startScenario()}
       >
         SEND
       </Button>
