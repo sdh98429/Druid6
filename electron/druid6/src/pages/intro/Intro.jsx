@@ -3,6 +3,9 @@ import "./Intro.scss";
 import FileUpload from "../../components/FileUpload";
 import HostInput from "./HostInput.jsx";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { updateMenuTitle } from "../../redux/actions";
 import ServerInfo from "../../components/ServerInfo";
 
 export default function Intro() {
@@ -30,6 +33,11 @@ export default function Intro() {
   const { serverInfo } = useSelector((state) => ({
     serverInfo: state.serverInfo,
   }));
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(updateMenuTitle("Druid6"));
+  }, []);
 
   return (
     <div className="Intro" onMouseMove={handleMouseMove}>

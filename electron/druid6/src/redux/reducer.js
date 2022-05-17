@@ -17,6 +17,7 @@ const initialState = {
     kernelRelease: ''
   },
   traffic:'',
+  currentMenuTitle: 'Druid6',
   stressTestScenarios: [],
   vusers: 1,
 };
@@ -61,6 +62,12 @@ export default function reducer(state = initialState, action) {
           capturedResponse
         ]
       }
+    }
+  }
+  else if(action.type === 'updateMenuTitle') {
+    return {
+      ...state,
+      currentMenuTitle : action.payload.title
     }
   }
   else if (action.type === 'updateStressTestScenarios') {

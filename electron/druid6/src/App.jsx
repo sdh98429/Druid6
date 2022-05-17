@@ -26,10 +26,7 @@ function App() {
                 path="/"
                 element={<RouteWrapper Component={Intro} />}
               />
-              <Route
-                path="/dashboard"
-                element={<RouteWrapper Component={DashBoard} />}
-              />
+              <Route path="/dashboard" element={<DashBoard />} />
               <Route
                 path="/stress-test"
                 element={<RouteWrapper Component={StressTest} />}

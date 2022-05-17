@@ -22,11 +22,15 @@
     padding: 1vh 1.5vh;
   }
 
+  .badge{
+    
+  }
   .badge-basic {
-    background-color: #fcf9f9;
+    background-color: white;
+    padding: 1vh;
     border-radius: 3vh;
     width:  100%;
-    height: 30vh;
+    height: 33vh;
     box-shadow: 0.15rem 0.15rem 4px rgb(194, 193, 193);
     text-align:center;
     &:hover {
@@ -42,9 +46,10 @@
   }
 
   .badge-long {
-    background-color: #fcf9f9;
+    background-color: white;
+    padding: 1vh;
     border-radius: 3vh;
-    height: 30vh;
+    height: 33vh;
     box-shadow: 0.15rem 0.15rem 4px rgb(194, 193, 193);
     text-align:center;
     &:hover {
@@ -53,8 +58,8 @@
     }
 
     .dashboard-logo-long{
-      margin: auto;
-      height: 80%;
+      margin: 0 0 0.5rem;
+      height: 70%;
     }
   }
 
