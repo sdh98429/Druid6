@@ -5,14 +5,16 @@
 
   .header-background {
     height: 30rem;
-    background-image: url('../static/header-background.webp');
+    background-image: url("../static/header-background.webp");
     background-size: cover;
   }
 
   .header-title {
     position: relative;
-    margin: 3rem;
-    font-size: 1.7rem;
+    margin: 0;
+    padding: 8rem 0 0;
+    font-size: 2rem;
     font-weight: 700;
+    text-shadow: 0.1rem 0.1rem 0.1rem gray;
   }
 }
