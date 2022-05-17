@@ -1,6 +1,8 @@
 import "./WebPerformance.scss";
 import requestWebPerformanceResult from "../../services/api/WebPerformance";
 import Solutions from "./Solutions";
+import WebPerformanceScore from "./WebPerformanceScore";
+import Screenshot from "./Screenshot";
 import React, { useEffect, useState } from "react";
 
 import ResultContents from "./ResultContents";
@@ -152,15 +154,20 @@ export default function WebPerformance() {
               <div className="api-result">
                 <div className="api-graph">
                   <div className="api-score">
-                    <div
+                    <WebPerformanceScore
+                      performanceScore={performanceScore}
+                      Color={Color}
+                    />
+                    {/* <div
                       className="coreValueBody"
                       style={{ color: `${Color}` }}
                     >
                       {performanceScore}
-                    </div>
+                    </div> */}
                   </div>
                   <div className="final-image">
-                    <img src={`${screenshot}`} alt="" />
+                    <Screenshot screenshot={screenshot} />
+                    {/* <img src={`${screenshot}`} alt="" /> */}
                   </div>
                 </div>
               </div>
