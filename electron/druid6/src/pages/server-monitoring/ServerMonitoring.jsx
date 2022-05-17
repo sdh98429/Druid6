@@ -71,7 +71,8 @@ export default function ServerMonitoring() {
     ],
   };
   const options = {
-    responsive: false,
+    maintainAspectRatio: false,
+    responsive: true,
   };
 
   return (
@@ -81,18 +82,17 @@ export default function ServerMonitoring() {
       <ServerInfo />
       <div className="badgeContainer">
         <div className="badgeShort">
-          <Doughnut
-            data={cpuData}
-            options={options}
-            style={{ width: "20vw", height: "auto" }}
-          />
-          <div>{cpuUsage}</div>
+          <div className="doughnut">
+            <Doughnut data={cpuData} options={options} />
+          </div>
+
+          <div className="badge-content">{cpuUsage}</div>
         </div>
         <div className="badgeShort">
           <Doughnut
             data={MemoryData}
             options={options}
-            style={{ width: "20vw", height: "auto" }}
+            // style={{ width: "20vw", height: "auto" }}
           />
           <div className="badge-content"> {MemoryUsage}</div>
         </div>
