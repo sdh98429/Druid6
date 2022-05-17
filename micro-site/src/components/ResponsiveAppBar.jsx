@@ -50,10 +50,10 @@ const ResponsiveAppBar = () => {
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
+              fontFamily: "Vollkorn SC",
+              fontWeight: 900,
               letterSpacing: ".3rem",
-              color: "inherit",
+              color: "#ffffff",
               textDecoration: "none",
             }}
           >
