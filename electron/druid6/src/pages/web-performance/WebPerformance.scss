@@ -1,5 +1,12 @@
 .WebPerformance {
   text-align: center;
+  width: 95%;
+  height: 89vh;
+  margin: 0 auto;
+  // 추가
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
 }
 
 .api-result {
@@ -71,4 +78,19 @@
   margin-top: 5%;
   box-sizing: border-box;
   font-size: 1.2rem;
+}
+
+.container-btn-result {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.container-tosolution-result {
+  display: flex;
+  flex-direction: row;
+}
+
+.tab {
+  height: 50px;
 }

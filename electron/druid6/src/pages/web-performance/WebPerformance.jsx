@@ -105,52 +105,66 @@ export default function WebPerformance() {
 
   return (
     <div className="WebPerformance">
-      <div>
-        <input
-          type="text"
-          id="url"
-          name="url"
-          placeholder="웹페이지 URL 입력"
-          onChange={onChangeUrl}
-        ></input>
-        <button onClick={drawWebPerformanceResult}>성능 측정하기</button>
-      </div>
-
-      {displaySolutions ? (
+      <div className="tab">탭</div>
+      <div className="container-btn-result">
         <div>
-          <button
-            disabled={!displaySolutions}
-            onClick={() => setDisplaySolutions(false)}
-          >
-            Result 페이지로 이동
-          </button>
-          <Solutions mobileData={mobileData}></Solutions>
+          <div>Desktop</div>
+          <div>Mobile</div>
         </div>
-      ) : (
         <div>
-          {/* 옮겼습니다 */}
-          <div className="api-result">
-            <div className="api-graph">
-              <div className="api-score">
-                <div className="coreValueBody" style={{ color: `${Color}` }}>
-                  {performanceScore}
-                </div>
-              </div>
-              <div className="final-image">
-                <img src={`${screenshot}`} alt="" />
+          <div>
+            <input
+              type="text"
+              id="url"
+              name="url"
+              placeholder="웹페이지 URL 입력"
+              onChange={onChangeUrl}
+            ></input>
+            <button onClick={drawWebPerformanceResult}>성능 측정하기</button>
+          </div>
+
+          {displaySolutions ? (
+            <div className="container-tosolution-result">
+              <button
+                disabled={!displaySolutions}
+                onClick={() => setDisplaySolutions(false)}
+              >
+                Result 페이지로 이동
+              </button>
+              <div>
+                <Solutions mobileData={mobileData}></Solutions>
               </div>
             </div>
-          </div>
-          {/* 옮겼습니다 */}
-          <ResultContents performanceReport={performanceReport} />
-          <button
-            disabled={displaySolutions}
-            onClick={() => setDisplaySolutions(true)}
-          >
-            솔루션 페이지로 이동
-          </button>
+          ) : (
+            <div>
+              {/* 옮겼습니다 */}
+              <div className="api-result">
+                <div className="api-graph">
+                  <div className="api-score">
+                    <div
+                      className="coreValueBody"
+                      style={{ color: `${Color}` }}
+                    >
+                      {performanceScore}
+                    </div>
+                  </div>
+                  <div className="final-image">
+                    <img src={`${screenshot}`} alt="" />
+                  </div>
+                </div>
+              </div>
+              {/* 옮겼습니다 */}
+              <ResultContents performanceReport={performanceReport} />
+              <button
+                disabled={displaySolutions}
+                onClick={() => setDisplaySolutions(true)}
+              >
+                솔루션 페이지로 이동
+              </button>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 }

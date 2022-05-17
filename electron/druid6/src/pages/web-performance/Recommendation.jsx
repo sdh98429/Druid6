@@ -9,7 +9,7 @@ export default function Recommendation({
       (recommendation.details.overallSavingsMs / 1000 + Number.EPSILON) * 100
     ) / 100;
 
-  const xScaleMaxValue = maxOverallSavingsMs >= 20 ? 20 : maxOverallSavingsMs;
+  const xScaleMaxValue = maxOverallSavingsMs >= 3 ? maxOverallSavingsMs : 3;
   return (
     <div className="item container">
       <div>{recommendation.title}</div>
