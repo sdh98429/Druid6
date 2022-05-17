@@ -114,7 +114,11 @@ export default function StressTest() {
             <MyInput width="41vw" title="URL" param="url" />
           </div>
           <div className="tags-switch-area">
+<<<<<<< HEAD
+            <Chips
+=======
             <Tags
+>>>>>>> 56315acced13bd20e16d629fd8f462dcea40837c
               handleClickChipTags={handleClickChipTags}
               tagActivated={tagActivated}
             />
