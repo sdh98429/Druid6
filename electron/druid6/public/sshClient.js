@@ -13,7 +13,7 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
   
     conn.on('ready', () => {
       console.log('Client :: ready2');
-      setInterval(function (){
+      setTimeout(function (){
         conn.exec(`cat /proc/cpuinfo | grep "model name" | head -1`
         , (err, stream) => {
           if (err) throw err;
@@ -28,8 +28,8 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
             console.log('STDERR: ' + data);
           });
         });
-      },5000)
-      setInterval(function (){
+      },0)
+      setTimeout(function (){
         conn.exec(`uname -s`
         , (err, stream) => {
           if (err) throw err;
@@ -44,8 +44,8 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
             console.log('STDERR: ' + data);
           });
         });
-      },5000)
-      setInterval(function (){
+      },0)
+      setTimeout(function (){
         conn.exec(`free -m | grep "Mem" | awk '{print $2}'
         `
         , (err, stream) => {
@@ -62,8 +62,8 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
             console.log('STDERR: ' + data);
           });
         });
-      },5000)
-      setInterval(function (){
+      },0)
+      setTimeout(function (){
         conn.exec(`uname -r`
         , (err, stream) => {
           if (err) throw err;
@@ -78,8 +78,8 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
             console.log('STDERR: ' + data);
           });
         });
-      },5000)
-      setInterval(function (){
+      },0)
+      setTimeout(function (){
         conn.exec(`uname -v`
         , (err, stream) => {
           if (err) throw err;
@@ -94,8 +94,8 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
             console.log('STDERR: ' + data);
           });
         });
-      },5000)
-      setInterval(function (){
+      },0)
+      setTimeout(function (){
         conn.exec(`uname -m`
         , (err, stream) => {
           if (err) throw err;
@@ -110,7 +110,7 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
             console.log('STDERR: ' + data);
           });
         });
-      },5000)
+      },0)
       setInterval(function (){
         conn.exec(`free -m | grep Mem | awk '{print (($2-$6)/$2)*100}'`
         , (err, stream) => {
@@ -121,7 +121,7 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
           }).on('data', (data) => {
             resultMemory=data;
             event.reply('memory',resultMemory.toString());
-            console.log('MEMORY: ' + data);
+       //     console.log('MEMORY: ' + data);
           }).stderr.on('data', (data) => {
             console.log('STDERR: ' + data);
           });
@@ -138,7 +138,7 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
             
             resultDisk=data;
             event.reply('disk',resultDisk.toString().substr(0,resultDisk.toString().length-2));
-            console.log('DISK: ' + data);
+         //   console.log('DISK: ' + data);
           }).stderr.on('data', (data) => {
             console.log('STDERR: ' + data);
           });
@@ -154,7 +154,7 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
           }).on('data', (data) => {
             resultCpu=data;
             event.reply('cpu',resultCpu.toString());
-            console.log('CPU: ' + data);
+           // console.log('CPU: ' + data);
           }).stderr.on('data', (data) => {
             console.log('STDERR: ' + data);
           });

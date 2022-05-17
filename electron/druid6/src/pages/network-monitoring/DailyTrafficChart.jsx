@@ -7,12 +7,12 @@ import {
   Tooltip,
   Legend,
   PointElement,
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2';
-import { faker } from '@faker-js/faker';
-import { range } from '../../services/utils';
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
+import { faker } from "@faker-js/faker";
+import { range } from "../../services/utils";
 
-import './DailyTrafficChart.scss';
+import "./DailyTrafficChart.scss";
 
 ChartJS.register(
   CategoryScale,
@@ -44,34 +44,37 @@ export const options = {
 
 const labels = range(1, 31);
 
-const transmitData = labels.map(() => faker.datatype.number({ min: 0, max: 1000 }));
-const recieveData = labels.map(() => faker.datatype.number({ min: 0, max: 1000 }));
-const txRxSumData = labels.map((ele, idx) => transmitData[idx] + recieveData[idx]);
+const transmitData = labels.map(() =>
+  faker.datatype.number({ min: 0, max: 1000 })
+);
+const recieveData = labels.map(() =>
+  faker.datatype.number({ min: 0, max: 1000 })
+);
+const txRxSumData = labels.map(
+  (ele, idx) => transmitData[idx] + recieveData[idx]
+);
 
 console.log(transmitData, recieveData, txRxSumData);
 export const data = {
   labels,
   datasets: [
     {
-      label: 'Transmit',
+      label: "Transmit",
       data: transmitData,
-      backgroundColor: 'rgb(255, 99, 132)',
+      backgroundColor: "rgb(255, 99, 132)",
     },
     {
-      label: 'Receive',
+      label: "Receive",
       data: recieveData,
-      backgroundColor: 'rgb(75, 192, 192)',
+      backgroundColor: "rgb(75, 192, 192)",
     },
   ],
 };
 
 export default function DailyTrafficChart() {
   return (
-    <div className='DailyTrafficChart'>
-      <Bar
-        options={options} 
-        data={data}
-      />
+    <div className="DailyTrafficChart">
+      <Bar options={options} data={data} />
     </div>
   );
 }

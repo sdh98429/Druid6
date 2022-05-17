@@ -6,7 +6,8 @@ import WorkerBuilder from "./web-worker/WorkerBuilder";
 import "./StressTest.scss";
 // components
 import UrlInput from "./components/UrlInput";
-import Chips from "./components/Chips";
+import Tags from "./components/Tags";
+import JsonTextArea from "./components/JsonTextArea";
 // mui
 import Switch from "@mui/material/Switch";
 import FormGroup from "@mui/material/FormGroup";
@@ -109,7 +110,11 @@ export default function StressTest() {
         <div className="left-side-wrapper">
           <UrlInput />
           <div className="tags-switch-area">
+<<<<<<< HEAD
             <Chips
+=======
+            <Tags
+>>>>>>> 56315acced13bd20e16d629fd8f462dcea40837c
               handleClickChipTags={handleClickChipTags}
               tagActivated={tagActivated}
             />
@@ -127,6 +132,7 @@ export default function StressTest() {
               />
             </FormGroup>
           </div>
+          <JsonTextArea />
         </div>
         <div className="right-side-wrapper"></div>
       </div>

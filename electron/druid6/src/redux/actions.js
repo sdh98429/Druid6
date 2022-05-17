@@ -6,3 +6,11 @@ export function updateStressTestInputs(inputs) {
     },
   };
 }
+export function updateServerInfo(infos){
+  return {
+    type : 'updateServerInfo',
+    payload : {
+      infos
+    }
+  }
+}
