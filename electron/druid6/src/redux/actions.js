@@ -22,3 +22,11 @@ export function updateServerInfo(infos){
     }
   }
 }
+export function updateNetworkInfo(traffic){
+  return {
+    type : 'updateNetworkInfo',
+    payload : {
+      traffic
+    }
+  }
+}

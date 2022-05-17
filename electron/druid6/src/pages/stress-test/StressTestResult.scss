@@ -3,91 +3,18 @@
     margin: 1rem;
     padding: 1vh 1.5vh;
   }
-  
-  .badgeResult {
-    margin: 1rem;
-    padding: 1vh 1.5vh;
-    flex: 1;
-    background-color: #fcf9f9;
-    border-radius: 3vh;
-    width:  33%;
-    height: 30vh;
-    box-shadow: 0.15rem 0.15rem 4px rgb(194, 193, 193);
-    text-align:center;
-    &:hover {
-      cursor: pointer;
-      transform: translateY(-0.3rem);
-    }
-
-    .resultImage{
-      width: 20vh;
-      margin: 2rem;
-    }
-  }
-
-  .badgeBar {
-    margin: 1rem;
-    padding: 1vh 1.5vh;
-    background-color: #fcf9f9;
-    border-radius: 3vh;
-    width: 67%;
-    height: 30vh;
-    box-shadow: 0.15rem 0.15rem 4px rgb(194, 193, 193);
-    text-align:center;
-    &:hover {
-      cursor: pointer;
-      transform: translateY(-0.3rem);
-    }
-  
-    .badge-title {
-    }
-  }
-
-  .badgeSummary {
-    margin: 1rem;
-    padding: 1vh 1vh;
-    background-color: #fcf9f9;
-    border-radius: 3vh;
-    width: 120vh;
-    height: 30vh;
-    box-shadow: 0.15rem 0.15rem 4px rgb(194, 193, 193);  
-    text-align:center;
-    &:hover {
-      cursor: pointer;
-      transform: translateY(-0.3rem);
-    }
-
-    .summary{
-      margin-top: 1vh;
-      float: left;
-      width: 33%;
-      height: 90%;
-    }
-
-    .status{
-      margin-top: 1vh;
-      float: left;
-      width: 33%;
-      height: 90%;
-    }
-
-    .response-statistic{
-      margin-top: 1vh;
-      float: right;
-      width: 33%;
-      height: 90%;
-    }
-
-    .cell {
-      margin: 1rem 0rem;
-    }
-  }
 
   .badgeContainer {
     margin: 2rem;
+    display: flex;
   }
 
+  strong {
+    margin-left: 10px;
+  }
 
+  .align-left{
+    text-align: left;
+  }
 
-  
 }

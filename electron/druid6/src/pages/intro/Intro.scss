@@ -1,0 +1,64 @@
+.Intro {
+  .perspective-container {
+    perspective: 800px;
+  }
+
+  .intro-logo {
+    height: 30vmin;
+    pointer-events: none;
+    margin: 1rem;
+  }
+
+  .product-introduction {
+    margin: 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+
+  /* .App-header {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: rgb(12, 12, 12);
+  } */
+
+  .Intro-link {
+    color: #006fad;
+    font-size: 1.2rem;
+  }
+
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(-360deg);
+    }
+  }
+  .server-info {
+    width: 85%;
+    margin: 1vh auto 4vh;
+  }
+  .introContainer {
+    text-align: left;
+    font-size: 1rem;
+  }
+
+  a{
+    margin: 1rem;
+  }
+
+  .druid6-logo{
+    font-family: "Vollkorn SC";
+    font-weight: 900;
+    font-size: 50px;
+    color: #007105;
+  }
+}

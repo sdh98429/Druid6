@@ -1,9 +1,9 @@
 import logo from "../../static/images/icon.png";
-import "./Intro.css";
+import "./Intro.scss";
 import FileUpload from "../../components/FileUpload";
 import HostInput from "./HostInput.jsx";
 import { useSelector } from "react-redux";
-import ServerInfo from "../server-monitoring/ServerInfo";
+import ServerInfo from "../../components/ServerInfo";
 
 export default function Intro() {
   function setSheenPosition(xRatio, yRatio) {
@@ -37,9 +37,10 @@ export default function Intro() {
         <div className="perspective-container">
           <img src={logo} className="intro-logo" alt="logo" />
         </div>
-        <p className="product-introduction">
-          최고의 애플리케이션 모니터링 솔루션, Druid6 입니다.
-        </p>
+        <div className="product-introduction">
+          <span>최고의 애플리케이션 모니터링 솔루션,</span>{" "}
+          <span className="druid6-logo">Druid6</span> <span>입니다.</span>
+        </div>
         <a
           className="Intro-link"
           href="https://reactjs.org"
@@ -48,9 +49,13 @@ export default function Intro() {
         >
           Learn Druid6
         </a>
-        <div className="introContainer">
-          {serverInfo.osInfo === "" ? <FileUpload /> : <ServerInfo />}
-        </div>
+        {serverInfo.osInfo === "" ? (
+          <FileUpload />
+        ) : (
+          <div className="server-info">
+            <ServerInfo />
+          </div>
+        )}
       </header>
     </div>
   );
