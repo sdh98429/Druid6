@@ -1,17 +1,12 @@
-// redux
-import { useSelector } from "react-redux";
-// mui
-import Chip from "@mui/material/Chip";
-import Stack from "@mui/material/Stack";
 // scss
 import "./Tags.scss";
 
-export default function Tags({ handleClickChipTags, tagActivated }) {
+export default function Tags({ handleClickTags, tagActivated }) {
   return (
     <div className="Tags">
       <button
         className={"tags " + (tagActivated === "body" && "tag-activated")}
-        onClick={() => handleClickChipTags("bodyTagClicked")}
+        onClick={() => handleClickTags("bodyTagClicked")}
       >
         Body
       </button>
@@ -19,7 +14,7 @@ export default function Tags({ handleClickChipTags, tagActivated }) {
         label="Response"
         variant="outlined"
         className={"tags " + (tagActivated === "response" && "tag-activated")}
-        onClick={() => handleClickChipTags("responseTagClicked")}
+        onClick={() => handleClickTags("responseTagClicked")}
       >
         Response
       </button>

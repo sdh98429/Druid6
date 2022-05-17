@@ -7,9 +7,9 @@ import FormControl from "@mui/material/FormControl";
 import OutlinedInput from "@mui/material/OutlinedInput";
 // my js file
 import { updateReduxSTInputs } from "../updateInput";
-import './MyInput.scss';
+import "./MyInput.scss";
 
-export default function MyInput({ width, title, param }) {
+export default function MyInput({ width, title, param, abled }) {
   const { stressTestInputs } = useSelector((state) => ({
     stressTestInputs: state.stressTestInputs,
   }));
@@ -24,15 +24,17 @@ export default function MyInput({ width, title, param }) {
         <FormControl size="small">
           <InputLabel htmlFor="component-outlined">{title}</InputLabel>
           <OutlinedInput
-            placeholder={title}
-            id="component-outlined"
+            id="component-outlined-disabled"
             name={param}
-            value={stressTestInputs.param}
+            value={stressTestInputs[param]}
             onChange={handleChangeInput}
             label={title}
-            // sx={{ width: width, boxSizing: "border-box" }}
-            
-            
+            disabled={!abled}
+            sx={{
+              width: width,
+              maxWidth: "1030px",
+              background: !abled && "#ededed",
+            }}
           />
         </FormControl>
       </Box>

@@ -6,6 +6,14 @@ export function updateStressTestInputs(inputs) {
     },
   };
 }
+export function updateStressTestResponse(capturedResponse) {
+  return {
+    type: 'updateStressTestResponse',
+    payload: {
+      capturedResponse
+    },
+  };
+}
 export function updateServerInfo(infos){
   return {
     type : 'updateServerInfo',
