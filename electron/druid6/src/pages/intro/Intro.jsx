@@ -1,5 +1,5 @@
 import logo from "../../static/images/icon.png";
-import "./Intro.css";
+import "./Intro.scss";
 import FileUpload from "../../components/FileUpload";
 import HostInput from "./HostInput.jsx";
 import { useSelector } from "react-redux";
@@ -48,7 +48,7 @@ export default function Intro() {
         >
           Learn Druid6
         </a>
-        <div className="introContainer">
+        <div className="introContainer badge noHover">
           {serverInfo.osInfo === "" ? <FileUpload /> : <ServerInfo />}
         </div>
       </header>
