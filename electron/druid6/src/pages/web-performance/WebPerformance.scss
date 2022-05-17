@@ -112,8 +112,9 @@
     border-right: 1px solid gray;
     padding-right: 5px;
     padding-left: 5px;
+    border-radius: 0;
   }
-
+  
   .btn-mobile {
     display: flex;
     justify-content: center;
@@ -121,6 +122,16 @@
     height: 100%;
     border-right: 1px solid gray;
     border-top: 1px solid gray;
+    border-radius: 0;
+    border-bottom-left-radius: 2rem;
+  }
+
+  .btn-desktop:hover {
+    background-color: #F3F4F9;
+  }
+
+  .btn-mobile:hover {
+    background-color: #F3F4F9;
   }
 
   .container-search-tosolution-result {
@@ -134,6 +145,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     width: 50px;
     z-index: 1;
   }
@@ -165,7 +177,6 @@
 
   .searchbar-input {
     width: 100%;
-    padding: 5px;
   }
 
   .searchbar-btn {
@@ -173,9 +184,4 @@
     margin-left: 5px;
   }
 
-  
-
-  // .no-hover {
-  //   point
-  // }
 }
