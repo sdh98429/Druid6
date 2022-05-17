@@ -14,6 +14,7 @@ import { faker } from "@faker-js/faker";
 import { range } from "../../services/utils";
 import { useState } from "react";
 import "./LiveTrafficChart.scss";
+import { ConstructionOutlined } from "@mui/icons-material";
 
 ChartJS.register(
   CategoryScale,
@@ -36,6 +37,7 @@ export const options = {
   responsive: true,
   scales: {
     x: {
+      ticks: { display: false },
       stacked: true,
     },
     y: {
@@ -50,51 +52,56 @@ export const options = {
 export default function LiveTrafficChart() {
   const [rxArray, setRxArray] = useState([]);
   const [txArray, setTxArray] = useState([]);
-  let rxArray2 = [];
-  let txArray2 = [];
   window.ipcRenderer.on("networkRealTime", (event, arg) => {
     let realtime = arg.replace("[1G[2K", "");
-    let realtimeArray = realtime.split(" ");
-
-    if (txArray2.length === 31) {
-      rxArray2.pop();
-      txArray2.pop();
+    let realtimeArraySplit = realtime.split(" ");
+    let realTimeArray = [];
+    for (let i = 0; i < realtimeArraySplit.length; i++) {
+      if (realtimeArraySplit[i] !== "") {
+        realTimeArray.push(realtimeArraySplit[i]);
+      }
     }
+    console.log(realTimeArray);
+    let rxkib = realTimeArray[1] * 1;
+    let txkib = realTimeArray[6] * 1;
+    if (realTimeArray[2] === "Mbit/s") rxkib *= 1000;
+    if (realTimeArray[7] === "Mbit/s") txkib *= 1000;
+    if (txArray.length >= 32) {
+      setRxArray(rxArray.filter((value, index) => index !== 0));
 
-    rxArray2.splice(0, 0, realtimeArray[7] * 1);
-    txArray2.splice(0, 0, realtimeArray[27] * 1);
+      setTxArray(txArray.filter((value, index) => index !== 0));
+    } else {
+      setRxArray([...rxArray, rxkib]);
+      setTxArray([...txArray, txkib]);
+    }
   });
-  setInterval(function () {
-    setRxArray(rxArray2);
-    setTxArray(txArray2);
-  }, 5000);
   const labels = range(1, 31);
-  const transmitData = labels.map((idx) => txArray[idx]);
-  const recieveData = labels.map((idx) => rxArray[idx]);
-  const txRxSumData = labels.map(
-    (ele, idx) => transmitData[idx] + recieveData[idx]
-  );
+  // const transmitData = labels.map((idx) => txArray[idx]);
+  // const recieveData = labels.map((idx) => rxArray[idx]);
+  // const txRxSumData = labels.map(
+  //   (ele, idx) => transmitData[idx] + recieveData[idx]
+  // );
 
   const data = {
     labels,
     datasets: [
       {
         label: "Transmit",
-        data: rxArray,
+        data: txArray,
         backgroundColor: "rgb(255, 99, 132)",
       },
       {
         label: "Receive",
-        data: txArray,
+        data: rxArray,
         backgroundColor: "rgb(75, 192, 192)",
       },
-      {
-        label: "TxRxSum",
-        data: txRxSumData,
-        borderColor: "#FF6801",
-        backgroundColor: "#E64E00",
-        type: "line",
-      },
+      // {
+      //   label: "TxRxSum",
+      //   data: txRxSumData,
+      //   borderColor: "#FF6801",
+      //   backgroundColor: "#E64E00",
+      //   type: "line",
+      // },
     ],
   };
   return (
