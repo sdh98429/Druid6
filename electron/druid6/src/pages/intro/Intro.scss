@@ -1,13 +1,4 @@
 .Intro {
-  .badge {
-    margin: 2vh auto 4vh;
-    width: 100vh;
-    height: 27vh;
-    box-shadow: inset 0.1rem 0.1rem 4px rgb(194, 193, 193);
-  }
-  .noHover{
-    pointer-events: none;
-  }
   .perspective-container {
     perspective: 800px;
   }
@@ -39,7 +30,7 @@
   } */
 
   .Intro-link {
-    color: #006FAD;
+    color: #006fad;
     font-size: 1.2rem;
   }
 
@@ -51,10 +42,12 @@
       transform: rotate(-360deg);
     }
   }
-
-  .introContainer{
+  .server-info {
+    width: 85%;
+    margin: 1vh auto 4vh;
+  }
+  .introContainer {
     text-align: left;
     font-size: 1rem;
-
   }
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./ServerMonitoring.scss";
-import ServerInfo from "./ServerInfo";
+import ServerInfo from "../../components/ServerInfo";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 
@@ -78,8 +78,9 @@ export default function ServerMonitoring() {
   return (
     <div className="ServerMonitoring">
       <h1>ServerMonitoring</h1>
-
-      <ServerInfo />
+      <div className="server-info">
+        <ServerInfo />
+      </div>
       <div className="badgeContainer">
         <div className="badgeShort">
           <div className="doughnut">
