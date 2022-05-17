@@ -1,0 +1,39 @@
+  .badgeSummary {
+    margin: 0 auto;
+    padding: 1vh 7vw;
+    background-color: #fcf9f9;
+    border-radius: 3vh;
+    width: 78%;
+    height: 30vh;
+    box-shadow: 0.15rem 0.15rem 4px rgb(194, 193, 193);  
+    text-align: center;
+    &:hover {
+      cursor: pointer;
+      transform: translateY(-0.3rem);
+    }
+
+    .summary{
+      margin-top: 1vh;
+      float: left;
+      width: 33%;
+      height: 90%;
+    }
+
+    .status{
+      margin-top: 1vh;
+      float: left;
+      width: 33%;
+      height: 90%;
+    }
+
+    .response-statistic{
+      margin-top: 1vh;
+      float: right;
+      width: 33%;
+      height: 90%;
+    }
+
+    .cell {
+      margin: 1rem 0rem;
+    }
+  }

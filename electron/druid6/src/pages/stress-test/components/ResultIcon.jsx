@@ -1,3 +1,4 @@
+import "./ResultIcon.scss";
 export default function ResultIcon() {
   return (
     <div className="badgeResult">

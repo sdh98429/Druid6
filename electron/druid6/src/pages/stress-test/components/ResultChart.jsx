@@ -1,3 +1,4 @@
+import "./ResultChart.scss";
 import ResponseStatisticChart from "../ResponseStatisticChart";
 
 export default function ResultChart() {

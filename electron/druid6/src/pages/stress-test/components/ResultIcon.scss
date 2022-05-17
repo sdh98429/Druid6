@@ -1,0 +1,20 @@
+.badgeResult {
+  margin: 1rem;
+  padding: 1vh 1.5vh;
+  flex: 1;
+  background-color: #fcf9f9;
+  border-radius: 3vh;
+  width:  33%;
+  height: 30vh;
+  box-shadow: 0.15rem 0.15rem 4px rgb(194, 193, 193);
+  text-align:center;
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-0.3rem);
+  }
+
+  .resultImage{
+    width: 20vh;
+    margin: 2rem;
+  }
+}
