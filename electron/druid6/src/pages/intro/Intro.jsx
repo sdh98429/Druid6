@@ -48,9 +48,14 @@ export default function Intro() {
         >
           Learn Druid6
         </a>
-        <div className="introContainer badge noHover">
-          {serverInfo.osInfo === "" ? <FileUpload /> : <ServerInfo />}
-        </div>
+
+        {serverInfo.osInfo === "" ? (
+          <FileUpload />
+        ) : (
+          <div className="introContainer badge noHover">
+            <ServerInfo />
+          </div>
+        )}
       </header>
     </div>
   );
