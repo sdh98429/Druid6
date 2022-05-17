@@ -4,6 +4,10 @@ import Solutions from "./Solutions";
 import WebPerformanceScore from "./WebPerformanceScore";
 import Screenshot from "./Screenshot";
 import React, { useEffect, useState } from "react";
+import { Button } from "@mui/material";
+import { TextField } from "@mui/material";
+import { IconButton } from "@mui/material";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
 import ResultContents from "./ResultContents";
 const initialPerformanceReport = {
@@ -110,40 +114,50 @@ export default function WebPerformance() {
       <div className="tab">탭</div>
       <div className="container-btn-result">
         <div className="container-desktop-mobile">
-          <div className="btn-desktop">
+          <Button variant="text" className="btn-desktop">
             <span>Desktop</span>
-          </div>
-          <div className="btn-mobile">
+          </Button>
+          <Button variant="text" className="btn-mobile">
             <span>Mobile</span>
-          </div>
+          </Button>
         </div>
         <div className="container-search-tosolution-result">
           <div className="searchbar">
-            <input
+            <TextField
+              className="searchbar-input"
+              id="url"
+              label="URL"
+              variant="outlined"
+              name="url"
+              placeholder="Enter web page URL"
+              onChange={onChangeUrl}
+            />
+            {/* <Input
               type="text"
               id="url"
               name="url"
-              placeholder="웹페이지 URL 입력"
+              placeholder="Enter web page URL"
               onChange={onChangeUrl}
               className="searchbar-input"
-            ></input>
-            <button
+            ></Input> */}
+            <Button
               className="searchbar-btn"
+              variant="contained"
               onClick={drawWebPerformanceResult}
             >
               분석
-            </button>
+            </Button>
           </div>
 
           {displaySolutions ? (
             <div className="container-tosolution-result">
-              <div
+              <IconButton
                 className="btn-toresult"
                 disabled={!displaySolutions}
                 onClick={() => setDisplaySolutions(false)}
               >
-                <span>&lt;</span>
-              </div>
+                <ArrowBackIosNewIcon></ArrowBackIosNewIcon>
+              </IconButton>
               <div className="table-solutions badge">
                 <Solutions mobileData={mobileData}></Solutions>
               </div>

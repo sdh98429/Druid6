@@ -90,6 +90,7 @@
     display: flex;
     flex-direction: row;
     height: 100%;
+    position: relative;
   }
 
   .tab {
@@ -111,8 +112,9 @@
     border-right: 1px solid gray;
     padding-right: 5px;
     padding-left: 5px;
+    border-radius: 0;
   }
-
+  
   .btn-mobile {
     display: flex;
     justify-content: center;
@@ -120,6 +122,16 @@
     height: 100%;
     border-right: 1px solid gray;
     border-top: 1px solid gray;
+    border-radius: 0;
+    border-bottom-left-radius: 2rem;
+  }
+
+  .btn-desktop:hover {
+    background-color: #F3F4F9;
+  }
+
+  .btn-mobile:hover {
+    background-color: #F3F4F9;
   }
 
   .container-search-tosolution-result {
@@ -133,12 +145,25 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     width: 50px;
+    z-index: 1;
   }
 
   .table-solutions {
-    width: 100%;
-    padding: 0% 10%;
+    width: 78%;
+    position: absolute;
+
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .badge {
+    height: 90%;
+    pointer-events: none;
+    box-shadow: inset 0.1rem 0.1rem 4px rgb(194, 193, 193);
   }
 
   .searchbar {
@@ -152,7 +177,6 @@
 
   .searchbar-input {
     width: 100%;
-    padding: 5px;
   }
 
   .searchbar-btn {
@@ -160,16 +184,4 @@
     margin-left: 5px;
   }
 
-  .badge {
-    height: 90%;
-    width: 50%;
-    margin: 0 auto;
-    pointer-events: none;
-    box-shadow: inset 0.1rem 0.1rem 4px rgb(194, 193, 193);
-    padding: 2vh;
-  }
-
-  // .no-hover {
-  //   point
-  // }
 }
