@@ -30,11 +30,28 @@ export function updateNetworkInfo(traffic){
     }
   }
 }
+
 export function updateMenuTitle(title){
   return {
     type : 'updateMenuTitle',
     payload : {
       title
+    }
+  }
+}
+export function updateStressTestScenarios(scenario) {
+  return {
+    type : 'updateStressTestScenarios',
+    payload : {
+      scenario
+    }
+  }
+}
+export function updateVusers(vusers) {
+  return {
+    type : 'updateVusers',
+    payload : {
+      vusers
     }
   }
 }

@@ -3,10 +3,12 @@ import React, { useRef } from "react";
 import Editor from "@monaco-editor/react";
 // scss
 import "./JsonTextArea.scss";
-// js file
-import sampleData from "./sampledata";
+// redux
+import { useDispatch } from "react-redux";
+import { updateStressTestInputs } from "../../../redux/actions";
 
 export default function JsonTextArea() {
+  const dispatch = useDispatch();
   const editorRef = useRef(null);
   const sampleData = '{\n "sampleData" : "sampleData" \n}';
 
@@ -14,10 +16,18 @@ export default function JsonTextArea() {
     editorRef.current = editor;
   }
 
-  function showValue() {
-    // alert(editorRef.current.getValue());
-    console.log(__dirname);
-  }
+  const dispatchBodyData = () => {
+    let value = editorRef.current.getValue();
+    if (value) {
+      value = JSON.parse(value);
+      dispatch(
+        updateStressTestInputs({
+          key: "body",
+          value: value,
+        })
+      );
+    }
+  };
 
   return (
     <div className="JsonTextArea">
@@ -35,6 +45,7 @@ export default function JsonTextArea() {
           rulers: false,
         }}
         onMount={handleEditorDidMount}
+        onChange={dispatchBodyData}
       />
     </div>
   );
