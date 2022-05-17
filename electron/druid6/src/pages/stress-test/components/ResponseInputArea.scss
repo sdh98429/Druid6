@@ -1,6 +1,6 @@
 .ResponseInputArea {
   background: white;
-  padding: 10px;
+  padding: 20px 10px;
   width: calc(100% - 20px);
   height: calc(88vh - 300px);
   border-radius: 10px;
@@ -20,5 +20,7 @@
     width: 200px;
     background: rgb(202, 202, 202);
   }
-
+  .my {
+    margin-top: 5px;
+  }
 }

@@ -1,38 +1,30 @@
 //mui
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
+// redux
+import { useSelector } from "react-redux";
 
 // scss
 import "./ScenarioArea.scss";
 
 export default function ScenarioArea() {
+  const { stressTestScenarios } = useSelector((state) => ({
+    stressTestScenarios: state.stressTestScenarios,
+  }));
+
+  const scenarioList = stressTestScenarios.map((scenario, index) => (
+    <div className="scenario-list-item" key={index}>
+      <div className="scenario-item-area">
+        <div className="method-area">{scenario.method}</div>
+        <div className="scenario-name-area">{scenario.scenarioTitle}</div>
+      </div>
+    </div>
+  ));
+
   return (
     <div className="ScenarioArea">
       <div className="scenario-title-area">Scenario List</div>
-      <div className="scenario-list-item">
-        <div className="scenario-item-area">
-          <div className="method-area">GET</div>
-          <div className="scenario-name-area">SIGN UP</div>
-        </div>
-      </div>
-      <div className="scenario-list-item">
-        <div className="scenario-item-area">
-          <div className="method-area">GET</div>
-          <div className="scenario-name-area">LOGIN</div>
-        </div>
-      </div>
-      <div className="scenario-list-item">
-        <div className="scenario-item-area">
-          <div className="method-area">GET</div>
-          <div className="scenario-name-area">GET EMAIL</div>
-        </div>
-      </div>
-      <div className="scenario-list-item">
-        <div className="scenario-item-area">
-          <div className="method-area">GET</div>
-          <div className="scenario-name-area">SOMETHING</div>
-        </div>
-      </div>
+      {scenarioList}
     </div>
   );
 }
