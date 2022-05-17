@@ -137,10 +137,18 @@ export default function StressTest() {
           </div>
           <div className="footer-area">
             <MyInput width="30vw" title="Bearer Token" param="token" />
-            <MyInput width="10vw" title="Scenario Title" param="scenarioTitle" />
+            <MyInput
+              width="10vw"
+              title="Scenario Title"
+              param="scenarioTitle"
+            />
           </div>
-          <div style={{width: "300px"}}>
-          <MyInput width="100%" title="Scenario Title" param="scenarioTitle" />
+          <div style={{ width: "300px" }}>
+            <MyInput
+              width="100%"
+              title="Scenario Title"
+              param="scenarioTitle"
+            />
           </div>
         </div>
         <div className="right-side-wrapper"></div>
