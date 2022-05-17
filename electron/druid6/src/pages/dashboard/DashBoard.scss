@@ -1,0 +1,67 @@
+.navbar{
+  margin: 5rem;
+}
+
+.board-container{
+  display: flex;
+  margin: 1rem;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+  width: 33%;
+  margin: 1rem;
+  padding: 1vh 1.5vh;
+}
+
+.a-long{
+  width: 67%;
+  margin: 1rem;
+  padding: 1vh 1.5vh;
+}
+
+.badge-basic {
+  background-color: #fcf9f9;
+  border-radius: 3vh;
+  width:  100%;
+  height: 30vh;
+  box-shadow: 0.15rem 0.15rem 4px rgb(194, 193, 193);
+  text-align:center;
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-0.3rem);
+  }
+
+  .dashboard-logo-basic{
+    margin: auto;
+    height: 65%;
+    }
+   
+}
+
+.badge-long {
+  background-color: #fcf9f9;
+  border-radius: 3vh;
+  height: 30vh;
+  box-shadow: 0.15rem 0.15rem 4px rgb(194, 193, 193);
+  text-align:center;
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-0.3rem);
+  }
+
+  .dashboard-logo-long{
+    margin: auto;
+    height: 80%;
+  }
+}
+
+.badge-title{
+  margin: 15px 0;
+  text-align: center;
+  font-weight: bold;
+}
+
+
+
