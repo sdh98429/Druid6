@@ -42,39 +42,50 @@ export const options = {
       stacked: true,
     },
   },
+  animation: {
+    duration: 0,
+  },
 };
 
 export default function LiveTrafficChart() {
-  const [networkTx, setNetworkTx] = useState(0);
-  const [networkRx, setNetworkRx] = useState(0);
-
+  const [rxArray, setRxArray] = useState([]);
+  const [txArray, setTxArray] = useState([]);
+  let rxArray2 = [];
+  let txArray2 = [];
   window.ipcRenderer.on("networkRealTime", (event, arg) => {
     let realtime = arg.replace("[1G[2K", "");
     let realtimeArray = realtime.split(" ");
-    setNetworkRx(realtimeArray[7]);
-    setNetworkTx(realtimeArray[27]);
+
+    if (txArray2.length === 31) {
+      rxArray2.pop();
+      txArray2.pop();
+    }
+
+    rxArray2.splice(0, 0, realtimeArray[7] * 1);
+    txArray2.splice(0, 0, realtimeArray[27] * 1);
   });
+  setInterval(function () {
+    setRxArray(rxArray2);
+    setTxArray(txArray2);
+  }, 5000);
   const labels = range(1, 31);
-  const transmitData = labels.map(() =>
-    faker.datatype.number({ min: 0, max: 1000 })
-  );
-  const recieveData = labels.map(() =>
-    faker.datatype.number({ min: 0, max: 1000 })
-  );
+  const transmitData = labels.map((idx) => txArray[idx]);
+  const recieveData = labels.map((idx) => rxArray[idx]);
   const txRxSumData = labels.map(
     (ele, idx) => transmitData[idx] + recieveData[idx]
   );
+
   const data = {
     labels,
     datasets: [
       {
         label: "Transmit",
-        data: transmitData,
+        data: rxArray,
         backgroundColor: "rgb(255, 99, 132)",
       },
       {
         label: "Receive",
-        data: recieveData,
+        data: txArray,
         backgroundColor: "rgb(75, 192, 192)",
       },
       {
