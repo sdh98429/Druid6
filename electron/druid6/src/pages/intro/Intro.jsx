@@ -37,9 +37,10 @@ export default function Intro() {
         <div className="perspective-container">
           <img src={logo} className="intro-logo" alt="logo" />
         </div>
-        <p className="product-introduction">
-          최고의 애플리케이션 모니터링 솔루션, Druid6 입니다.
-        </p>
+        <div className="product-introduction">
+          <span>최고의 애플리케이션 모니터링 솔루션,</span>{" "}
+          <span className="druid6-logo">Druid6</span> <span>입니다.</span>
+        </div>
         <a
           className="Intro-link"
           href="https://reactjs.org"
