@@ -3,7 +3,8 @@ const initialState = {
     method: 'POST',
     url: '',
     body: '',
-    savedResponse: '',
+    savedResponse: [],
+    savedResponseUnit: '',
     token: '',
     scenarioTitle : '',
   },
@@ -41,6 +42,19 @@ export default function reducer(state = initialState, action) {
           [key]: value
         }
       }
+  }
+  else if(action.type === 'updateStressTestResponse') {
+    const capturedResponse = action.payload.capturedResponse
+    return {
+      ...state,
+      stressTestInputs: {
+        ...state.stressTestInputs,
+        savedResponse: [
+          ...state.stressTestInputs.savedResponse,
+          capturedResponse
+        ]
+      }
+    }
   }
 
   return state;

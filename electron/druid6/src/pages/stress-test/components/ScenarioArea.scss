@@ -1,0 +1,33 @@
+.ScenarioArea {
+  .scenario-title-area {
+    padding: 20px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 21px;
+  }
+  .scenario-item-area {
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    border-bottom: 0.5px solid rgb(202, 202, 202);
+    width: 80%;
+    margin: 0 auto;
+    
+    .scenario-name-area {
+      padding: 0 0 10px 0;
+      width: 5vw;
+      margin-left: 10px;
+      border-left: 0.5px solid rgb(202, 202, 202);
+      font-weight: 700;
+      font-size: 18px;
+      width: 200px;
+    }
+  
+    .method-area {
+      margin-right: 5px;
+      font-weight: 600;
+      font-size: 18px;
+      color: orange;
+    }
+  }
+}

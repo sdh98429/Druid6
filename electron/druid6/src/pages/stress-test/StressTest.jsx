@@ -9,11 +9,15 @@ import MySelect from "./components/MySelect";
 import Tags from "./components/Tags";
 import JsonTextArea from "./components/JsonTextArea";
 import MyInput from "./components/MyInput";
+import ScenarioArea from "./components/ScenarioArea";
+import VusersArea from "./components/VusersArea";
+import ResponseInputArea from "./components/ResponseInputArea";
 // mui
 import Switch from "@mui/material/Switch";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import { createTheme } from "@mui/material/styles";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
 
 export default function StressTest() {
   const [tagActivated, setTagActivated] = useState("body");
@@ -21,6 +25,7 @@ export default function StressTest() {
   const handleChangeUseToken = () => {
     setUseToken(!useToken);
   };
+  const [vusers, setVusers] = useState(1);
   const [scenarioInfo, setScenarioInfo] = useState({
     vusers: 1,
     flows: [
@@ -89,7 +94,7 @@ export default function StressTest() {
     }
   };
 
-  const handleClickChipTags = (msg) => {
+  const handleClickTags = (msg) => {
     if (msg === "bodyTagClicked") {
       setTagActivated("body");
     } else if (msg === "responseTagClicked") {
@@ -97,25 +102,22 @@ export default function StressTest() {
     }
   };
 
-  const theme = createTheme({
-    palette: {
-      mygreen: {
-        main: "#f44336",
-      },
-    },
-  });
-
   return (
     <div className="StressTest">
       <div className="stress-test-wrapper">
         <div className="left-side-wrapper">
           <div className="method-url-area">
             <MySelect />
-            <MyInput width="41vw" title="URL" param="url" />
+            <MyInput
+              width="calc(64vw - 317px)"
+              title="URL"
+              param="url"
+              abled={true}
+            />
           </div>
           <div className="tags-switch-area">
             <Tags
-              handleClickChipTags={handleClickChipTags}
+              handleClickTags={handleClickTags}
               tagActivated={tagActivated}
             />
             <FormGroup>
@@ -133,17 +135,34 @@ export default function StressTest() {
             </FormGroup>
           </div>
           <div className="main-area">
-            <JsonTextArea />
+            {tagActivated === "body" ? <JsonTextArea /> : <ResponseInputArea />}
           </div>
           <div className="footer-area">
-            <MyInput width="30vw" title="Bearer Token" param="token" />
-            <MyInput width="10vw" title="Scenario Title" param="scenarioTitle" />
-          </div>
-          <div style={{width: "300px"}}>
-          <MyInput width="100%" title="Scenario Title" param="scenarioTitle" />
+            <MyInput
+              width="calc(40vw - 100px)"
+              title="Bearer Token"
+              param="token"
+              abled={useToken}
+            />
+            <MyInput
+              width="200px"
+              title="Scenario Title"
+              param="scenarioTitle"
+              abled={true}
+            />
+            <Fab size="small" color="success" aria-label="add">
+              <AddIcon />
+            </Fab>
           </div>
         </div>
-        <div className="right-side-wrapper"></div>
+        <div className="right-side-wrapper">
+          <div className="header-area">
+            <VusersArea vusers={vusers} setVusers={setVusers} />
+          </div>
+          <div className="main-area">
+            <ScenarioArea />
+          </div>
+        </div>
       </div>
     </div>
   );
