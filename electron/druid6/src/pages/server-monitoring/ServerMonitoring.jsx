@@ -83,25 +83,21 @@ export default function ServerMonitoring() {
       <div className="badgeContainer">
         <div className="badgeShort">
           <div className="doughnut">
-            <Doughnut data={cpuData} options={options} />
+            <Doughnut className="canvas" data={cpuData} options={options} />
           </div>
 
           <div className="badge-content">{cpuUsage}</div>
         </div>
         <div className="badgeShort">
-          <Doughnut
-            data={MemoryData}
-            options={options}
-            // style={{ width: "20vw", height: "auto" }}
-          />
+          <div className="doughnut">
+            <Doughnut className="canvas" data={MemoryData} options={options} />
+          </div>
           <div className="badge-content"> {MemoryUsage}</div>
         </div>
         <div className="badgeShort">
-          <Doughnut
-            data={DiskData}
-            options={options}
-            style={{ width: "20vw", height: "auto" }}
-          />
+          <div className="doughnut">
+            <Doughnut className="canvas" data={DiskData} options={options} />
+          </div>
           <div className="badge-content">{DiskUsage}</div>
         </div>
       </div>
