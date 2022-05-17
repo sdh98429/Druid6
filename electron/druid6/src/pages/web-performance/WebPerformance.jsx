@@ -107,9 +107,13 @@ export default function WebPerformance() {
     <div className="WebPerformance">
       <div className="tab">탭</div>
       <div className="container-btn-result">
-        <div>
-          <div>Desktop</div>
-          <div>Mobile</div>
+        <div className="btn-desktop-mobile">
+          <div className="btn-desktop">
+            <span>Desktop</span>
+          </div>
+          <div className="btn-mobile">
+            <span>Mobile</span>
+          </div>
         </div>
         <div>
           <div>
