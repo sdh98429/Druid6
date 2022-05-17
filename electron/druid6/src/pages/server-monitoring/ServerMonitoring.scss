@@ -1,48 +1,53 @@
 .ServerMonitoring{
+
     white-space: pre-wrap;
+    .badgeLong {
+      margin: 2rem;
+      padding: 1vh 1.5vh;
+      background-color: #fcf9f9;
+      border-radius: 3vh;
+      width: 90%;
+      height: 26vh;
+      box-shadow: 0.15rem 0.15rem 4px rgb(194, 193, 193);
+      &:hover {
+        cursor: pointer;
+        transform: translateY(-0.3rem);
+      }
     
-}
-.badgeLong {
-    margin: 2rem;
-    padding: 1vh 1.5vh;
-    background-color: #fcf9f9;
-    border-radius: 3vh;
-    width: 90%;
-    height: 26vh;
-    box-shadow: 0.15rem 0.15rem 4px rgb(194, 193, 193);
-    &:hover {
-      cursor: pointer;
-      transform: translateY(-0.3rem);
+      .badge-title {
+      }
     }
-  
-    .badge-title {
+    .badgeShort {
+      margin: 1rem;
+      display: flex;
+      flex-direction: column;
+      padding: 1vh 1.5vh;
+      flex: 1;
+      text-align: center;
+      background-color: #fcf9f9;
+      border-radius: 3vh;
+      width:  25vh;
+      height: 33vh;
+      box-shadow: 0.15rem 0.15rem 4px rgb(194, 193, 193);
+      &:hover {
+        cursor: pointer;
+        transform: translateY(-0.3rem);
+      }
+      .doughnut {
+        position: relative;
+        width: 120%;
+        margin: 0 0 0 0;
+        transform: rotateX(-3rem);
+      }
+      .badge-content {
+        
+      }
     }
-  }
-  .badgeShort {
-    margin: 1rem;
-    display: flex;
-    padding: 1vh 1.5vh;
-    flex: 1;
-    display: inline-block;
-    text-align: center;
-    background-color: #fcf9f9;
-    border-radius: 3vh;
-    width:  25vh;
-    height: 30vh;
-    box-shadow: 0.15rem 0.15rem 4px rgb(194, 193, 193);
-    &:hover {
-      cursor: pointer;
-      transform: translateY(-0.3rem);
-    }
-  
-    .badge-content {
+    .badgeContainer {
+      margin: 2rem;
+      display: flex;
+     
+      flex: 1;
       
     }
-  }
-  .badgeContainer {
-    margin: 2rem;
-    display: flex;
-   
-    flex: 1;
-    
-  }
+}

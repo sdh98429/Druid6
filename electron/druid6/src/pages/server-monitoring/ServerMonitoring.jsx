@@ -6,35 +6,34 @@ import { Doughnut } from "react-chartjs-2";
 
 export default function ServerMonitoring() {
   ChartJS.register(ArcElement, Tooltip, Legend);
-  
-  const [cpuUsage,setCpuUsage] = useState('');
-  window.ipcRenderer.on("cpu",(event,arg)=>{
+
+  const [cpuUsage, setCpuUsage] = useState("");
+  window.ipcRenderer.on("cpu", (event, arg) => {
     setCpuUsage(arg);
   });
 
-
-  const [DiskUsage,setDiskUsage] = useState('');
-  window.ipcRenderer.on("disk",(event,arg)=>{
+  const [DiskUsage, setDiskUsage] = useState("");
+  window.ipcRenderer.on("disk", (event, arg) => {
     setDiskUsage(arg);
   });
 
-
-  const [MemoryUsage,setMemoryUsage] = useState('');
-  window.ipcRenderer.on("memory",(event,arg)=>{
+  const [MemoryUsage, setMemoryUsage] = useState("");
+  window.ipcRenderer.on("memory", (event, arg) => {
     setMemoryUsage(arg);
   });
 
-  const [networkRealTime,setNetworkRealTime] = useState('');
-  window.ipcRenderer.on("networkRealTime",(event,arg)=>{
+  const [networkRealTime, setNetworkRealTime] = useState("");
+  window.ipcRenderer.on("networkRealTime", (event, arg) => {
     setNetworkRealTime(arg);
-  })
+  });
 
-  const [networkHours,setNetworkHours] = useState('');
-  window.ipcRenderer.on("networkHours",(event,arg)=>{
-    let h=arg.replace('/\t/g','aaa');
+  const [networkHours, setNetworkHours] = useState("");
+  window.ipcRenderer.on("networkHours", (event, arg) => {
+    let h = arg.split("|");
+    console.log(h);
     setNetworkHours(h);
   });
-  
+
   const cpuData = {
     labels: ["used", "unuse"],
     datasets: [
@@ -72,7 +71,8 @@ export default function ServerMonitoring() {
     ],
   };
   const options = {
-    responsive: false,
+    maintainAspectRatio: false,
+    responsive: true,
   };
 
   return (
@@ -82,18 +82,17 @@ export default function ServerMonitoring() {
       <ServerInfo />
       <div className="badgeContainer">
         <div className="badgeShort">
-          <Doughnut
-            data={cpuData}
-            options={options}
-            style={{ width: "20vw", height: "auto" }}
-          />
-          <div>{cpuUsage}</div>
+          <div className="doughnut">
+            <Doughnut data={cpuData} options={options} />
+          </div>
+
+          <div className="badge-content">{cpuUsage}</div>
         </div>
         <div className="badgeShort">
           <Doughnut
             data={MemoryData}
             options={options}
-            style={{ width: "20vw", height: "auto" }}
+            // style={{ width: "20vw", height: "auto" }}
           />
           <div className="badge-content"> {MemoryUsage}</div>
         </div>

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Button, TextField } from "@mui/material";
 import { updateReduxInfo } from "../pages/server-monitoring/updateInfo";
+import { updateReduxNetwork } from "../pages/server-monitoring/updateNetwork";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 export default function FileUpload() {
-
   const openFile = () => {
     window.ipcRenderer.send("OpenFile", "open");
   };
@@ -72,6 +72,12 @@ export default function FileUpload() {
   window.ipcRenderer.on("kernelRelease", (event, arg) => {
     updateReduxInfo({
       key: "kernelRelease",
+      value: arg,
+    });
+  });
+  window.ipcRenderer.on("networkDays", (event, arg) => {
+    updateReduxNetwork({
+      key: "traffic",
       value: arg,
     });
   });
