@@ -4,9 +4,18 @@ const initialState = {
     url: '',
     body: '',
     savedResponse: '',
-    useToken: false,
-  }
-
+    token: '',
+    scenarioTitle : '',
+  },
+  serverInfo: {
+    processInfo:'',
+    osInfo: '',
+    ramInfo: '',
+    systemInfo: '',
+    kernelVersion: '',
+    kernelRelease: ''
+  },
+  traffic:''
 };
 
 export default function reducer(state = initialState, action) {
@@ -22,8 +31,21 @@ export default function reducer(state = initialState, action) {
     };
   }
   // 여기 밑에 else if 문으로 action type 적으시면 됩니다.
-  else if (true) {
-    
+  else if (action.type === 'updateServerInfo') {
+      const key = action.payload.infos.key
+      const value = action.payload.infos.value
+      return {
+        ...state,
+        serverInfo: {
+          ...state.serverInfo,
+          [key]: value
+        }
+      }
+  }else if (action.type === 'updateNetworkInfo'){
+    return{
+      ...state,
+      traffic:action.payload.traffic.value
+    }
   }
 
   return state;

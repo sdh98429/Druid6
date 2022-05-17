@@ -4,29 +4,28 @@
     padding: 50px 20px;
     
   }
+  .method-url-area {
+    display:flex;
+  }
   .left-side-wrapper {
     width: 65%;
-    height: 100%;
   }
   .right-side-wrapper {
     width: 30%;
-    height: 100%;
   }
+  
   .tags-switch-area {
-    margin-top: 20px;
+    margin: 20px 0;
     display: flex;
     justify-content: space-between;
-  }
-  .my-switch {
-    background: black;
+    width: calc(41vw + 100px)
   }
 
+  .footer-area {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
 
-
-
-
-
-
-
-
+  }
+  
 }

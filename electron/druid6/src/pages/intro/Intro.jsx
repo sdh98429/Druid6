@@ -1,29 +1,35 @@
-import logo from '../../static/images/icon.png';
-import './Intro.css'
-import FileUpload from '../../components/FileUpload';
-import HostInput from './HostInput.jsx';
+import logo from "../../static/images/icon.png";
+import "./Intro.scss";
+import FileUpload from "../../components/FileUpload";
+import HostInput from "./HostInput.jsx";
+import { useSelector } from "react-redux";
+import ServerInfo from "../../components/ServerInfo";
 
 export default function Intro() {
   function setSheenPosition(xRatio, yRatio) {
     // This creates a "distance" up to 400px each direction to offset the sheen
     const xOffset = 1 - (xRatio - 0.5) * 800;
     const yOffset = 1 - (yRatio - 0.5) * 800;
-    const target = document.getElementsByClassName('intro-logo')[0];
-    target.style.setProperty('--sheenX', `${xOffset}px`)
-    target.style.setProperty('--sheenY', `${yOffset}px`)
+    const target = document.getElementsByClassName("intro-logo")[0];
+    target.style.setProperty("--sheenX", `${xOffset}px`);
+    target.style.setProperty("--sheenY", `${yOffset}px`);
   }
 
   function handleMouseMove(event) {
     const height = window.innerHeight;
     const width = window.innerWidth;
     // Creates angles of (-20, -20) (left, bottom) and (20, 20) (right, top)
-    const yAxisDegree = event.pageX / width * 60 - 20;
-    const xAxisDegree = event.pageY / height * -1 * 60 + 20;
-    const target = document.getElementsByClassName('intro-logo')[0];
+    const yAxisDegree = (event.pageX / width) * 60 - 20;
+    const xAxisDegree = (event.pageY / height) * -1 * 60 + 20;
+    const target = document.getElementsByClassName("intro-logo")[0];
     target.style.transform = `rotateY(${yAxisDegree}deg) rotateX(${xAxisDegree}deg)`;
     // Set the sheen position
     setSheenPosition(event.pageX / width, event.pageY / width);
   }
+
+  const { serverInfo } = useSelector((state) => ({
+    serverInfo: state.serverInfo,
+  }));
 
   return (
     <div className="Intro" onMouseMove={handleMouseMove}>
@@ -42,7 +48,13 @@ export default function Intro() {
         >
           Learn Druid6
         </a>
-         <FileUpload /> 
+        {serverInfo.osInfo === "" ? (
+          <FileUpload />
+        ) : (
+          <div className="server-info">
+            <ServerInfo />
+          </div>
+        )}
       </header>
     </div>
   );
