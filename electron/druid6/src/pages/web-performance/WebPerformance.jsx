@@ -142,7 +142,7 @@ export default function WebPerformance() {
               >
                 <span>&lt;</span>
               </div>
-              <div className="table-solutions">
+              <div className="table-solutions badge">
                 <Solutions mobileData={mobileData}></Solutions>
               </div>
             </div>

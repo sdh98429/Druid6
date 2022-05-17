@@ -12,16 +12,10 @@
   .item {
     grid-column-start: 1; 
     grid-column-end: 4; 
-    background-color: lightblue;
   }
 
   canvas{
     height: 50px !important;
     width: 98% !important;
   }
-
-  // .flexbox {
-  //   display: flex;
-  //   justify-content: center;
-  // }
 }
