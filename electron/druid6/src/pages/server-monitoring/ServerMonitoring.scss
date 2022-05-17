@@ -1,7 +1,4 @@
 .ServerMonitoring {
-  .canvas {
-    width: 170%;
-  }
   .server-info {
     width: 91%;
     margin: 0 auto;
@@ -19,7 +16,6 @@
       cursor: pointer;
       transform: translateY(-0.3rem);
     }
-
     .badge-title {
     }
   }
@@ -27,6 +23,7 @@
     margin: 1rem;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     padding: 1vh 1.5vh;
     flex: 1;
     text-align: center;
@@ -39,7 +36,10 @@
       cursor: pointer;
       transform: translateY(-0.3rem);
     }
-
+    .canvas {
+      width: 150%;
+      height: 100%;
+    }
     .badge-content {
     }
   }
