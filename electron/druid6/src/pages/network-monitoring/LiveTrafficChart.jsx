@@ -9,11 +9,14 @@ import {
   PointElement,
   LineElement,
 } from "chart.js";
+import ChartStreaming from "chartjs-plugin-streaming";
+
 import { Bar } from "react-chartjs-2";
 import { faker } from "@faker-js/faker";
 import { range } from "../../services/utils";
 import { useState } from "react";
 import "./LiveTrafficChart.scss";
+import "chartjs-adapter-luxon";
 
 ChartJS.register(
   CategoryScale,
@@ -21,37 +24,83 @@ ChartJS.register(
   BarElement,
   PointElement,
   LineElement,
+  ChartStreaming,
   Title,
   Tooltip,
   Legend
 );
 
-export const options = {
-  maintainAspectRatio: false,
-  plugins: {
-    title: {
-      display: false,
-    },
-  },
-  responsive: true,
-  scales: {
-    x: {
-      stacked: true,
-    },
-    y: {
-      stacked: true,
-    },
-  },
-  animation: {
-    duration: 0,
-  },
-};
+ChartJS.defaults.set("plugins.streaming", {
+  duration: 20000,
+});
+
+// const chart = new ChartJS(ctx, {
+//   options: {
+//     plugins: {
+//       // Change options for ALL axes of THIS CHART
+//       streaming: {
+//         duration: 20000,
+//       },
+//     },
+//     scales: {
+//       x: {
+//         type: "realtime",
+//         // Change options only for THIS AXIS
+//         realtime: {
+//           duration: 20000,
+//         },
+//       },
+//     },
+//   },
+// });
 
 export default function LiveTrafficChart() {
-  const [rxArray, setRxArray] = useState([]);
-  const [txArray, setTxArray] = useState([]);
+  let rxArray = [];
+  let txArray = [];
   let rxArray2 = [];
   let txArray2 = [];
+
+  const options = {
+    maintainAspectRatio: false,
+    plugins: {
+      title: {
+        display: false,
+      },
+      streaming: {
+        onRefresh: function (chart) {
+          console.log("refresh@");
+          console.log(chart);
+          chart.data.datasets = rxArray;
+          chart.data.datasets = txArray;
+        },
+        delay: 500,
+        refresh: 1000,
+        frameRate: 30,
+        duration: 3600000, // 3600000 = 1hour
+      },
+    },
+    responsive: true,
+    scales: {
+      x: {
+        type: "realtime",
+        stacked: true,
+        realtime: {
+          duration: 20000,
+        },
+      },
+      y: {
+        type: "realtime",
+        stacked: true,
+        realtime: {
+          duration: 20000,
+        },
+      },
+    },
+    animation: {
+      duration: 0,
+    },
+  };
+
   window.ipcRenderer.on("networkRealTime", (event, arg) => {
     let realtime = arg.replace("[1G[2K", "");
     let realtimeArray = realtime.split(" ");
@@ -65,9 +114,10 @@ export default function LiveTrafficChart() {
     txArray2.splice(0, 0, realtimeArray[27] * 1);
   });
   setInterval(function () {
-    setRxArray(rxArray2);
-    setTxArray(txArray2);
-  }, 5000);
+    rxArray = rxArray2;
+    txArray = txArray2;
+    // console.log(rxArray);
+  }, 1000);
   const labels = range(1, 31);
   const transmitData = labels.map((idx) => txArray[idx]);
   const recieveData = labels.map((idx) => rxArray[idx]);
@@ -80,7 +130,7 @@ export default function LiveTrafficChart() {
     datasets: [
       {
         label: "Transmit",
-        data: rxArray,
+        data: [1],
         backgroundColor: "rgb(255, 99, 132)",
       },
       {

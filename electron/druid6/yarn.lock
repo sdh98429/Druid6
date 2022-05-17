@@ -3522,10 +3522,20 @@
   "resolved" "https://registry.npmjs.org/charcodes/-/charcodes-0.2.0.tgz"
   "version" "0.2.0"
 
-"chart.js@^3.5.0", "chart.js@^3.7.1":
+"chart.js@^3.0.0", "chart.js@^3.5.0", "chart.js@^3.7.1":
   "integrity" "sha512-8knRegQLFnPQAheZV8MjxIXc5gQEfDFD897BJgv/klO/vtIyFFmgMXrNfgrXpbTr/XbTturxRgxIXx/Y+ASJBA=="
   "resolved" "https://registry.npmjs.org/chart.js/-/chart.js-3.7.1.tgz"
   "version" "3.7.1"
+
+"chartjs-adapter-luxon@^1.1.0":
+  "integrity" "sha512-CS+xBWEyXYVLBZ3dSY/MwlSXhz8er4JjkApazY84ft/++oOLsmkt6TaXBCsUFudum7QdoYmpxiL/gSp20+emkw=="
+  "resolved" "https://registry.npmjs.org/chartjs-adapter-luxon/-/chartjs-adapter-luxon-1.1.0.tgz"
+  "version" "1.1.0"
+
+"chartjs-plugin-streaming@^2.0.0":
+  "integrity" "sha512-oBwHRmovGbPDS1h8PhpttnlKjI6eiJO13v4h+xz+mfbHhIc+iNF9xuMobCIFMKFH7rlVWi5TJAOIxoXyGElYYg=="
+  "resolved" "https://registry.npmjs.org/chartjs-plugin-streaming/-/chartjs-plugin-streaming-2.0.0.tgz"
+  "version" "2.0.0"
 
 "check-types@^11.1.1":
   "integrity" "sha512-tzWzvgePgLORb9/3a0YenggReLKAIb2owL03H2Xdoe5pKcUyWRSEQ8xfCar8t2SIAuEDwtmx2da1YB52YuHQMQ=="
@@ -7075,6 +7085,11 @@
   dependencies:
     "yallist" "^4.0.0"
 
+"luxon@^1.0.0 || ^2.0.0":
+  "integrity" "sha512-w+NAwWOUL5hO0SgwOHsMBAmZ15SoknmQXhSO0hIbJCAmPKSsGeK8MlmhYh2w6Iib38IxN2M+/ooXWLbeis7GuA=="
+  "resolved" "https://registry.npmjs.org/luxon/-/luxon-2.4.0.tgz"
+  "version" "2.4.0"
+
 "lz-string@^1.4.4":
   "integrity" "sha1-wNjq82BZ9wV5bh40SBHPTEmNOiY="
   "resolved" "https://registry.npmjs.org/lz-string/-/lz-string-1.4.4.tgz"
@@ -7239,6 +7254,11 @@
   "version" "0.5.6"
   dependencies:
     "minimist" "^1.2.6"
+
+"moment@^2.29.3":
+  "integrity" "sha512-c6YRvhEo//6T2Jz/vVtYzqBzwvPT95JBQ+smCytzf7c50oMZRsR/a4w88aD34I+/QVSfnoAnSBFPJHItlOMJVw=="
+  "resolved" "https://registry.npmjs.org/moment/-/moment-2.29.3.tgz"
+  "version" "2.29.3"
 
 "monaco-editor@>= 0.21.0 < 1", "monaco-editor@>= 0.25.0 < 1":
   "integrity" "sha512-VcRWPSLIUEgQJQIE0pVT8FcGBIgFoxz7jtqctE+IiCxWugD0DwgyQBcZBhdSrdMC84eumoqMZsGl2GTreOzwqw=="

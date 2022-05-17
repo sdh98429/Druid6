@@ -1,9 +1,10 @@
-import DailyTrafficChart from './DailyTrafficChart';
-import RxTxChart from './RxTxChart';
-import LiveTrafficChart from './LiveTrafficChart';
+import DailyTrafficChart from "./DailyTrafficChart";
+import RxTxChart from "./RxTxChart";
+import LiveTrafficChart from "./LiveTrafficChart";
+// import RealTimeChart from "./RealTimeChart";
 
-import '../../styles/badge.scss';
-import './NetworkMonitoring.scss';
+import "../../styles/badge.scss";
+import "./NetworkMonitoring.scss";
 
 export default function NetworkMonitoring() {
   return (
@@ -14,6 +15,7 @@ export default function NetworkMonitoring() {
           <div className="live-traffic-charts">
             <RxTxChart />
             <LiveTrafficChart />
+            {/* <RealTimeChart /> */}
           </div>
         </div>
       </div>
