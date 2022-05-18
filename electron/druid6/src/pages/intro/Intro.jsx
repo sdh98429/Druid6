@@ -46,7 +46,7 @@ export default function Intro() {
           <img src={logo} className="intro-logo" alt="logo" />
         </div>
         <div className="product-introduction">
-          <span>최고의 애플리케이션 모니터링 솔루션,</span>{" "}
+          <span>최고의 애플리케이션 모니터링 솔루션,</span>
           <span className="druid6-logo">Druid6</span> <span>입니다.</span>
         </div>
         <a

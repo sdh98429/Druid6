@@ -47,7 +47,6 @@ export default function StressTestResult() {
 
   return (
     <div className="StressTestResult">
-      <div className="scenarioTestTitle"></div>
       <div className="badgeContainer">
         <ResultIcon status={stressTestResult.status} />
         <ResultChart latencies={latencies} />
