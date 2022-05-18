@@ -1,0 +1,33 @@
+.coreValue {
+  // .coreValue {
+    float: left;
+    width: 15%;
+    // height: 100px;
+    height: 150px;
+    border: 1px solid #8A8A8A;
+    background: #FCF9F9;
+    border-radius: 18px;
+    // padding: 0.5%;
+    padding: auto;
+    margin: 3% 0.5% 0;
+    // margin: auto;
+    // margin-top: 3%;
+    // overflow: auto;
+    overflow: hidden;
+    font-size: 5rem;
+    box-sizing: border-box;
+  // }
+
+  .core-value-title {
+    padding: 1px;
+    font-size: 1rem;
+  }
+
+  .core-value-body {
+  
+    font-size: 1.1rem;
+    padding: 1px;
+    margin: 2px;
+    color: green;
+  }
+}

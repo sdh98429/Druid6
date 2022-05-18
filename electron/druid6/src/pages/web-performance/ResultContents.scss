@@ -1,0 +1,41 @@
+.api-detail {
+  // width: 78%;
+  height: 100%;
+  // position: absolute;
+
+  // margin-left: 40%;
+  // margin-right: 10%;
+  // margin-top: 15px;
+  // margin-bottom: 0px;
+
+  display: flex;
+  flex-direction: column;
+
+
+  .represent {
+    // position: absolute;
+    height: 30%;
+    .badge {
+      pointer-events: all;
+    }
+  }
+
+  .description {
+    // display: flex;
+    // position: absolute;
+
+    text-align: left;
+    overflow: hidden;
+    width: 95%;
+    height: 45%;
+    padding: auto;
+    border: 1px solid #8A8A8A;
+    background: #FCF9F9;
+    border-radius: 18px;
+    margin: 0% 0.5% 0;
+    // margin: auto;
+    // margin-top: 5%;
+    box-sizing: border-box;
+    font-size: 1.2rem;
+  }
+}
