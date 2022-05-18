@@ -6,7 +6,11 @@ import NoUrl from "./NoUrl";
 
 // redux
 import ButtonToOtherPages from "./ButtonToOtherPages";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  updateMyPageMobileData,
+  updateMyPageDesktopData,
+} from "../../redux/actions";
 
 import ScoreChart from "./ScoreChart";
 import Screenshot from "./Screenshot";
@@ -40,6 +44,7 @@ const initialState = {
 };
 
 export default function WebPerformance() {
+  const dispatch = useDispatch();
   const [performanceState, setPerformanceState] = useState(initialState);
   // api 요청값 저장할 state 생성
   const {
@@ -61,7 +66,8 @@ export default function WebPerformance() {
         displayData: mobileData,
       });
     }
-    console.log(mobileData);
+    dispatch(updateMyPageMobileData(mobileData));
+    console.log("hihihi  ", myPageDesktopData);
   }, [mobileData]);
 
   useEffect(() => {
@@ -72,7 +78,12 @@ export default function WebPerformance() {
         displayData: desktopData,
       });
     }
-    console.log(desktopData);
+    dispatch(
+      updateMyPageDesktopData({
+        key: "body",
+        value: desktopData,
+      })
+    );
   }, [desktopData]);
 
   //input에 입력될 때마다 account state값 변경되게 하는 함수
@@ -192,6 +203,8 @@ export default function WebPerformance() {
     bingDesktopData,
     daumMobileData,
     daumDesktopData,
+    myPageMobileData,
+    myPageDesktopData,
   } = useSelector((state) => ({
     naverMobileData: state.naverMobileData,
     naverDesktopData: state.naverDesktopData,
@@ -201,6 +214,8 @@ export default function WebPerformance() {
     bingDesktopData: state.bingDesktopData,
     daumMobileData: state.daumMobileData,
     daumDesktopData: state.daumDesktopData,
+    myPageMobileData: state.myPageMobileData,
+    myPageDesktopData: state.myPageDesktopData,
   }));
 
   const viewOtherPage = (name) => {
@@ -228,6 +243,14 @@ export default function WebPerformance() {
         mobileData: daumMobileData,
         desktopData: daumDesktopData,
       });
+    } else if (name === "myPage") {
+      if (myPageMobileData && myPageDesktopData) {
+        setPerformanceState({
+          ...performanceState,
+          mobileData: myPageMobileData,
+          desktopData: myPageDesktopData,
+        });
+      }
     }
   };
 
@@ -331,7 +354,7 @@ export default function WebPerformance() {
         </div>
       ) : (
         <div className="CompareWithOtherPages">
-          <div className="center">
+          <div className="center" onClick={() => viewOtherPage("myPage")}>
             <ButtonToOtherPages pageName={"내 웹"} />
           </div>
           <div className="left-top" onClick={() => viewOtherPage("google")}>
