@@ -84,6 +84,7 @@
     padding-right: 5px;
     padding-left: 5px;
     border-radius: 0;
+    border-top-left-radius: 2rem;
   }
   
   .btn-mobile {
@@ -136,6 +137,11 @@
     height: 90%;
     pointer-events: none;
     box-shadow:  0.1rem 0.1rem 4px rgb(194, 193, 193);
+    &:hover {
+      cursor: none;
+      // transform: translateY(-0.3rem);
+      transform:none;
+    }
   }
 
   .searchbar {
