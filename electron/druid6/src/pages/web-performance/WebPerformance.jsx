@@ -3,7 +3,10 @@ import "./WebPerformance.scss";
 import requestWebPerformanceResult from "../../services/api/WebPerformance";
 import Solutions from "./Solutions";
 import NoUrl from "./NoUrl";
-import CompareWithOtherPages from "./CompareWithOtherPages";
+
+// redux
+import ButtonToOtherPages from "./ButtonToOtherPages";
+import { useSelector } from "react-redux";
 
 import ScoreChart from "./ScoreChart";
 import Screenshot from "./Screenshot";
@@ -58,6 +61,7 @@ export default function WebPerformance() {
         displayData: mobileData,
       });
     }
+    console.log(mobileData);
   }, [mobileData]);
 
   useEffect(() => {
@@ -68,6 +72,7 @@ export default function WebPerformance() {
         displayData: desktopData,
       });
     }
+    console.log(desktopData);
   }, [desktopData]);
 
   //input에 입력될 때마다 account state값 변경되게 하는 함수
@@ -177,6 +182,55 @@ export default function WebPerformance() {
     });
   };
 
+  // redux
+  const {
+    naverMobileData,
+    naverDesktopData,
+    googleMobileData,
+    googleDesktopData,
+    bingMobileData,
+    bingDesktopData,
+    daumMobileData,
+    daumDesktopData,
+  } = useSelector((state) => ({
+    naverMobileData: state.naverMobileData,
+    naverDesktopData: state.naverDesktopData,
+    googleMobileData: state.googleMobileData,
+    googleDesktopData: state.googleDesktopData,
+    bingMobileData: state.bingMobileData,
+    bingDesktopData: state.bingDesktopData,
+    daumMobileData: state.daumMobileData,
+    daumDesktopData: state.daumDesktopData,
+  }));
+
+  const viewOtherPage = (name) => {
+    if (name === "naver") {
+      setPerformanceState({
+        ...performanceState,
+        mobileData: naverMobileData,
+        desktopData: naverDesktopData,
+      });
+    } else if (name === "google") {
+      setPerformanceState({
+        ...performanceState,
+        mobileData: googleMobileData,
+        desktopData: googleDesktopData,
+      });
+    } else if (name === "bing") {
+      setPerformanceState({
+        ...performanceState,
+        mobileData: bingMobileData,
+        desktopData: bingDesktopData,
+      });
+    } else if (name === "daum") {
+      setPerformanceState({
+        ...performanceState,
+        mobileData: daumMobileData,
+        desktopData: daumDesktopData,
+      });
+    }
+  };
+
   return (
     <div className="WebPerformance">
       <div className="header-area">
@@ -276,7 +330,23 @@ export default function WebPerformance() {
           </div>
         </div>
       ) : (
-        <CompareWithOtherPages />
+        <div className="CompareWithOtherPages">
+          <div className="center">
+            <ButtonToOtherPages pageName={"내 웹"} />
+          </div>
+          <div className="left-top" onClick={() => viewOtherPage("google")}>
+            <ButtonToOtherPages pageName={"구글"} />
+          </div>
+          <div className="left-bottom" onClick={() => viewOtherPage("naver")}>
+            <ButtonToOtherPages pageName={"네이버"} />
+          </div>
+          <div className="right-top" onClick={() => viewOtherPage("daum")}>
+            <ButtonToOtherPages pageName={"다음"} />
+          </div>
+          <div className="right-bottom" onClick={() => viewOtherPage("bing")}>
+            <ButtonToOtherPages pageName={"빙"} />
+          </div>
+        </div>
       )}
     </div>
   );
