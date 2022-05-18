@@ -16,7 +16,7 @@ export default function ResultContents({ performanceReport }) {
   return (
     <div className="api-detail">
       <div className="represent">
-        <ul>
+        <ul className="core-value-group">
           {Object.entries(coreValues).map(
             ([key, { valueTitle, valueDescription }]) => {
               return (
@@ -30,7 +30,7 @@ export default function ResultContents({ performanceReport }) {
           )}
         </ul>
       </div>
-      <div className="description badge">
+      <div className="description badge no-hover">
         <div>{`${coreValueDetail}`}</div>
       </div>
     </div>

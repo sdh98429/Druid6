@@ -184,9 +184,10 @@ export default function WebPerformance() {
           </Button>
         </div>
         <div className="container-search-tosolution-result">
-          <div className="searchbar">
+          <div className="searchbar" style={{ marginTop: "10px" }}>
             <TextField
               className="searchbar-input"
+              size="small"
               id="url"
               label="URL"
               variant="outlined"
@@ -202,8 +203,9 @@ export default function WebPerformance() {
               분석
             </Button>
           </div>
-
-          {displaySolutions ? (
+          {!displayData ? (
+            <div>입력해주세요</div>
+          ) : displaySolutions ? (
             <div className="container-tosolution-result">
               <IconButton
                 className="btn-toresult"
@@ -219,13 +221,13 @@ export default function WebPerformance() {
           ) : (
             <div className="api-result">
               <div className="api-graph">
-                <div className="api-score">
+                <div className="api-score badge no-hover">
                   <ScoreChart
                     performanceScore={performanceScore}
                     Color={Color}
                   />
                 </div>
-                <div className="final-image">
+                <div className="final-image badge no-hover">
                   <Screenshot screenshot={screenshot} />
                 </div>
               </div>
