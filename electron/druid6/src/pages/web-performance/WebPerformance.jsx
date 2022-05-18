@@ -1,13 +1,14 @@
 import "./WebPerformance.scss";
 import requestWebPerformanceResult from "../../services/api/WebPerformance";
 import Solutions from "./Solutions";
-import WebPerformanceScore from "./WebPerformanceScore";
+import ScoreChart from "./ScoreChart";
 import Screenshot from "./Screenshot";
 import React, { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import { TextField } from "@mui/material";
 import { IconButton } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 import ResultContents from "./ResultContents";
 const initialPerformanceReport = {
@@ -35,6 +36,7 @@ export default function WebPerformance() {
 
   // api 요청값 저장할 state 생성
   const [mobileData, setMobileData] = useState("");
+  const [displayData, setDisplayData] = useState("");
 
   //input에 입력될 때마다 account state값 변경되게 하는 함수
   const onChangeUrl = (e) => {
@@ -59,10 +61,10 @@ export default function WebPerformance() {
     await handleClickDetermineWebPerformance();
   };
 
-  const checkMobile = () => {
+  const parseSpeedData = (arrivedData) => {
     const performanceReport = {};
 
-    const audit = mobileData.data.lighthouseResult.audits;
+    const audit = arrivedData.data.lighthouseResult.audits;
 
     performanceReport["FCP"] = audit["first-contentful-paint"];
     performanceReport["SI"] = audit["speed-index"];
@@ -87,9 +89,17 @@ export default function WebPerformance() {
 
   useEffect(() => {
     if (mobileData) {
-      setPerformanceReport(checkMobile());
+      setPerformanceReport(parseSpeedData(mobileData));
+      setDisplayData(mobileData);
     }
   }, [mobileData]);
+
+  useEffect(() => {
+    if (desktopData) {
+      setPerformanceReport(parseSpeedData(desktopData));
+      setDisplayData(desktopData);
+    }
+  }, [desktopData]);
 
   const { screenshot, performanceScore } = performanceReport;
 
@@ -109,15 +119,35 @@ export default function WebPerformance() {
 
   const Color = changeColor();
 
+  const changeDisplayData = (displayDataName) => {
+    if (mobileData && desktopData) {
+      if (displayDataName === "displayDesktop") {
+        setPerformanceReport(parseSpeedData(desktopData));
+        setDisplayData(desktopData);
+      } else if (displayDataName === "displayMobile") {
+        setPerformanceReport(parseSpeedData(mobileData));
+        setDisplayData(mobileData);
+      }
+    }
+  };
+
   return (
     <div className="WebPerformance">
       <div className="tab">탭</div>
       <div className="container-btn-result">
         <div className="container-desktop-mobile">
-          <Button variant="text" className="btn-desktop">
+          <Button
+            variant="text"
+            className="btn-desktop"
+            onClick={() => changeDisplayData("displayDesktop")}
+          >
             <span>Desktop</span>
           </Button>
-          <Button variant="text" className="btn-mobile">
+          <Button
+            variant="text"
+            className="btn-mobile"
+            onClick={() => changeDisplayData("displayMobile")}
+          >
             <span>Mobile</span>
           </Button>
         </div>
@@ -159,40 +189,36 @@ export default function WebPerformance() {
                 <ArrowBackIosNewIcon></ArrowBackIosNewIcon>
               </IconButton>
               <div className="table-solutions badge">
-                <Solutions mobileData={mobileData}></Solutions>
+                <Solutions mobileData={displayData}></Solutions>
               </div>
             </div>
           ) : (
-            <div>
-              {/* 옮겼습니다 */}
-              <div className="api-result">
-                <div className="api-graph">
-                  <div className="api-score">
-                    <WebPerformanceScore
-                      performanceScore={performanceScore}
-                      Color={Color}
-                    />
-                    {/* <div
-                      className="coreValueBody"
-                      style={{ color: `${Color}` }}
-                    >
-                      {performanceScore}
-                    </div> */}
-                  </div>
-                  <div className="final-image">
-                    <Screenshot screenshot={screenshot} />
-                    {/* <img src={`${screenshot}`} alt="" /> */}
-                  </div>
+            <div className="api-result">
+              <div className="api-graph">
+                <div className="api-score">
+                  <ScoreChart
+                    performanceScore={performanceScore}
+                    Color={Color}
+                  />
+                </div>
+                <div className="final-image">
+                  <Screenshot screenshot={screenshot} />
                 </div>
               </div>
-              {/* 옮겼습니다 */}
               <ResultContents performanceReport={performanceReport} />
-              <button
+              <IconButton
+                className="btn-toresult"
+                disabled={displaySolutions}
+                onClick={() => setDisplaySolutions(true)}
+              >
+                <ArrowForwardIosIcon></ArrowForwardIosIcon>
+              </IconButton>
+              {/* <button
                 disabled={displaySolutions}
                 onClick={() => setDisplaySolutions(true)}
               >
                 솔루션 페이지로 이동
-              </button>
+              </button> */}
             </div>
           )}
         </div>

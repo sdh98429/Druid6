@@ -1,3 +1,4 @@
+import "./ResultContents.scss";
 import { useState } from "react";
 import CoreValue from "./CoreValue";
 import coreValues from "../../static/coreValues";
@@ -29,7 +30,7 @@ export default function ResultContents({ performanceReport }) {
           )}
         </ul>
       </div>
-      <div className="description">
+      <div className="description badge">
         <div>{`${coreValueDetail}`}</div>
       </div>
     </div>
