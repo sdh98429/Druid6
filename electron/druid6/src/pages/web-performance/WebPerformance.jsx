@@ -166,7 +166,6 @@ export default function WebPerformance() {
 
   return (
     <div className="WebPerformance">
-      <div className="tab">탭</div>
       <div className="container-btn-result">
         <div className="container-desktop-mobile">
           <Button
