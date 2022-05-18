@@ -28,7 +28,7 @@ const initialState = {
       4 : 0,
       5 : 0
     },
-    responseLatencies : [],
+    responseLatencies : [0],
     vuserCount : 0,
     scenarioCount : 0
   }

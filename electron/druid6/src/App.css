@@ -1,6 +1,7 @@
 body {
   color: #1f1f1f;
   background-color: #f3f4f9;
+  font-weight: bold;
 }
 
 .Intro-logo {
@@ -42,3 +43,5 @@ body {
     transform: rotate(-360deg);
   }
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap');
