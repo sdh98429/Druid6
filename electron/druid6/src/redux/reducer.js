@@ -42,6 +42,8 @@ const initialState = {
   bingDesktopData: bingDesktopData,
   daumMobileData: daumMobileData,
   daumDesktopData: daumDesktopData,
+  myPageMobileData: '',
+  myPageDesktopData: '',
 };
 
 export default function reducer(state = initialState, action) {
@@ -145,7 +147,18 @@ export default function reducer(state = initialState, action) {
       }
     }
   }
-
+  else if (action.type === 'updateMyPageMobileData') {
+    return {
+      ...state,
+      myPageMobileData: action.payload.myPageMobileData
+    }
+  }
+  else if (action.type === 'updateMyPageDesktopData') {
+    return {
+      ...state,
+      myPageDesktopData: action.payload.myPageDesktopData
+    }
+  }
   return state;
 }
 
