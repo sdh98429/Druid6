@@ -12,8 +12,9 @@ remote.initialize()
 
 function createWindow() {
     const win = new BrowserWindow({
-        width: 1280,
-        height: 720,
+        width: 1440,
+        height: 900,
+        resizable: false,
         webPreferences: {
           nodeIntegration: false,
           contextIsolation: false,
