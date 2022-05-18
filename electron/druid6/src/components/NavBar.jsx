@@ -4,6 +4,7 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import menuTitleArrow from "../static/images/menu-title-arrow.svg";
 import "./NavBar.scss";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export default function NavBar() {
   const currentMenuTitle = useSelector((state) => state.currentMenuTitle);
@@ -11,8 +12,12 @@ export default function NavBar() {
   return (
     <div className="NavBar">
       <div className="current-menu-title nav-item">
-        <img src={menuTitleArrow} className="menu-title-arrow" alt="logo" />
-        <div className="menu-text">{currentMenuTitle}</div>
+        {currentMenuTitle !== "웹 퍼포먼스 테스트" && (
+          <>
+            <img src={menuTitleArrow} className="menu-title-arrow" alt="logo" />
+            <div className="menu-text">{currentMenuTitle}</div>
+          </>
+        )}
       </div>
       <div className="menu-icons">
         <div className="nav-item">

@@ -11,6 +11,9 @@ import { IconButton } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
+// icon
+import menuTitleArrow from "../../static/images/menu-title-arrow.svg";
+
 import ResultContents from "./ResultContents";
 
 const initialState = {
@@ -42,6 +45,8 @@ export default function WebPerformance() {
     displayData,
     url,
   } = performanceState;
+
+  const [tagSelected, setTagSelected] = useState(1);
 
   useEffect(() => {
     if (mobileData) {
@@ -166,6 +171,23 @@ export default function WebPerformance() {
 
   return (
     <div className="WebPerformance">
+      <div className="header-area">
+        <img className="tag-img" src={menuTitleArrow} alt="" />
+        <div
+          className={"tag-area " + (tagSelected === 1 && "tag-selected")}
+          onClick={() => setTagSelected(1)}
+        >
+          웹 퍼포먼스
+        </div>
+        <span className="spacer"></span>
+        <img className="tag-img" src={menuTitleArrow} alt="" />
+        <div
+          className={"tag-area " + (tagSelected === 2 && "tag-selected")}
+          onClick={() => setTagSelected(2)}
+        >
+          다른사이트와 비교
+        </div>
+      </div>
       <div className="container-btn-result">
         <div className="container-desktop-mobile">
           <Button

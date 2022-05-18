@@ -11,9 +11,10 @@ export default function ScoreChart({ performanceScore, Color }) {
       {
         // label: "# of Votes",
         data: [performanceScore, 100 - performanceScore],
-        backgroundColor: ["rgba(0, 255, 0, 0.2)", "rgba(255, 0, 0, 0.2)"],
-        borderColor: ["rgba(0, 255, 0, 1)", "rgba(255, 0, 0, 1)"],
+        backgroundColor: ["rgba(0, 255, 0, 0.2)", "rgba(232, 232, 232, 1)"],
+        borderColor: ["rgba(255, 255, 255, 1)", "rgba(0, 255, 0, 0.2)"],
         borderWidth: 1,
+        cutout: "80%",
       },
     ],
   };
