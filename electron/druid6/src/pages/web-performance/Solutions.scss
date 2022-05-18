@@ -18,4 +18,10 @@
     padding: 0 5px;
     color: gray;
   }
+
+  .over {
+    overflow-y: auto;
+    pointer-events: all;
+    height: 540px;
+  }
 }
