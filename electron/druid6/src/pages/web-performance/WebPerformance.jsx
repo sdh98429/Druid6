@@ -43,6 +43,26 @@ export default function WebPerformance() {
     url,
   } = performanceState;
 
+  useEffect(() => {
+    if (mobileData) {
+      setPerformanceState({
+        ...performanceState,
+        performanceReport: parseSpeedData(mobileData),
+        displayData: mobileData,
+      });
+    }
+  }, [mobileData]);
+
+  useEffect(() => {
+    if (desktopData) {
+      setPerformanceState({
+        ...performanceState,
+        performanceReport: parseSpeedData(desktopData),
+        displayData: desktopData,
+      });
+    }
+  }, [desktopData]);
+
   //input에 입력될 때마다 account state값 변경되게 하는 함수
   const onChangeUrl = (e) => {
     setPerformanceState({ ...performanceState, url: e.target.value });
@@ -94,26 +114,6 @@ export default function WebPerformance() {
 
     return performanceReport;
   };
-
-  useEffect(() => {
-    if (mobileData) {
-      setPerformanceState({
-        ...performanceState,
-        performanceReport: parseSpeedData(mobileData),
-        displayData: mobileData,
-      });
-    }
-  }, [mobileData]);
-
-  useEffect(() => {
-    if (desktopData) {
-      setPerformanceState({
-        ...performanceState,
-        performanceReport: parseSpeedData(desktopData),
-        displayData: desktopData,
-      });
-    }
-  }, [desktopData]);
 
   const { screenshot, performanceScore } = performanceReport;
 
@@ -213,7 +213,7 @@ export default function WebPerformance() {
               >
                 <ArrowBackIosNewIcon></ArrowBackIosNewIcon>
               </IconButton>
-              <div className="table-solutions badge">
+              <div className="table-solutions badge solutions-badge">
                 <Solutions mobileData={displayData}></Solutions>
               </div>
             </div>
