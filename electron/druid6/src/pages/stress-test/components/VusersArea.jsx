@@ -19,7 +19,7 @@ export default function VusersArea({ startScenario }) {
   const dispatch = useDispatch();
 
   const handleChangeVusers = (e) => {
-    dispatch(updateVusers(e.target.value));
+    dispatch(updateVusers(e.target.value * 1));
   };
 
   return (
