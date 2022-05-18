@@ -1,0 +1,24 @@
+.ButtonToOtherPages {
+  
+  .page-name {
+    font-size: large;
+    font-weight: bold;
+  }
+
+  .badge {
+    padding: 30px;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+
+  .chart {
+    background-color: rgb(190, 234, 181);
+    width: 85%;
+    height: 85%;
+    margin: 0 auto;
+  }
+}
