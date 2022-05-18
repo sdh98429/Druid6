@@ -1,20 +1,15 @@
 .ButtonToOtherPages {
-  
-  display: inline;
+
   .page-name {
     font-size: large;
     font-weight: bold;
   }
 
   .badge {
-    width: 25vh;
-    height: 25vh;
+    width: 27vh;
+    height: 27vh;
     padding: 25px;
     margin: 0;
-
-    position: absolute;
-    top: 100px;
-    left: 100px;
   }
 
   .header {
