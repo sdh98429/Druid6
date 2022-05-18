@@ -1,0 +1,26 @@
+.ResponseInputArea {
+  background: white;
+  padding: 20px 10px;
+  width: calc(100% - 20px);
+  height: calc(88vh - 300px);
+  border-radius: 10px;
+  border: 0.5px solid rgb(202, 202, 202); 
+  display: flex;
+  justify-content: space-around;
+
+  .divider {
+    width: 1px;
+    background: rgb(202, 202, 202)
+  }
+  .wrapper {
+    text-align: center;
+  }
+
+  .items {
+    width: 200px;
+    background: rgb(202, 202, 202);
+  }
+  .my {
+    margin-top: 5px;
+  }
+}

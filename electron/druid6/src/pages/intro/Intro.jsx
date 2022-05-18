@@ -3,6 +3,9 @@ import "./Intro.scss";
 import FileUpload from "../../components/FileUpload";
 import HostInput from "./HostInput.jsx";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { updateMenuTitle } from "../../redux/actions";
 import ServerInfo from "../../components/ServerInfo";
 
 export default function Intro() {
@@ -31,15 +34,21 @@ export default function Intro() {
     serverInfo: state.serverInfo,
   }));
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(updateMenuTitle("Druid6"));
+  }, []);
+
   return (
     <div className="Intro" onMouseMove={handleMouseMove}>
       <header className="Intro-header">
         <div className="perspective-container">
           <img src={logo} className="intro-logo" alt="logo" />
         </div>
-        <p className="product-introduction">
-          최고의 애플리케이션 모니터링 솔루션, Druid6 입니다.
-        </p>
+        <div className="product-introduction">
+          <span>최고의 애플리케이션 모니터링 솔루션,</span>{" "}
+          <span className="druid6-logo">Druid6</span> <span>입니다.</span>
+        </div>
         <a
           className="Intro-link"
           href="https://reactjs.org"

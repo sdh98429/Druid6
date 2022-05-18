@@ -6,8 +6,9 @@ export default() => {
   self.onmessage = async function( e ) {
 
     for (let i = 0; i < e.data.length; i++) {
+      console.log(e.data[i])
       const response = await sendRequest(e.data[i])
-      const saveReqResponse = e.data[i].useResponse
+      const saveReqResponse = e.data[i].savedResponse
 
       for ( const res of saveReqResponse) {
         savedResponse['$.' + res] = response[res]
@@ -51,7 +52,7 @@ export default() => {
       postMessage( { "latencySended" : Date.now()-startTime } )
       postMessage({ "statusCode" : response.status })
       const statusCode = (response.status + '')[0]
-      if ( e.useResponse.length && statusCode !== '4' && statusCode !== '5' ) {
+      if ( e.savedResponse.length && statusCode !== '4' && statusCode !== '5' ) {
         return response.json()
       }
       return false

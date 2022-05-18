@@ -19,7 +19,7 @@ export default function MySelect() {
   };
 
   return (
-    <Box sx={{ width: 2/2 }}>
+    <Box sx={{ width: 120 }}>
       <FormControl fullWidth size="small">
         <InputLabel id="demo-simple-select-label">Method</InputLabel>
         <Select
@@ -29,7 +29,7 @@ export default function MySelect() {
           value={stressTestInputs.method}
           label="Age"
           onChange={handleChangeInput}
-          sx={{ width: 2/2 }}
+          sx={{ width: 120 }}
         >
           <MenuItem value={"POST"}>POST</MenuItem>
           <MenuItem value={"GET"}>GET</MenuItem>

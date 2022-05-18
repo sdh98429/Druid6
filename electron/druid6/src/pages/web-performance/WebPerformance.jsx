@@ -1,9 +1,12 @@
+import React, { useEffect, useState } from "react";
 import "./WebPerformance.scss";
 import requestWebPerformanceResult from "../../services/api/WebPerformance";
 import Solutions from "./Solutions";
+import { useDispatch } from "react-redux";
+import { updateMenuTitle } from "../../redux/actions";
+
 import ScoreChart from "./ScoreChart";
 import Screenshot from "./Screenshot";
-import React, { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import { TextField } from "@mui/material";
 import { IconButton } from "@mui/material";
@@ -23,25 +26,27 @@ const initialPerformanceReport = {
 };
 
 export default function WebPerformance() {
-  const [displaySolutions, setDisplaySolutions] = useState(false);
-
-  const [performanceReport, setPerformanceReport] = useState(
-    initialPerformanceReport
-  );
-
   // url input값 가져오기
   //input에서 value를 담기 위한 state 생성
   const [url, setUrl] = useState("");
-  const [desktopData, setDesktopData] = useState("");
-
-  // api 요청값 저장할 state 생성
-  const [mobileData, setMobileData] = useState("");
-  const [displayData, setDisplayData] = useState("");
 
   //input에 입력될 때마다 account state값 변경되게 하는 함수
   const onChangeUrl = (e) => {
     setUrl(e.target.value);
   };
+
+  // api 요청값 저장할 state 생성
+  const [performanceReport, setPerformanceReport] = useState(
+    initialPerformanceReport
+  );
+
+  const [displaySolutions, setDisplaySolutions] = useState(false);
+
+  const [desktopData, setDesktopData] = useState("");
+
+  // api 요청값 저장할 state 생성
+  const [mobileData, setMobileData] = useState("");
+  const [displayData, setDisplayData] = useState("");
 
   const handleClickDetermineWebPerformance = async () => {
     console.log(`hi`);
@@ -213,12 +218,6 @@ export default function WebPerformance() {
               >
                 <ArrowForwardIosIcon></ArrowForwardIosIcon>
               </IconButton>
-              {/* <button
-                disabled={displaySolutions}
-                onClick={() => setDisplaySolutions(true)}
-              >
-                솔루션 페이지로 이동
-              </button> */}
             </div>
           )}
         </div>

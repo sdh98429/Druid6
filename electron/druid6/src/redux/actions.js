@@ -6,6 +6,14 @@ export function updateStressTestInputs(inputs) {
     },
   };
 }
+export function updateStressTestResponse(capturedResponse) {
+  return {
+    type: 'updateStressTestResponse',
+    payload: {
+      capturedResponse
+    },
+  };
+}
 export function updateServerInfo(infos){
   return {
     type : 'updateServerInfo',
@@ -19,6 +27,31 @@ export function updateNetworkInfo(traffic){
     type : 'updateNetworkInfo',
     payload : {
       traffic
+    }
+  }
+}
+
+export function updateMenuTitle(title){
+  return {
+    type : 'updateMenuTitle',
+    payload : {
+      title
+    }
+  }
+}
+export function updateStressTestScenarios(scenario) {
+  return {
+    type : 'updateStressTestScenarios',
+    payload : {
+      scenario
+    }
+  }
+}
+export function updateVusers(vusers) {
+  return {
+    type : 'updateVusers',
+    payload : {
+      vusers
     }
   }
 }

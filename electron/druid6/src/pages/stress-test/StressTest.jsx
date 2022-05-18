@@ -1,4 +1,9 @@
 import { useState } from "react";
+import { useEffect } from "react";
+// redux
+import { useDispatch, useSelector } from "react-redux";
+import { updateStressTestScenarios } from "../../redux/actions";
+import { updateMenuTitle } from "../../redux/actions";
 // worker javascript files
 import myWorker from "./web-worker/myWorker";
 import WorkerBuilder from "./web-worker/WorkerBuilder";
@@ -9,39 +14,58 @@ import MySelect from "./components/MySelect";
 import Tags from "./components/Tags";
 import JsonTextArea from "./components/JsonTextArea";
 import MyInput from "./components/MyInput";
+import ScenarioArea from "./components/ScenarioArea";
+import VusersArea from "./components/VusersArea";
+import ResponseInputArea from "./components/ResponseInputArea";
 // mui
 import Switch from "@mui/material/Switch";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import { createTheme } from "@mui/material/styles";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
 
 export default function StressTest() {
+  const dispatch = useDispatch();
+  const { stressTestInputs } = useSelector((state) => ({
+    stressTestInputs: state.stressTestInputs,
+  }));
+  const { stressTestScenarios } = useSelector((state) => ({
+    stressTestScenarios: state.stressTestScenarios,
+  }));
+  const { vusers } = useSelector((state) => ({
+    vusers: state.vusers,
+  }));
   const [tagActivated, setTagActivated] = useState("body");
   const [useToken, setUseToken] = useState(false);
   const handleChangeUseToken = () => {
     setUseToken(!useToken);
   };
-  const [scenarioInfo, setScenarioInfo] = useState({
-    vusers: 1,
-    flows: [
-      {
-        url: "http://k6s2041.p.ssafy.io:8080/api/v1/users/login",
-        method: "POST",
-        token: "",
-        useResponse: ["accessToken"],
-        body: {
-          email: "test1@test.com",
-          password: "~!Q1q2w3e4r",
-        },
-      },
-      {
-        url: "http://k6s2041.p.ssafy.io:8080/api/v1/users/bonus",
-        method: "POST",
-        token: "$.accessToken",
-        useResponse: [],
-      },
-    ],
-  });
+
+  useEffect(() => {
+    dispatch(updateMenuTitle("시나리오 테스트"));
+  }, []);
+
+  // const [scenarioInfo, setScenarioInfo] = useState({
+  //   vusers: 1,
+  //   flows: [
+  //     {
+  //       url: "http://k6s2041.p.ssafy.io:8080/api/v1/users/login",
+  //       method: "POST",
+  //       token: "",
+  //       savedResponse: ["accessToken"],
+  //       body: {
+  //         email: "test1@test.com",
+  //         password: "~!Q1q2w3e4r",
+  //       },
+  //     },
+  //     {
+  //       url: "http://k6s2041.p.ssafy.io:8080/api/v1/users/bonus",
+  //       method: "POST",
+  //       token: "$.accessToken",
+  //       savedResponse: [],
+  //     },
+  //   ],
+  // });
 
   let WorkerArr = [];
   const responseStatus = {
@@ -56,14 +80,14 @@ export default function StressTest() {
 
   const startScenario = async function () {
     const startTime = Date.now();
-    for (let i = 0; i < scenarioInfo.vusers; i++) {
+    for (let i = 0; i < vusers; i++) {
       WorkerArr[i] = new WorkerBuilder(myWorker);
 
       WorkerArr[i].onmessage = (message) => {
         checkPostMessage(message, startTime);
       };
 
-      WorkerArr[i].postMessage(scenarioInfo.flows);
+      WorkerArr[i].postMessage(stressTestScenarios);
     }
   };
 
@@ -89,7 +113,7 @@ export default function StressTest() {
     }
   };
 
-  const handleClickChipTags = (msg) => {
+  const handleClickTags = (msg) => {
     if (msg === "bodyTagClicked") {
       setTagActivated("body");
     } else if (msg === "responseTagClicked") {
@@ -97,13 +121,19 @@ export default function StressTest() {
     }
   };
 
-  const theme = createTheme({
-    palette: {
-      mygreen: {
-        main: "#f44336",
-      },
-    },
-  });
+  const saveScenario = () => {
+    if (!stressTestInputs.url) {
+      alert("URL을 입력해주세요.");
+    } else if (!stressTestInputs.scenarioTitle) {
+      alert("시나리오명을 입력해주세요.");
+    } else {
+      dispatch(updateStressTestScenarios(stressTestInputs));
+    }
+  };
+
+  const check = () => {
+    console.log(stressTestScenarios);
+  };
 
   return (
     <div className="StressTest">
@@ -111,11 +141,16 @@ export default function StressTest() {
         <div className="left-side-wrapper">
           <div className="method-url-area">
             <MySelect />
-            <MyInput width="41vw" title="URL" param="url" />
+            <MyInput
+              width="calc(64vw - 317px)"
+              title="URL"
+              param="url"
+              abled={true}
+            />
           </div>
           <div className="tags-switch-area">
             <Tags
-              handleClickChipTags={handleClickChipTags}
+              handleClickTags={handleClickTags}
               tagActivated={tagActivated}
             />
             <FormGroup>
@@ -133,25 +168,40 @@ export default function StressTest() {
             </FormGroup>
           </div>
           <div className="main-area">
-            <JsonTextArea />
+            {tagActivated === "body" ? <JsonTextArea /> : <ResponseInputArea />}
           </div>
           <div className="footer-area">
-            <MyInput width="30vw" title="Bearer Token" param="token" />
             <MyInput
-              width="10vw"
+              width="calc(40vw - 100px)"
+              title="Bearer Token"
+              param="token"
+              abled={useToken}
+            />
+            <MyInput
+              width="150px"
               title="Scenario Title"
               param="scenarioTitle"
+              abled={true}
             />
-          </div>
-          <div style={{ width: "300px" }}>
-            <MyInput
-              width="100%"
-              title="Scenario Title"
-              param="scenarioTitle"
-            />
+            <Fab
+              size="small"
+              color="success"
+              aria-label="add"
+              onClick={() => saveScenario()}
+            >
+              <AddIcon />
+            </Fab>
           </div>
         </div>
-        <div className="right-side-wrapper"></div>
+        <div className="right-side-wrapper">
+          <div className="header-area">
+            <VusersArea startScenario={startScenario} />
+          </div>
+          <div className="main-area">
+            <ScenarioArea />
+            <button onClick={check}>dd</button>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,12 +1,32 @@
 .NavBar {
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   height: 5vh;
   padding: 1vh;
   background-color: #F3F4F9;
 
+  .nav-icons{
+    display: flex;
+    justify-content: space-between;
+  }
+
   .nav-item {
-    margin: 0 0.5rem;
+    display: inline-block;
+    margin: 0.5rem 0.5rem;
+  }
+
+  .current-menu-title{
+    display: flex;
+    height: 1rem;
+  }
+
+  .menu-text{
+    line-height: 1rem;
+    margin-left: 0.5rem;
+    font-weight: bold;
+    color: #009FF9;
+    opacity: 0.83;
+    font-size: large;
   }
 
 }

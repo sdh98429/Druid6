@@ -1,10 +1,16 @@
 .ServerMonitoring {
   .server-info {
-    width: 91%;
-    margin: 0 auto;
+    width: 93%;
+    margin: 2rem auto;
+  }
+
+  .badge-container {
+    margin: 2rem auto;
+    display: flex;
+    width: 95%;
   }
   // white-space: pre-wrap;
-  .badgeLong {
+  .badge-long {
     margin: 2rem;
     padding: 1vh 1.5vh;
     background-color: #fcf9f9;
@@ -19,34 +25,37 @@
     .badge-title {
     }
   }
-  .badgeShort {
+  .badge-short {
     margin: 1rem;
-    display: flex;
-    flex-direction: column;
     justify-content: space-around;
     padding: 1vh 1.5vh;
-    flex: 1;
     text-align: center;
     background-color: #fcf9f9;
     border-radius: 3vh;
-    width: 25vh;
+    width: 33%;
     height: 33vh;
     box-shadow: 0.15rem 0.15rem 4px rgb(194, 193, 193);
     &:hover {
       cursor: pointer;
       transform: translateY(-0.3rem);
     }
+
+    .badge-title{
+      margin: 10px 0 2rem 0;
+      font-size: x-large;
+    }
     .canvas {
-      width: 150%;
+      width: 100%;
       height: 100%;
     }
     .badge-content {
+      color: #0075ff;
+      font-family: "Vollkorn SC";
+      font-weight: 200;
+      font-size: x-large;
     }
-  }
-  .badgeContainer {
-    margin: 2rem;
-    display: flex;
 
-    flex: 1;
   }
+
+
 }

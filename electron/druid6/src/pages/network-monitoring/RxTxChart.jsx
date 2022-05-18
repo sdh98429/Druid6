@@ -20,9 +20,19 @@ export default function RxTxChart() {
 
   window.ipcRenderer.on("networkRealTime", (event, arg) => {
     let realtime = arg.replace("[1G[2K", "");
-    let realtimeArray = realtime.split(" ");
-    setNetworkRx(realtimeArray[7]);
-    setNetworkTx(realtimeArray[27]);
+    let realtimeArraySplit = realtime.split(" ");
+    let realTimeArray = [];
+    for (let i = 0; i < realtimeArraySplit.length; i++) {
+      if (realtimeArraySplit[i] !== "") {
+        realTimeArray.push(realtimeArraySplit[i]);
+      }
+    }
+    let rxkib = realTimeArray[1] * 1;
+    let txkib = realTimeArray[6] * 1;
+    if (realTimeArray[2] === "Mbit/s") rxkib *= 1000;
+    if (realTimeArray[7] === "Mbit/s") txkib *= 1000;
+    setNetworkRx(rxkib);
+    setNetworkTx(txkib);
   });
   const data = {
     labels: ["transmit", "recieve"],

@@ -1,12 +1,30 @@
 .ServerInfo {
   .badge {
     margin: 2vh auto 4vh;
-    width: 95%;
+    width: 97%;
     height: 27vh;
     box-shadow: inset 0.1rem 0.1rem 4px rgb(194, 193, 193);
     font-size: medium;
   }
-  .noHover {
+  .no-hover {
     pointer-events: none;
+  }
+
+  .server-info-title{
+    margin: 5px 5px 1rem;
+    font-size: large;
+    font-weight: bold;
+  }
+  .info-container{
+    height: 100%;
+    float: left;
+    width: 50%;
+  }
+  .info-name-box{
+    margin-left: 2rem;
+    font-weight: bold;
+  }
+  .info-value-box{
+    margin: 10px 4rem ;
   }
 }

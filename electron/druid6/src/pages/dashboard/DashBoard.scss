@@ -1,0 +1,71 @@
+.DashBoard{
+  .navbar{
+    margin: 3rem;
+  }
+
+  .board-container{
+    display: flex;
+    margin: 1rem;
+  }
+
+  a{
+    text-decoration: none;
+    color: black;
+    width: 33%;
+    margin: 1rem;
+    padding: 1vh 1.5vh;
+  }
+
+  .a-long{
+    width: 67%;
+    margin: 1rem;
+    padding: 1vh 1.5vh;
+  }
+
+  .badge{
+    
+  }
+  .badge-basic {
+    background-color: white;
+    padding: 1vh;
+    border-radius: 3vh;
+    width:  100%;
+    height: 33vh;
+    box-shadow: 0.15rem 0.15rem 4px rgb(194, 193, 193);
+    text-align:center;
+    &:hover {
+      cursor: pointer;
+      transform: translateY(-0.3rem);
+    }
+
+    .dashboard-logo-basic{
+      margin: auto;
+      height: 65%;
+      }
+    
+  }
+
+  .badge-long {
+    background-color: white;
+    padding: 1vh;
+    border-radius: 3vh;
+    height: 33vh;
+    box-shadow: 0.15rem 0.15rem 4px rgb(194, 193, 193);
+    text-align:center;
+    &:hover {
+      cursor: pointer;
+      transform: translateY(-0.3rem);
+    }
+
+    .dashboard-logo-long{
+      margin: 0 0 0.5rem;
+      height: 70%;
+    }
+  }
+
+  .badge-title{
+    margin: 1rem 0;
+    text-align: center;
+    font-weight: bold;
+  }
+}
