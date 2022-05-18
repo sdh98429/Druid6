@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./WebPerformance.scss";
 import requestWebPerformanceResult from "../../services/api/WebPerformance";
 import Solutions from "./Solutions";
-import { useDispatch } from "react-redux";
-import { updateMenuTitle } from "../../redux/actions";
 
 import ScoreChart from "./ScoreChart";
 import Screenshot from "./Screenshot";
@@ -14,39 +12,41 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 import ResultContents from "./ResultContents";
-const initialPerformanceReport = {
-  FCP: "",
-  SI: "",
-  LCP: "",
-  TTI: "",
-  TBT: "",
-  CLS: "",
-  screenshot: "",
-  performanceScore: 0,
+
+const initialState = {
+  performanceReport: {
+    FCP: "",
+    SI: "",
+    LCP: "",
+    TTI: "",
+    TBT: "",
+    CLS: "",
+    screenshot: "",
+    performanceScore: 0,
+  },
+  displaySolutions: false,
+  desktopData: "",
+  mobileData: "",
+  displayData: "",
+  url: "",
 };
 
 export default function WebPerformance() {
-  // url input값 가져오기
-  //input에서 value를 담기 위한 state 생성
-  const [url, setUrl] = useState("");
+  const [performanceState, setPerformanceState] = useState(initialState);
+  // api 요청값 저장할 state 생성
+  const {
+    performanceReport,
+    displaySolutions,
+    desktopData,
+    mobileData,
+    displayData,
+    url,
+  } = performanceState;
 
   //input에 입력될 때마다 account state값 변경되게 하는 함수
   const onChangeUrl = (e) => {
-    setUrl(e.target.value);
+    setPerformanceState({ ...performanceState, url: e.target.value });
   };
-
-  // api 요청값 저장할 state 생성
-  const [performanceReport, setPerformanceReport] = useState(
-    initialPerformanceReport
-  );
-
-  const [displaySolutions, setDisplaySolutions] = useState(false);
-
-  const [desktopData, setDesktopData] = useState("");
-
-  // api 요청값 저장할 state 생성
-  const [mobileData, setMobileData] = useState("");
-  const [displayData, setDisplayData] = useState("");
 
   const handleClickDetermineWebPerformance = async () => {
     console.log(`hi`);
@@ -58,8 +58,11 @@ export default function WebPerformance() {
     const mobileResult = await getMobileResult;
     const desktopResult = await getDesktopResult;
 
-    setMobileData(mobileResult);
-    setDesktopData(desktopResult);
+    setPerformanceState({
+      ...performanceState,
+      mobileData: mobileResult,
+      desktopData: desktopResult,
+    });
   };
 
   const drawWebPerformanceResult = async () => {
@@ -94,15 +97,21 @@ export default function WebPerformance() {
 
   useEffect(() => {
     if (mobileData) {
-      setPerformanceReport(parseSpeedData(mobileData));
-      setDisplayData(mobileData);
+      setPerformanceState({
+        ...performanceState,
+        performanceReport: parseSpeedData(mobileData),
+        displayData: mobileData,
+      });
     }
   }, [mobileData]);
 
   useEffect(() => {
     if (desktopData) {
-      setPerformanceReport(parseSpeedData(desktopData));
-      setDisplayData(desktopData);
+      setPerformanceState({
+        ...performanceState,
+        performanceReport: parseSpeedData(desktopData),
+        displayData: desktopData,
+      });
     }
   }, [desktopData]);
 
@@ -127,13 +136,32 @@ export default function WebPerformance() {
   const changeDisplayData = (displayDataName) => {
     if (mobileData && desktopData) {
       if (displayDataName === "displayDesktop") {
-        setPerformanceReport(parseSpeedData(desktopData));
-        setDisplayData(desktopData);
+        setPerformanceState({
+          ...performanceState,
+          performanceReport: parseSpeedData(desktopData),
+          displayData: desktopData,
+        });
       } else if (displayDataName === "displayMobile") {
-        setPerformanceReport(parseSpeedData(mobileData));
-        setDisplayData(mobileData);
+        setPerformanceState({
+          ...performanceState,
+          performanceReport: parseSpeedData(mobileData),
+          displayData: mobileData,
+        });
       }
     }
+  };
+
+  const goTo = (path) => {
+    let displaySolutions = false;
+    if (path === "result") {
+      displaySolutions = false;
+    } else if (path === "solutions") {
+      displaySolutions = true;
+    }
+    setPerformanceState({
+      ...performanceState,
+      displaySolutions,
+    });
   };
 
   return (
@@ -167,14 +195,6 @@ export default function WebPerformance() {
               placeholder="Enter web page URL"
               onChange={onChangeUrl}
             />
-            {/* <Input
-              type="text"
-              id="url"
-              name="url"
-              placeholder="Enter web page URL"
-              onChange={onChangeUrl}
-              className="searchbar-input"
-            ></Input> */}
             <Button
               className="searchbar-btn"
               variant="contained"
@@ -189,7 +209,7 @@ export default function WebPerformance() {
               <IconButton
                 className="btn-toresult"
                 disabled={!displaySolutions}
-                onClick={() => setDisplaySolutions(false)}
+                onClick={() => goTo("result")}
               >
                 <ArrowBackIosNewIcon></ArrowBackIosNewIcon>
               </IconButton>
@@ -214,7 +234,7 @@ export default function WebPerformance() {
               <IconButton
                 className="btn-toresult"
                 disabled={displaySolutions}
-                onClick={() => setDisplaySolutions(true)}
+                onClick={() => goTo("solutions")}
               >
                 <ArrowForwardIosIcon></ArrowForwardIosIcon>
               </IconButton>

@@ -9,7 +9,7 @@ import StressTest from "./pages/stress-test/StressTest";
 import StressTestResult from "./pages/stress-test/StressTestResult";
 import ServerMonitoring from "./pages/server-monitoring/ServerMonitoring";
 import NetworkMonitoring from "./pages/network-monitoring/NetworkMonitoring";
-import WebPerformance from "./pages/web-performance/WebPerformance";
+import WebPerformanceContainer from "./pages/web-performance/WebPerformanceContainer";
 import DashBoard from "./pages/dashboard/DashBoard";
 
 function App() {
@@ -45,7 +45,7 @@ function App() {
               />
               <Route
                 path="/web-performance"
-                element={<RouteWrapper Component={WebPerformance} />}
+                element={<RouteWrapper Component={WebPerformanceContainer} />}
               />
             </Routes>
           </div>
