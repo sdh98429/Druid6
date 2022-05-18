@@ -55,3 +55,38 @@ export function updateVusers(vusers) {
     }
   }
 }
+export function updateResponseStatus(status) {
+  return {
+    type: 'updateResponseStatus',
+    payload : {
+      status
+    }
+  }
+}
+export function updateResponseLatencies(latencies) {
+  return {
+    type: 'updateResponseLatencies',
+    payload : {
+      latencies
+    }
+  }
+}
+
+export function updateResponseVuserCount(vuserCount) {
+  return {
+    type: 'updateResponseVuserCount',
+    payload : {
+      vuserCount
+    }
+  }
+}
+
+export function updateResponseScenarioCount(scenarioCount) {
+  return {
+    type: 'updateResponseScenarioCount',
+    payload : {
+      scenarioCount
+    }
+  }
+}
+

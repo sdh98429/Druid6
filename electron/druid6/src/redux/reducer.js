@@ -20,6 +20,18 @@ const initialState = {
   currentMenuTitle: 'Druid6',
   stressTestScenarios: [],
   vusers: 1,
+  stressTestResult : {
+    status : {
+      1 : 0,
+      2 : 0,
+      3 : 0,
+      4 : 0,
+      5 : 0
+    },
+    responseLatencies : [],
+    vuserCount : 0,
+    scenarioCount : 0
+  }
 };
 
 export default function reducer(state = initialState, action) {
@@ -34,7 +46,7 @@ export default function reducer(state = initialState, action) {
       },
     };
   }
-  // 여기 밑에 else if 문으로 action type 적으시면 됩니다.
+
   else if (action.type === 'updateServerInfo') {
       const key = action.payload.infos.key
       const value = action.payload.infos.value
@@ -81,6 +93,46 @@ export default function reducer(state = initialState, action) {
     return {
       ...state,
       vusers: action.payload.vusers
+    }
+  }
+  else if (action.type === 'updateResponseStatus') {
+    const status = action.payload.status
+    return {
+      ...state,
+      stressTestResult : {
+        ...state.stressTestResult,
+        status: status
+      }
+    }
+  }
+  else if (action.type === 'updateResponseLatencies') {
+    const latencies = action.payload.latencies
+    return {
+      ...state,
+      stressTestResult : {
+        ...state.stressTestResult,
+        responseLatencies : latencies
+      }
+    }
+  }
+  else if (action.type === 'updateResponseVuserCount') {
+    const vuserCount = action.payload.vuserCount
+    return {
+      ...state,
+      stressTestResult : {
+        ...state.stressTestResult,
+        vuserCount
+      }
+    }
+  }
+  else if (action.type === 'updateResponseScenarioCount') {
+    const scenarioCount = action.payload.scenarioCount
+    return {
+      ...state,
+      stressTestResult : {
+        ...state.stressTestResult,
+        scenarioCount
+      }
     }
   }
 
