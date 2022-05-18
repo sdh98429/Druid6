@@ -1,6 +1,5 @@
 const network = (event,hostInfo,privateKeyPath) => {
     const Client = require('electron-ssh2').Client;
-    
     const conn = new Client();
     let today= new Date();
     let year = today.getFullYear();
@@ -17,7 +16,6 @@ const network = (event,hostInfo,privateKeyPath) => {
             //console.log('Stream :: close :: code: ' + code + ', signal: ' + signal);
             //conn.end();
           }).on('data', (data) => {
-            
             event.reply('networkDays',data.toString());
             let log=data.toString();
             console.log( log.split(" "));

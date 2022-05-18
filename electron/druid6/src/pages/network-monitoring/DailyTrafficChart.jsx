@@ -9,12 +9,9 @@ import {
   PointElement,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import { faker } from "@faker-js/faker";
 import { range } from "../../services/utils";
 import { useSelector } from "react-redux";
-
 import "./DailyTrafficChart.scss";
-import { CommentsDisabledOutlined } from "@mui/icons-material";
 
 ChartJS.register(
   CategoryScale,
@@ -83,9 +80,7 @@ export default function DailyTrafficChart() {
 
   const transmitData = labels.map((idx) => dataTx[idx]);
   const recieveData = labels.map((idx) => dataRx[idx]);
-  const txRxSumData = labels.map(
-    (ele, idx) => transmitData[idx] + recieveData[idx]
-  );
+
   const data = {
     labels,
     datasets: [

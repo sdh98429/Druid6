@@ -9,10 +9,6 @@ export default function FileUpload() {
     window.ipcRenderer.send("OpenFile", "open");
   };
 
-  const allowInstall = () => {
-    window.ipcRenderer.send("AllowInstall", "allow");
-  };
-
   const [filePath, setFilePath] = useState("");
   window.ipcRenderer.on("filePath", (event, arg) => {
     setFilePath(arg);
@@ -124,9 +120,6 @@ export default function FileUpload() {
         />{" "}
         <Button className="box-item" variant="contained" onClick={connectSSH}>
           접속
-        </Button>
-        <Button className="box-item" onClick={allowInstall}>
-          접속허가
         </Button>
       </div>
     </div>

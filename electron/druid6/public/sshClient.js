@@ -126,7 +126,7 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
             console.log('STDERR: ' + data);
           });
         });
-      },1000)
+      },5000)
       setInterval(function (){
         conn.exec(`df . | grep /dev | awk '{print $5}'`
         , (err, stream) => {
@@ -143,7 +143,7 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
             console.log('STDERR: ' + data);
           });
         });
-      },1000)
+      },5000)
       setInterval(function (){
         conn.exec(`top -b -n 1 | grep -Po '[0-9.]+ id' | head -1 | awk '{print 100-$1}'`
         , (err, stream) => {
@@ -159,7 +159,7 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
             console.log('STDERR: ' + data);
           });
         });
-      },1000)   
+      },2000)   
     }).connect({
     host: hostInfo.hostname,
     port: 22,

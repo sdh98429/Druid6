@@ -55,3 +55,11 @@ export function updateVusers(vusers) {
     }
   }
 }
+export function updateDailyTrrafic(dailyTraffic){
+  return {
+    type : 'updateDailyTrrafic',
+    payload : {
+      dailyTraffic
+    }
+  }
+}

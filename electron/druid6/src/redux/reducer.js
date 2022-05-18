@@ -14,12 +14,17 @@ const initialState = {
     ramInfo: '',
     systemInfo: '',
     kernelVersion: '',
-    kernelRelease: ''
+    kernelRelease: '',
+    isConnect: false,
   },
   traffic:'',
   currentMenuTitle: 'Druid6',
   stressTestScenarios: [],
   vusers: 1,
+  dailyTraffic: {
+    tx:[],
+    rx:[],
+  }
 };
 
 export default function reducer(state = initialState, action) {
@@ -81,6 +86,21 @@ export default function reducer(state = initialState, action) {
     return {
       ...state,
       vusers: action.payload.vusers
+    }
+  }else if (action.type === 'updateDailyTrrafic'){
+    const rx=action.payload.dailyTraffic.tx;
+    const tx=action.payload.dailyTraffic.rx;
+    return {
+      ...state,
+      dailyTraffic: {
+        tx : 
+          [...state.dailyTraffic.tx,tx]
+        ,
+        rx : 
+          [...state.dailyTraffic.rx,rx]
+        
+      }
+
     }
   }
 
