@@ -1,3 +1,5 @@
+import { naverMobileData, naverDesktopData, googleDesktopData, googleMobileData, bingMobileData, bingDesktopData, daumMobileData, daumDesktopData } from "../static/otherPageData";
+
 const initialState = {
   stressTestInputs: {
     method: 'POST',
@@ -31,7 +33,15 @@ const initialState = {
     responseLatencies : [0],
     vuserCount : 0,
     scenarioCount : 0
-  }
+  },
+  naverMobileData: naverMobileData,
+  naverDesktopData: naverDesktopData,
+  googleDesktopData: googleDesktopData,
+  googleMobileData: googleMobileData,
+  bingMobileData: bingMobileData,
+  bingDesktopData: bingDesktopData,
+  daumMobileData: daumMobileData,
+  daumDesktopData: daumDesktopData,
 };
 
 export default function reducer(state = initialState, action) {
