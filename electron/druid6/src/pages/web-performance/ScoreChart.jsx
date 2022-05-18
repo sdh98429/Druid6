@@ -18,16 +18,41 @@ export default function ScoreChart({ performanceScore, Color }) {
     ],
   };
 
+  const grade = () => {
+    if (performanceScore >= 90) {
+      return "A";
+    } else if (performanceScore >= 50) {
+      return "B";
+    } else {
+      return "C";
+    }
+  };
+
   return (
     <div className="score-chart" style={{ color: `${Color}` }}>
       <Doughnut data={data} performanceScore={performanceScore} />
       <div
+        className="performance-score-grade"
+        style={{
+          position: "absolute",
+          textAlign: "center",
+          // bottom: "10.5rem",
+          top: "31vh",
+          left: "66.5vh",
+          fontSize: "100px",
+        }}
+      >
+        {/* {performanceScore} */}
+        {grade()}
+      </div>
+      <div
         className="performance-score-number"
         style={{
-          position: "relative",
+          position: "absolute",
           textAlign: "center",
-          bottom: "10.5rem",
-          fontSize: "3rem",
+          top: "48vh",
+          left: "67vh",
+          fontSize: "50px",
         }}
       >
         {performanceScore}
