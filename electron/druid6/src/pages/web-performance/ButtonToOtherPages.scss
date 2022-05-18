@@ -1,18 +1,21 @@
 .ButtonToOtherPages {
-  
+
   .page-name {
     font-size: large;
     font-weight: bold;
   }
 
   .badge {
-    padding: 30px;
+    width: 25vh;
+    height: 25vh;
+    padding: 25px;
+    margin: 0;
   }
 
   .header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
   }
 
   .chart {

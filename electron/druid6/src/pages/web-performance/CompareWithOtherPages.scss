@@ -2,6 +2,12 @@
 
   width: 100%;
   height: 89vh;
-  margin: 0 auto;
+
+  .center {
+    display: inline;
+    position: absolute;
+    width: 200px;
+    top: 200px;
+  }
 
 }

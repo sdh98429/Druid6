@@ -1,13 +1,13 @@
 import "./ButtonToOtherPages.scss";
 import BuildOutlinedIcon from "@mui/icons-material/BuildOutlined";
 
-export default function ButtonToOtherPages() {
+export default function ButtonToOtherPages({ pageName }) {
   return (
     <div className="ButtonToOtherPages">
       <div className="badge">
         <div className="header">
           <div className="page-name">
-            <span>네이버</span>
+            <span>{pageName}</span>
           </div>
           <div className="icon">
             <BuildOutlinedIcon />
