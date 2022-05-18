@@ -3,6 +3,7 @@ import "./WebPerformance.scss";
 import requestWebPerformanceResult from "../../services/api/WebPerformance";
 import Solutions from "./Solutions";
 import NoUrl from "./NoUrl";
+import CompareWithOtherPages from "./CompareWithOtherPages";
 
 import ScoreChart from "./ScoreChart";
 import Screenshot from "./Screenshot";
@@ -195,84 +196,88 @@ export default function WebPerformance() {
           다른사이트와 비교
         </div>
       </div>
-      <div className="container-btn-result">
-        <div className="container-desktop-mobile">
-          <Button
-            variant="text"
-            className="btn-desktop"
-            onClick={() => changeDisplayData("displayDesktop")}
-          >
-            <span>Desktop</span>
-          </Button>
-          <Button
-            variant="text"
-            className="btn-mobile"
-            onClick={() => changeDisplayData("displayMobile")}
-          >
-            <span>Mobile</span>
-          </Button>
-        </div>
-        <div className="container-search-tosolution-result">
-          <div className="searchbar" style={{ marginTop: "10px" }}>
-            <TextField
-              className="searchbar-input"
-              size="small"
-              id="url"
-              label="URL"
-              variant="outlined"
-              name="url"
-              placeholder="Enter web page URL"
-              onChange={onChangeUrl}
-              onKeyUp={handleKeyUp}
-            />
+      {tagSelected === 1 ? (
+        <div className="container-btn-result">
+          <div className="container-desktop-mobile">
             <Button
-              className="searchbar-btn"
-              variant="contained"
-              onClick={drawWebPerformanceResult}
+              variant="text"
+              className="btn-desktop"
+              onClick={() => changeDisplayData("displayDesktop")}
             >
-              분석
+              <span>Desktop</span>
+            </Button>
+            <Button
+              variant="text"
+              className="btn-mobile"
+              onClick={() => changeDisplayData("displayMobile")}
+            >
+              <span>Mobile</span>
             </Button>
           </div>
-          {!displayData ? (
-            <NoUrl />
-          ) : displaySolutions ? (
-            <div className="container-tosolution-result">
-              <IconButton
-                className="btn-toresult"
-                disabled={!displaySolutions}
-                onClick={() => goTo("result")}
+          <div className="container-search-tosolution-result">
+            <div className="searchbar" style={{ marginTop: "10px" }}>
+              <TextField
+                className="searchbar-input"
+                size="small"
+                id="url"
+                label="URL"
+                variant="outlined"
+                name="url"
+                placeholder="Enter web page URL"
+                onChange={onChangeUrl}
+                onKeyUp={handleKeyUp}
+              />
+              <Button
+                className="searchbar-btn"
+                variant="contained"
+                onClick={drawWebPerformanceResult}
               >
-                <ArrowBackIosNewIcon></ArrowBackIosNewIcon>
-              </IconButton>
-              <div className="table-solutions badge solutions-badge">
-                <Solutions mobileData={displayData}></Solutions>
-              </div>
+                분석
+              </Button>
             </div>
-          ) : (
-            <div className="api-result">
-              <div className="api-graph">
-                <div className="api-score badge no-hover">
-                  <ScoreChart
-                    performanceScore={performanceScore}
-                    Color={Color}
-                  />
-                </div>
-                <div className="final-image badge no-hover">
-                  <Screenshot screenshot={screenshot} />
+            {!displayData ? (
+              <NoUrl />
+            ) : displaySolutions ? (
+              <div className="container-tosolution-result">
+                <IconButton
+                  className="btn-toresult"
+                  disabled={!displaySolutions}
+                  onClick={() => goTo("result")}
+                >
+                  <ArrowBackIosNewIcon></ArrowBackIosNewIcon>
+                </IconButton>
+                <div className="table-solutions badge solutions-badge">
+                  <Solutions mobileData={displayData}></Solutions>
                 </div>
               </div>
-              <ResultContents performanceReport={performanceReport} />
-              <IconButton
-                className="btn-toresult"
-                disabled={displaySolutions}
-                onClick={() => goTo("solutions")}
-              >
-                <ArrowForwardIosIcon></ArrowForwardIosIcon>
-              </IconButton>
-            </div>
-          )}
+            ) : (
+              <div className="api-result">
+                <div className="api-graph">
+                  <div className="api-score badge no-hover">
+                    <ScoreChart
+                      performanceScore={performanceScore}
+                      Color={Color}
+                    />
+                  </div>
+                  <div className="final-image badge no-hover">
+                    <Screenshot screenshot={screenshot} />
+                  </div>
+                </div>
+                <ResultContents performanceReport={performanceReport} />
+                <IconButton
+                  className="btn-toresult"
+                  disabled={displaySolutions}
+                  onClick={() => goTo("solutions")}
+                >
+                  <ArrowForwardIosIcon></ArrowForwardIosIcon>
+                </IconButton>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      ) : (
+        <CompareWithOtherPages />
+      )}
     </div>
   );
 }
