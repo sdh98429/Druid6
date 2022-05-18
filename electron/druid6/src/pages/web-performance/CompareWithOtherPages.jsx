@@ -6,7 +6,7 @@ export default function CompareWithOtherPages() {
 
   return (
     <div className="CompareWithOtherPages">
-      <ButtonToOtherPages pageName={"myPage"} className="center" />
+      <ButtonToOtherPages pageName={"myPage"} />
       {/* <ButtonToOtherPages pageName={"google"} className="left-top" />
       <ButtonToOtherPages pageName={"naver"} className="left-bottom" />
       <ButtonToOtherPages pageName={"daum"} className="right-top" />
