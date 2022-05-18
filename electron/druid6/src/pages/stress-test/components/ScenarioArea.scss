@@ -1,9 +1,14 @@
 .ScenarioArea {
   .scenario-title-area {
-    padding: 20px;
-    margin-bottom: 20px;
+    padding: 10px;
+    margin-bottom: 5px;
     font-weight: 700;
-    font-size: 21px;
+    font-size: 20px;
+  }
+  .divider {
+    background: rgb(202, 202, 202);
+    height: 1px;
+    width: 100%;
   }
   .scenario-item-area {
     padding-top: 20px;
@@ -19,15 +24,20 @@
       margin-left: 10px;
       border-left: 0.5px solid rgb(202, 202, 202);
       font-weight: 700;
-      font-size: 18px;
+      font-size: 16px;
       width: 200px;
     }
   
     .method-area {
       margin-right: 5px;
       font-weight: 600;
-      font-size: 18px;
+      font-size: 16px;
       color: orange;
+    }
+
+    .green-text {
+      color: rgb(2, 170, 2);
+      margin-right: 15px;
     }
   }
 }
