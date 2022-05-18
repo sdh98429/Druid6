@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./WebPerformance.scss";
 import requestWebPerformanceResult from "../../services/api/WebPerformance";
 import Solutions from "./Solutions";
+import NoUrl from "./NoUrl";
 
 import ScoreChart from "./ScoreChart";
 import Screenshot from "./Screenshot";
@@ -92,6 +93,12 @@ export default function WebPerformance() {
 
   const drawWebPerformanceResult = async () => {
     await handleClickDetermineWebPerformance();
+  };
+
+  const handleKeyUp = (e) => {
+    if (e.key === "Enter") {
+      drawWebPerformanceResult();
+    }
   };
 
   const parseSpeedData = (arrivedData) => {
@@ -216,6 +223,7 @@ export default function WebPerformance() {
               name="url"
               placeholder="Enter web page URL"
               onChange={onChangeUrl}
+              onKeyUp={handleKeyUp}
             />
             <Button
               className="searchbar-btn"
@@ -226,7 +234,7 @@ export default function WebPerformance() {
             </Button>
           </div>
           {!displayData ? (
-            <div>입력해주세요</div>
+            <NoUrl />
           ) : displaySolutions ? (
             <div className="container-tosolution-result">
               <IconButton
