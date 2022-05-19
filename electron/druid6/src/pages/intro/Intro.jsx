@@ -1,11 +1,12 @@
-import logo from "../../static/images/icon.png";
-import "./Intro.scss";
-import FileUpload from "../../components/FileUpload";
-import { useSelector } from "react-redux";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { updateMenuTitle } from "../../redux/actions";
+
+import logo from "../../static/images/icon.png";
+import FileUpload from "../../components/FileUpload";
 import ServerInfo from "../../components/ServerInfo";
+
+import "./Intro.scss";
 
 export default function Intro() {
   function setSheenPosition(xRatio, yRatio) {
