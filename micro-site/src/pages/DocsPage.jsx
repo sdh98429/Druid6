@@ -1,4 +1,4 @@
-import SideBar from "../components/SidaBar";
+import SideBar from "../components/SideBar";
 import "./DocsPage.scss";
 
 export default function DocsPage() {

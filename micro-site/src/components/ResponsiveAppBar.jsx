@@ -18,7 +18,7 @@ import AdbIcon from "@mui/icons-material/Adb";
 import logo from "../static/logo.png";
 import "./AppBar.scss";
 
-const pages = ["products", "pricing", "docs", "blog"];
+const pages = ["products", "docs", "blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const ResponsiveAppBar = () => {
