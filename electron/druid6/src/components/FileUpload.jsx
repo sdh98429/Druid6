@@ -108,10 +108,8 @@ export default function FileUpload() {
             label="File Path"
             value={filePath}
             size="small"
-            className="text-field-item"
-            InputProps={{
-              readOnly: true,
-            }}
+            className="text-field-item file-path-input"
+            disabled
           />
           <Button
             className="box-item"
