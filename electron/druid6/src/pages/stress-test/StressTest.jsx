@@ -21,6 +21,7 @@ import MyInput from "./components/MyInput";
 import ScenarioArea from "./components/ScenarioArea";
 import VusersArea from "./components/VusersArea";
 import ResponseInputArea from "./components/ResponseInputArea";
+import BodyBlackoutStyle from "../../components/BodyBlackoutStyle";
 // mui
 import Switch from "@mui/material/Switch";
 import FormGroup from "@mui/material/FormGroup";
@@ -46,6 +47,8 @@ export default function StressTest() {
 
   const [tagActivated, setTagActivated] = useState("body");
   const [useToken, setUseToken] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleChangeUseToken = () => {
     setUseToken(!useToken);
   };
@@ -85,17 +88,15 @@ export default function StressTest() {
     5: 0,
   };
   const responseLatencies = [];
-  let workDoneTime = 0;
 
   const startScenario = async function () {
+    setIsLoading(true);
     const startTime = Date.now();
     for (let i = 0; i < vusers; i++) {
       WorkerArr[i] = new WorkerBuilder(myWorker);
-
       WorkerArr[i].onmessage = (message) => {
         checkPostMessage(message, startTime);
       };
-
       WorkerArr[i].postMessage(stressTestScenarios);
     }
   };
@@ -108,11 +109,11 @@ export default function StressTest() {
       WorkerArr.pop();
       if (WorkerArr.length === 0) {
         // TODO : worker가 모두 일을 끝낼을때 무엇을 할지
-        workDoneTime = Date.now() - startTime;
         dispatch(updateResponseStatus(responseStatus));
         dispatch(updateResponseLatencies(responseLatencies));
         dispatch(updateResponseVuserCount(vusers));
         dispatch(updateResponseScenarioCount(stressTestScenarios.length));
+        setIsLoading(false);
       }
     } else if (key === "latencySended") {
       // TODO: worker가 request를 완료할때마다 responseLatencies 배열에 추가해줘야 함.
@@ -193,6 +194,7 @@ export default function StressTest() {
               color="success"
               aria-label="add"
               onClick={() => saveScenario()}
+              style={{ zIndex: "1" }}
             >
               <AddIcon />
             </Fab>
@@ -207,6 +209,7 @@ export default function StressTest() {
           </div>
         </div>
       </div>
+      {isLoading && <BodyBlackoutStyle />}
     </div>
   );
 }
