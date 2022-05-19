@@ -55,11 +55,39 @@ export function updateVusers(vusers) {
     }
   }
 }
-export function updateDailyTrrafic(dailyTraffic){
+export function updateResponseStatus(status) {
   return {
-    type : 'updateDailyTrrafic',
+    type: 'updateResponseStatus',
     payload : {
-      dailyTraffic
+      status
     }
   }
 }
+export function updateResponseLatencies(latencies) {
+  return {
+    type: 'updateResponseLatencies',
+    payload : {
+      latencies
+    }
+  }
+}
+
+export function updateResponseVuserCount(vuserCount) {
+  return {
+    type: 'updateResponseVuserCount',
+    payload : {
+      vuserCount
+    }
+  }
+}
+
+export function updateResponseScenarioCount(scenarioCount) {
+  return {
+    type: 'updateResponseScenarioCount',
+    payload : {
+      scenarioCount
+    }
+  }
+}
+
+

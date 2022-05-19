@@ -4,7 +4,7 @@
     background-color: #fcf9f9;
     border-radius: 3vh;
     width: 78%;
-    height: 33vh;
+    height: 35vh;
     box-shadow: 0.15rem 0.15rem 4px rgb(194, 193, 193);  
     text-align: center;
     &:hover {
@@ -35,5 +35,18 @@
 
     .cell {
       margin: 10px 0rem;
+    }
+    .badge-title {
+      font-size: 18px;
+      font-weight: 700;
+      text-align: left;
+      margin: 10px 0 10px -5px;
+      color: #007105;
+    }
+    .divider {
+      background: #007105;
+      height: 2px;
+      width: 120px;
+      margin-left: -5px;
     }
   }

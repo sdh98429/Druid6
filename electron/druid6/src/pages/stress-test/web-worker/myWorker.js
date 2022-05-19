@@ -6,7 +6,6 @@ export default() => {
   self.onmessage = async function( e ) {
 
     for (let i = 0; i < e.data.length; i++) {
-      console.log(e.data[i])
       const response = await sendRequest(e.data[i])
       const saveReqResponse = e.data[i].savedResponse
 
@@ -19,36 +18,38 @@ export default() => {
   }
   
   const sendRequest = async(e) => {
+    const myRequest = {
+      method: e.method
+    }
+    const headers = {
+      'Content-type': 'application/json'
+    }
     // token 값 검사
     if (e.token) {
       e.token = e.token.substr(0, 2) === "$." ? savedResponse[e.token] : e.token
-    }
+      headers['Authorization'] = 'Bearer ' + e.token
+    } 
+    myRequest['headers'] = headers
 
     // body 검사
+
     if (e.body) { 
+
       for (let [key, value] of Object.entries(e.body)){
         if (typeof value === 'string' && value.substr(0,2) === "$.") {
           e.body[key] = savedResponse[value]
         }
       }
+      myRequest['body'] = JSON.stringify(e.body)
     }
     // url 검사 후 response 내부 변수 사용시 변경
     e.url = checkUrl(e.url)
 
     // latency 측정용 startTime
     const startTime = Date.now()
-
+    console.log(myRequest.body)
     try {
-      const response = await fetch(e.url, {
-        method: e.method,
-        headers: {
-          'Content-type': 'application/json',
-          'Authorization': 'Bearer ' + e.token
-        },
-        body: JSON.stringify(
-          e.body
-        )
-      })
+      const response = await fetch(e.url, myRequest)
       postMessage( { "latencySended" : Date.now()-startTime } )
       postMessage({ "statusCode" : response.status })
       const statusCode = (response.status + '')[0]

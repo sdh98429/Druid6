@@ -1,8 +1,9 @@
-import serverMonitoringLogo from "../../static/images/server-monitoring-thumbnail.svg";
+import serverMonitoringLogo from "../../static/images/server-monitoring-thumbnail.jpg";
 import scenarioTestLogo from "../../static/images/scenario-test-thumbnail.svg";
 import webPerformanceTestLogo from "../../static/images/web-performance-test-thumbnail.svg";
 import networkMonitoringLogo from "../../static/images/network-monitoring-thumbnail.svg";
 import docsLogo from "../../static/images/docs-thumbnail.svg";
+
 import "./DashBoard.scss";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
@@ -16,7 +17,6 @@ export default function DashBoard() {
   }, []);
   return (
     <div className="DashBoard">
-      <div className="navbar"></div>
       <div className="board-container">
         <Link to="/server-monitoring">
           <div className="badge-basic">

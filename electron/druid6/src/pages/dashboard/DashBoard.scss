@@ -1,11 +1,12 @@
 .DashBoard{
+  height: 91.2vh;
   .navbar{
     margin: 3rem;
   }
 
   .board-container{
     display: flex;
-    margin: 1rem;
+    margin: 1rem 2rem 1rem 1rem;
   }
 
   a{

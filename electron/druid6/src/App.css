@@ -1,6 +1,7 @@
 body {
   color: #1f1f1f;
   background-color: #f3f4f9;
+  font-weight: bold;
 }
 
 .Intro-logo {
@@ -16,7 +17,7 @@ body {
 }
 
 .Intro-header {
-  min-height: 100vh;
+  min-height: 93vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,3 +43,5 @@ body {
     transform: rotate(-360deg);
   }
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap');

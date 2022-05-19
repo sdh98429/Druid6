@@ -1,0 +1,42 @@
+.api-detail {
+  // width: 78%;
+  height: 100%;
+  // position: absolute;
+
+  // margin-left: 40%;
+  // margin-right: 10%;
+  // margin-top: 15px;
+  // margin-bottom: 0px;
+
+  display: flex;
+  flex-direction: column;
+
+
+  .represent {
+    // position: absolute;
+    height: 30%;
+    // .badge {
+    //   pointer-events: all;
+    // }
+    .core-value-group {
+      padding: 0;
+      margin: 0 3% 0;
+    }
+  }
+
+  .description {
+    text-align: left;
+    overflow: hidden;
+    width: 95%;
+    height: 30vh;
+    padding: auto;
+    margin: 22% 3% 0;
+    box-sizing: border-box;
+    font-size: 1.2rem;
+    word-break: keep-all;
+  }
+
+  .no-hover {
+    pointer-events: none;
+  }
+}

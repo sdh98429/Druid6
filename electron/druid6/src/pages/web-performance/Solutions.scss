@@ -1,0 +1,27 @@
+.Solutions {
+  
+  .table-size {
+    width: 100%;
+  }
+
+  canvas{
+    height: 50px !important;
+    width: 98% !important;
+  }
+
+  .header {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid gray;
+    padding: 0 5px;
+    color: gray;
+  }
+
+  .over {
+    overflow-y: auto;
+    pointer-events: all;
+    height: 540px;
+  }
+}

@@ -4,6 +4,10 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateStressTestScenarios } from "../../redux/actions";
 import { updateMenuTitle } from "../../redux/actions";
+import { updateResponseStatus } from "../../redux/actions";
+import { updateResponseLatencies } from "../../redux/actions";
+import { updateResponseVuserCount } from "../../redux/actions";
+import { updateResponseScenarioCount } from "../../redux/actions";
 // worker javascript files
 import myWorker from "./web-worker/myWorker";
 import WorkerBuilder from "./web-worker/WorkerBuilder";
@@ -35,6 +39,11 @@ export default function StressTest() {
   const { vusers } = useSelector((state) => ({
     vusers: state.vusers,
   }));
+
+  const { stressTestResult } = useSelector((state) => ({
+    stressTestResult: state.stressTestResult,
+  }));
+
   const [tagActivated, setTagActivated] = useState("body");
   const [useToken, setUseToken] = useState(false);
   const handleChangeUseToken = () => {
@@ -100,9 +109,10 @@ export default function StressTest() {
       if (WorkerArr.length === 0) {
         // TODO : worker가 모두 일을 끝낼을때 무엇을 할지
         workDoneTime = Date.now() - startTime;
-        console.log(responseStatus);
-        console.log("workDoneTime = " + workDoneTime);
-        console.log("responseLatencies = " + responseLatencies);
+        dispatch(updateResponseStatus(responseStatus));
+        dispatch(updateResponseLatencies(responseLatencies));
+        dispatch(updateResponseVuserCount(vusers));
+        dispatch(updateResponseScenarioCount(stressTestScenarios.length));
       }
     } else if (key === "latencySended") {
       // TODO: worker가 request를 완료할때마다 responseLatencies 배열에 추가해줘야 함.
@@ -130,11 +140,6 @@ export default function StressTest() {
       dispatch(updateStressTestScenarios(stressTestInputs));
     }
   };
-
-  const check = () => {
-    console.log(stressTestScenarios);
-  };
-
   return (
     <div className="StressTest">
       <div className="stress-test-wrapper">
@@ -199,7 +204,6 @@ export default function StressTest() {
           </div>
           <div className="main-area">
             <ScenarioArea />
-            <button onClick={check}>dd</button>
           </div>
         </div>
       </div>
