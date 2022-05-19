@@ -18,19 +18,20 @@
     // .badge {
     //   pointer-events: all;
     // }
-    .core-value-group {
-      padding: 0;
-      margin: 0 3% 0;
-    }
   }
 
+  .core-value-group {
+    padding: 0;
+    margin: 10px 3% 0px;
+  }
+  
   .description {
     text-align: left;
     overflow: hidden;
     width: 95%;
-    height: 30vh;
+    // height: 220px;
     padding: auto;
-    margin: 22% 3% 0;
+    margin: 24% 3% 22%;
     box-sizing: border-box;
     font-size: 1.2rem;
     word-break: keep-all;

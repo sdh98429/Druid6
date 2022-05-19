@@ -18,7 +18,7 @@ import logo from "../static/images/icon.png";
 
 export default function SideBar() {
   return (
-    <Paper className="side-bar">
+    <Paper className="side-bar" elevation={5} sx={{ boxShadow: 5 }}>
       <Link to="/">
         <div className="logo-wrapper">
           <img src={logo} alt="" className="logo-img" />
@@ -56,7 +56,7 @@ export default function SideBar() {
         />
         <SideBarMenu
           to={"web-performance"}
-          text={"웹 퍼포먼스"}
+          text={"웹 퍼포먼스 테스트"}
           Icon={SpeedIcon}
         />
         <div className="category">Support</div>

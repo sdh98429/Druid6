@@ -32,7 +32,7 @@ export default function ScoreChart({ performanceScore, Color }) {
         data: [performanceScore, 100 - performanceScore],
         // backgroundColor: ["rgba(0, 255, 0, 0.2)", "rgba(232, 232, 232, 1)"],
         backgroundColor: [doughnutColorState, "rgba(232, 232, 232, 1)"],
-        borderColor: ["rgba(255, 255, 255, 1)", "rgba(0, 255, 0, 0.2)"],
+        borderColor: ["rgba(255, 255, 255, 1)", "rgba(255, 255, 255, 0.2)"],
         borderWidth: 1,
         cutout: "80%",
       },
@@ -47,8 +47,9 @@ export default function ScoreChart({ performanceScore, Color }) {
         style={{
           position: "absolute",
           textAlign: "center",
-          top: "28vh",
-          left: "66.5vh",
+          top: "27%",
+          // left: "36.25%",
+          left: "33rem",
           fontSize: "100px",
         }}
       >
@@ -59,8 +60,9 @@ export default function ScoreChart({ performanceScore, Color }) {
         style={{
           position: "absolute",
           textAlign: "center",
-          top: "43vh",
-          left: "67vh",
+          top: "42%",
+          // left: "36.8%",
+          left: "33.25rem",
           fontSize: "50px",
         }}
       >
