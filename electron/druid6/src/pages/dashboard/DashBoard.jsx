@@ -15,6 +15,7 @@ export default function DashBoard() {
   useEffect(() => {
     dispatch(updateMenuTitle("대시보드"));
   }, []);
+
   return (
     <div className="DashBoard">
       <div className="board-container">
@@ -63,7 +64,7 @@ export default function DashBoard() {
           </div>
         </Link>
         <a 
-          href="https://druid6.netlify.app/docs"
+          href="https://druid6.netlify.app/"
           target="_blank"
           rel="noopener noreferrer"
         >
