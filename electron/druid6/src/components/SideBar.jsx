@@ -18,7 +18,7 @@ import logo from "../static/images/icon.png";
 
 export default function SideBar() {
   return (
-    <Paper className="side-bar">
+    <Paper className="side-bar" elevation={5} sx={{ boxShadow: 5 }}>
       <Link to="/">
         <div className="logo-wrapper">
           <img src={logo} alt="" className="logo-img" />
