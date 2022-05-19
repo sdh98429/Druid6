@@ -64,7 +64,7 @@ ipcMain.on("AllowInstall", (event, arg)=>{
         network(event,hostInfo,filePath);
       },5000);
     }else{
-      console.log('노다운');
+      console.log('다운로드 하지 않습니다.');
     }
   })
 }) 

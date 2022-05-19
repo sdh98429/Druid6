@@ -51,7 +51,7 @@ export default function DailyTrafficChart() {
   for (var i = 0; i < dailyTraffic.length; i++) {
     dailyTrafficArray[i] = dailyTraffic[i].split(" ");
   }
-  console.log(dailyTrafficArray);
+
   const dataRx = new Array(32);
   const dataTx = new Array(32);
   for (var i = 0; i < dailyTraffic.length; i++) {
@@ -73,7 +73,6 @@ export default function DailyTrafficChart() {
         0,
         trafficTxKib
       );
-      console.log(trafficRxKib);
     }
   }
   const labels = range(1, 31);

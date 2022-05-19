@@ -12,18 +12,14 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
     const conn = new Client();
   
     conn.on('ready', () => {
-      console.log('Client :: ready2');
       setTimeout(function (){
         conn.exec(`cat /proc/cpuinfo | grep "model name" | head -1`
         , (err, stream) => {
           if (err) throw err;
           stream.on('close', (code, signal) => {
-            //console.log('Stream :: close :: code: ' + code + ', signal: ' + signal);
-            //conn.end();
           }).on('data', (data) => {
             processInfo=data;
             event.reply('processInfo',processInfo.toString());
-            console.log( data.toString());
           }).stderr.on('data', (data) => {
             console.log('STDERR: ' + data);
           });
@@ -34,12 +30,9 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
         , (err, stream) => {
           if (err) throw err;
           stream.on('close', (code, signal) => {
-            //console.log('Stream :: close :: code: ' + code + ', signal: ' + signal);
-            //conn.end();
           }).on('data', (data) => {
             osInfo=data;
             event.reply('osInfo',osInfo.toString());
-            console.log( data.toString());
           }).stderr.on('data', (data) => {
             console.log('STDERR: ' + data);
           });
@@ -51,13 +44,9 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
         , (err, stream) => {
           if (err) throw err;
           stream.on('close', (code, signal) => {
-            //console.log('Stream :: close :: code: ' + code + ', signal: ' + signal);
-            //conn.end();
           }).on('data', (data) => {
-            ramInfo=data;
-            
+            ramInfo=data;   
             event.reply('ramInfo',ramInfo.toString().substr(0,2));
-            console.log( data.toString().substr(0,2));
           }).stderr.on('data', (data) => {
             console.log('STDERR: ' + data);
           });
@@ -68,12 +57,9 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
         , (err, stream) => {
           if (err) throw err;
           stream.on('close', (code, signal) => {
-            //console.log('Stream :: close :: code: ' + code + ', signal: ' + signal);
-            //conn.end();
           }).on('data', (data) => {
             kernelRelease=data;
             event.reply('kernelRelease',kernelRelease.toString());
-            console.log( data.toString());
           }).stderr.on('data', (data) => {
             console.log('STDERR: ' + data);
           });
@@ -84,12 +70,9 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
         , (err, stream) => {
           if (err) throw err;
           stream.on('close', (code, signal) => {
-            //console.log('Stream :: close :: code: ' + code + ', signal: ' + signal);
-            //conn.end();
           }).on('data', (data) => {
             kernelVersion=data;
             event.reply('kernelVersion',kernelVersion.toString());
-            console.log( data.toString());
           }).stderr.on('data', (data) => {
             console.log('STDERR: ' + data);
           });
@@ -100,12 +83,9 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
         , (err, stream) => {
           if (err) throw err;
           stream.on('close', (code, signal) => {
-            //console.log('Stream :: close :: code: ' + code + ', signal: ' + signal);
-            //conn.end();
           }).on('data', (data) => {
             systemInfo=data;
             event.reply('systemInfo',systemInfo.toString());
-            console.log( data.toString());
           }).stderr.on('data', (data) => {
             console.log('STDERR: ' + data);
           });
@@ -116,50 +96,40 @@ const sshClient = (event,hostInfo,privateKeyPath) => {
         , (err, stream) => {
           if (err) throw err;
           stream.on('close', (code, signal) => {
-            //console.log('Stream :: close :: code: ' + code + ', signal: ' + signal);
-            //conn.end();
           }).on('data', (data) => {
             resultMemory=data;
             event.reply('memory',resultMemory.toString());
-       //     console.log('MEMORY: ' + data);
           }).stderr.on('data', (data) => {
             console.log('STDERR: ' + data);
           });
         });
-      },5000)
+      },3000)
       setInterval(function (){
         conn.exec(`df . | grep /dev | awk '{print $5}'`
         , (err, stream) => {
           if (err) throw err;
           stream.on('close', (code, signal) => {
-            //console.log('Stream :: close :: code: ' + code + ', signal: ' + signal);
-            //conn.end();
           }).on('data', (data) => {
-            
             resultDisk=data;
             event.reply('disk',resultDisk.toString().substr(0,resultDisk.toString().length-2));
-         //   console.log('DISK: ' + data);
           }).stderr.on('data', (data) => {
             console.log('STDERR: ' + data);
           });
         });
-      },5000)
+      },3000)
       setInterval(function (){
         conn.exec(`top -b -n 1 | grep -Po '[0-9.]+ id' | head -1 | awk '{print 100-$1}'`
         , (err, stream) => {
           if (err) throw err;
           stream.on('close', (code, signal) => {
-            //console.log('Stream :: close :: code: ' + code + ', signal: ' + signal);
-            //conn.end();
           }).on('data', (data) => {
             resultCpu=data;
             event.reply('cpu',resultCpu.toString());
-           // console.log('CPU: ' + data);
           }).stderr.on('data', (data) => {
             console.log('STDERR: ' + data);
           });
         });
-      },2000)   
+      },3000)   
     }).connect({
     host: hostInfo.hostname,
     port: 22,

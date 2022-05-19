@@ -13,7 +13,6 @@ import { Bar } from "react-chartjs-2";
 import { range } from "../../services/utils";
 import { useState } from "react";
 import "./LiveTrafficChart.scss";
-import { useSelector } from "react-redux";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -50,9 +49,6 @@ export const options = {
 export default function LiveTrafficChart() {
   const [rxArray, setRxArray] = useState([]);
   const [txArray, setTxArray] = useState([]);
-  const { dailyTraffic } = useSelector((state) => ({
-    dailyTraffic: state.dailyTraffic,
-  }));
   window.ipcRenderer.on("networkRealTime", (event, arg) => {
     let realtime = arg.replace("[1G[2K", "");
     let realtimeArraySplit = realtime.split(" ");
@@ -62,7 +58,6 @@ export default function LiveTrafficChart() {
         realTimeArray.push(realtimeArraySplit[i]);
       }
     }
-    console.log(realTimeArray);
     let rxkib = realTimeArray[1] * 1;
     let txkib = realTimeArray[6] * 1;
     if (realTimeArray[2] === "Mbit/s") rxkib *= 1000;
