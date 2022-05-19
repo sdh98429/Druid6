@@ -43,8 +43,8 @@
     "electron:build": "yarn build && electron-builder -c.extraMetadata.main=src/Main.js"
   },
   "build": {
-    "productName": "NB",
-    "appId": "com.nb.electron",
+    "productName": "druid6",
+    "appId": "com.druid6.electron",
     "asar": true,
     "win": {
       "target": [
@@ -59,9 +59,9 @@
       "perMachine": true,
       "language": 1042,
       "installerIcon": "build/favicon2.ico",
-      "shortcutName": "NB",
-      "artifactName": "NB-${version}.${ext}",
-      "uninstallDisplayName": "NB"
+      "shortcutName": "druid6",
+      "artifactName": "druid6-${version}.${ext}",
+      "uninstallDisplayName": "druid6"
     },
     "directories": {
       "buildResources": "./build/",

@@ -59,7 +59,7 @@ export default function Intro() {
         </div>
         <a
           className="Intro-link"
-          href="https://reactjs.org"
+          href="https://druid6.netlify.app/"
           target="_blank"
           rel="noopener noreferrer"
         >
