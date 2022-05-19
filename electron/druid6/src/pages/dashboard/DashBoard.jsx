@@ -62,12 +62,16 @@ export default function DashBoard() {
             />
           </div>
         </Link>
-        <Link to="/stress-test">
+        <a 
+          href="https://druid6.netlify.app/docs"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <div className="badge-basic">
             <div className="badge-title">Docs</div>
             <img src={docsLogo} className="dashboard-logo-basic" alt="logo" />
           </div>
-        </Link>
+        </a>
       </div>
     </div>
   );
