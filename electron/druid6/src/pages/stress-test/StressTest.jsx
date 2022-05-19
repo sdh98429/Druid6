@@ -1,13 +1,17 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 // redux
 import { useDispatch, useSelector } from "react-redux";
-import { updateStressTestScenarios } from "../../redux/actions";
-import { updateMenuTitle } from "../../redux/actions";
-import { updateResponseStatus } from "../../redux/actions";
-import { updateResponseLatencies } from "../../redux/actions";
-import { updateResponseVuserCount } from "../../redux/actions";
-import { updateResponseScenarioCount } from "../../redux/actions";
+import {
+  updateStressTestScenarios,
+  updateMenuTitle,
+  updateResponseStatus,
+  updateResponseLatencies,
+  updateResponseVuserCount,
+  updateResponseScenarioCount,
+  clearStressTestInputs,
+} from "../../redux/actions";
 // worker javascript files
 import myWorker from "./web-worker/myWorker";
 import WorkerBuilder from "./web-worker/WorkerBuilder";
@@ -21,6 +25,7 @@ import MyInput from "./components/MyInput";
 import ScenarioArea from "./components/ScenarioArea";
 import VusersArea from "./components/VusersArea";
 import ResponseInputArea from "./components/ResponseInputArea";
+import BodyBlackoutStyle from "../../components/BodyBlackoutStyle";
 // mui
 import Switch from "@mui/material/Switch";
 import FormGroup from "@mui/material/FormGroup";
@@ -29,6 +34,7 @@ import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 
 export default function StressTest() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { stressTestInputs } = useSelector((state) => ({
     stressTestInputs: state.stressTestInputs,
@@ -40,12 +46,10 @@ export default function StressTest() {
     vusers: state.vusers,
   }));
 
-  const { stressTestResult } = useSelector((state) => ({
-    stressTestResult: state.stressTestResult,
-  }));
-
   const [tagActivated, setTagActivated] = useState("body");
   const [useToken, setUseToken] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleChangeUseToken = () => {
     setUseToken(!useToken);
   };
@@ -85,17 +89,15 @@ export default function StressTest() {
     5: 0,
   };
   const responseLatencies = [];
-  let workDoneTime = 0;
 
   const startScenario = async function () {
+    setIsLoading(true);
     const startTime = Date.now();
     for (let i = 0; i < vusers; i++) {
       WorkerArr[i] = new WorkerBuilder(myWorker);
-
       WorkerArr[i].onmessage = (message) => {
         checkPostMessage(message, startTime);
       };
-
       WorkerArr[i].postMessage(stressTestScenarios);
     }
   };
@@ -108,11 +110,12 @@ export default function StressTest() {
       WorkerArr.pop();
       if (WorkerArr.length === 0) {
         // TODO : worker가 모두 일을 끝낼을때 무엇을 할지
-        workDoneTime = Date.now() - startTime;
         dispatch(updateResponseStatus(responseStatus));
         dispatch(updateResponseLatencies(responseLatencies));
         dispatch(updateResponseVuserCount(vusers));
         dispatch(updateResponseScenarioCount(stressTestScenarios.length));
+        setIsLoading(false);
+        navigate("/stress-test-result");
       }
     } else if (key === "latencySended") {
       // TODO: worker가 request를 완료할때마다 responseLatencies 배열에 추가해줘야 함.
@@ -138,6 +141,7 @@ export default function StressTest() {
       alert("시나리오명을 입력해주세요.");
     } else {
       dispatch(updateStressTestScenarios(stressTestInputs));
+      dispatch(clearStressTestInputs());
     }
   };
   return (
@@ -193,6 +197,7 @@ export default function StressTest() {
               color="success"
               aria-label="add"
               onClick={() => saveScenario()}
+              style={{ zIndex: "1" }}
             >
               <AddIcon />
             </Fab>
@@ -207,6 +212,7 @@ export default function StressTest() {
           </div>
         </div>
       </div>
+      {isLoading && <BodyBlackoutStyle />}
     </div>
   );
 }

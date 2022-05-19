@@ -46,12 +46,12 @@ export default function SideBar() {
         <div className="category">Testing Tools</div>
         <SideBarMenu
           to={"stress-test"}
-          text={"부하 테스트"}
+          text={"시나리오 테스트"}
           Icon={NetworkCheckIcon}
         />
         <SideBarMenu
           to={"stress-test-result"}
-          text={"부하 테스트 결과"}
+          text={"시나리오 테스트 결과"}
           Icon={NetworkCheckIcon}
         />
         <SideBarMenu

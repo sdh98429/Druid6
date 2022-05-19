@@ -45,7 +45,7 @@
   "build": {
     "productName": "NB",
     "appId": "com.nb.electron",
-    "asar": false,
+    "asar": true,
     "win": {
       "target": [
         "nsis"

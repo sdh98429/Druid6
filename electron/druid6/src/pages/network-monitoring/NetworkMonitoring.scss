@@ -1,10 +1,18 @@
 .NetworkMonitoring {
+  text-align: center;
+  .title-area {
+    font-size : 18px;
+    margin-bottom: 10px;
+  }
+  
   .live-traffic {
     width: 90%;
+    margin: 42px auto;
   }
 
   .daily-traffic {
     width: 90%;
+    margin: 0 auto;
   }
 
   .live-traffic-charts {
