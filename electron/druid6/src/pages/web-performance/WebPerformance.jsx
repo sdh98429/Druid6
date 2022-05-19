@@ -4,6 +4,14 @@ import requestWebPerformanceResult from "../../services/api/WebPerformance";
 import Solutions from "./Solutions";
 import NoUrl from "./NoUrl";
 
+// redux
+import ButtonToOtherPages from "./ButtonToOtherPages";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  updateMyPageMobileData,
+  updateMyPageDesktopData,
+} from "../../redux/actions";
+
 import ScoreChart from "./ScoreChart";
 import Screenshot from "./Screenshot";
 import { Button } from "@mui/material";
@@ -36,6 +44,7 @@ const initialState = {
 };
 
 export default function WebPerformance() {
+  const dispatch = useDispatch();
   const [performanceState, setPerformanceState] = useState(initialState);
   // api 요청값 저장할 state 생성
   const {
@@ -57,6 +66,8 @@ export default function WebPerformance() {
         displayData: mobileData,
       });
     }
+    dispatch(updateMyPageMobileData(mobileData));
+    console.log("hihihi  ", myPageDesktopData);
   }, [mobileData]);
 
   useEffect(() => {
@@ -67,6 +78,12 @@ export default function WebPerformance() {
         displayData: desktopData,
       });
     }
+    dispatch(
+      updateMyPageDesktopData({
+        key: "body",
+        value: desktopData,
+      })
+    );
   }, [desktopData]);
 
   //input에 입력될 때마다 account state값 변경되게 하는 함수
@@ -176,6 +193,67 @@ export default function WebPerformance() {
     });
   };
 
+  // redux
+  const {
+    naverMobileData,
+    naverDesktopData,
+    googleMobileData,
+    googleDesktopData,
+    bingMobileData,
+    bingDesktopData,
+    daumMobileData,
+    daumDesktopData,
+    myPageMobileData,
+    myPageDesktopData,
+  } = useSelector((state) => ({
+    naverMobileData: state.naverMobileData,
+    naverDesktopData: state.naverDesktopData,
+    googleMobileData: state.googleMobileData,
+    googleDesktopData: state.googleDesktopData,
+    bingMobileData: state.bingMobileData,
+    bingDesktopData: state.bingDesktopData,
+    daumMobileData: state.daumMobileData,
+    daumDesktopData: state.daumDesktopData,
+    myPageMobileData: state.myPageMobileData,
+    myPageDesktopData: state.myPageDesktopData,
+  }));
+
+  const viewOtherPage = (name) => {
+    if (name === "naver") {
+      setPerformanceState({
+        ...performanceState,
+        mobileData: naverMobileData,
+        desktopData: naverDesktopData,
+      });
+    } else if (name === "google") {
+      setPerformanceState({
+        ...performanceState,
+        mobileData: googleMobileData,
+        desktopData: googleDesktopData,
+      });
+    } else if (name === "bing") {
+      setPerformanceState({
+        ...performanceState,
+        mobileData: bingMobileData,
+        desktopData: bingDesktopData,
+      });
+    } else if (name === "daum") {
+      setPerformanceState({
+        ...performanceState,
+        mobileData: daumMobileData,
+        desktopData: daumDesktopData,
+      });
+    } else if (name === "myPage") {
+      if (myPageMobileData && myPageDesktopData) {
+        setPerformanceState({
+          ...performanceState,
+          mobileData: myPageMobileData,
+          desktopData: myPageDesktopData,
+        });
+      }
+    }
+  };
+
   return (
     <div className="WebPerformance">
       <div className="header-area">
@@ -195,84 +273,104 @@ export default function WebPerformance() {
           다른사이트와 비교
         </div>
       </div>
-      <div className="container-btn-result">
-        <div className="container-desktop-mobile">
-          <Button
-            variant="text"
-            className="btn-desktop"
-            onClick={() => changeDisplayData("displayDesktop")}
-          >
-            <span>Desktop</span>
-          </Button>
-          <Button
-            variant="text"
-            className="btn-mobile"
-            onClick={() => changeDisplayData("displayMobile")}
-          >
-            <span>Mobile</span>
-          </Button>
-        </div>
-        <div className="container-search-tosolution-result">
-          <div className="searchbar" style={{ marginTop: "10px" }}>
-            <TextField
-              className="searchbar-input"
-              size="small"
-              id="url"
-              label="URL"
-              variant="outlined"
-              name="url"
-              placeholder="Enter web page URL"
-              onChange={onChangeUrl}
-              onKeyUp={handleKeyUp}
-            />
+      {tagSelected === 1 ? (
+        <div className="container-btn-result">
+          <div className="container-desktop-mobile">
             <Button
-              className="searchbar-btn"
-              variant="contained"
-              onClick={drawWebPerformanceResult}
+              variant="text"
+              className="btn-desktop"
+              onClick={() => changeDisplayData("displayDesktop")}
             >
-              분석
+              <span>Desktop</span>
+            </Button>
+            <Button
+              variant="text"
+              className="btn-mobile"
+              onClick={() => changeDisplayData("displayMobile")}
+            >
+              <span>Mobile</span>
             </Button>
           </div>
-          {!displayData ? (
-            <NoUrl />
-          ) : displaySolutions ? (
-            <div className="container-tosolution-result">
-              <IconButton
-                className="btn-toresult"
-                disabled={!displaySolutions}
-                onClick={() => goTo("result")}
+          <div className="container-search-tosolution-result">
+            <div className="searchbar" style={{ marginTop: "10px" }}>
+              <TextField
+                className="searchbar-input"
+                size="small"
+                id="url"
+                label="URL"
+                variant="outlined"
+                name="url"
+                placeholder="Enter web page URL"
+                onChange={onChangeUrl}
+                onKeyUp={handleKeyUp}
+              />
+              <Button
+                className="searchbar-btn"
+                variant="contained"
+                onClick={drawWebPerformanceResult}
               >
-                <ArrowBackIosNewIcon></ArrowBackIosNewIcon>
-              </IconButton>
-              <div className="table-solutions badge solutions-badge">
-                <Solutions mobileData={displayData}></Solutions>
-              </div>
+                분석
+              </Button>
             </div>
-          ) : (
-            <div className="api-result">
-              <div className="api-graph">
-                <div className="api-score badge no-hover">
-                  <ScoreChart
-                    performanceScore={performanceScore}
-                    Color={Color}
-                  />
-                </div>
-                <div className="final-image badge no-hover">
-                  <Screenshot screenshot={screenshot} />
+            {!displayData ? (
+              <NoUrl />
+            ) : displaySolutions ? (
+              <div className="container-tosolution-result">
+                <IconButton
+                  className="btn-toresult"
+                  disabled={!displaySolutions}
+                  onClick={() => goTo("result")}
+                >
+                  <ArrowBackIosNewIcon></ArrowBackIosNewIcon>
+                </IconButton>
+                <div className="table-solutions badge solutions-badge">
+                  <Solutions mobileData={displayData}></Solutions>
                 </div>
               </div>
-              <ResultContents performanceReport={performanceReport} />
-              <IconButton
-                className="btn-toresult"
-                disabled={displaySolutions}
-                onClick={() => goTo("solutions")}
-              >
-                <ArrowForwardIosIcon></ArrowForwardIosIcon>
-              </IconButton>
-            </div>
-          )}
+            ) : (
+              <div className="api-result">
+                <div className="api-graph">
+                  <div className="api-score badge no-hover">
+                    <ScoreChart
+                      performanceScore={performanceScore}
+                      Color={Color}
+                    />
+                  </div>
+                  <div className="final-image badge no-hover">
+                    <Screenshot screenshot={screenshot} />
+                  </div>
+                </div>
+                <ResultContents performanceReport={performanceReport} />
+                <IconButton
+                  className="btn-toresult"
+                  disabled={displaySolutions}
+                  onClick={() => goTo("solutions")}
+                >
+                  <ArrowForwardIosIcon></ArrowForwardIosIcon>
+                </IconButton>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="CompareWithOtherPages">
+          <div className="center" onClick={() => viewOtherPage("myPage")}>
+            <ButtonToOtherPages pageName={"내 웹"} />
+          </div>
+          <div className="left-top" onClick={() => viewOtherPage("google")}>
+            <ButtonToOtherPages pageName={"구글"} />
+          </div>
+          <div className="left-bottom" onClick={() => viewOtherPage("naver")}>
+            <ButtonToOtherPages pageName={"네이버"} />
+          </div>
+          <div className="right-top" onClick={() => viewOtherPage("daum")}>
+            <ButtonToOtherPages pageName={"다음"} />
+          </div>
+          <div className="right-bottom" onClick={() => viewOtherPage("bing")}>
+            <ButtonToOtherPages pageName={"빙"} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
