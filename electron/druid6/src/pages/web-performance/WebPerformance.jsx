@@ -6,6 +6,7 @@ import NoUrl from "./NoUrl";
 
 // redux
 import ButtonToOtherPages from "./ButtonToOtherPages";
+import BodyBlackoutStyle from "../../components/BodyBlackoutStyle";
 import { useSelector, useDispatch } from "react-redux";
 import {
   updateMyPageMobileData,
@@ -41,6 +42,7 @@ const initialState = {
   mobileData: "",
   displayData: "",
   isMyPage: false,
+  isLoading: false,
   url: "",
 };
 
@@ -55,6 +57,7 @@ export default function WebPerformance() {
     mobileData,
     displayData,
     isMyPage,
+    isLoading,
     url,
   } = performanceState;
 
@@ -70,6 +73,10 @@ export default function WebPerformance() {
       if (isMyPage) {
         dispatch(updateMyPageMobileData(mobileData));
       }
+      // setPerformanceState({
+      //   ...performanceState,
+      //   isLoading: false,
+      // });
     }
     // dispatch(updateMyPageMobileData(mobileData));
     // console.log("hihihi  ", myPageMobileData);
@@ -85,6 +92,10 @@ export default function WebPerformance() {
       if (isMyPage) {
         dispatch(updateMyPageDesktopData(desktopData));
       }
+      // setPerformanceState({
+      //   ...performanceState,
+      //   isLoading: false,
+      // });
     }
     // dispatch(
     //   updateMyPageDesktopData({
@@ -118,6 +129,10 @@ export default function WebPerformance() {
   };
 
   const drawWebPerformanceResult = async () => {
+    setPerformanceState({
+      ...performanceState,
+      isLoading: true,
+    });
     await handleClickDetermineWebPerformance();
   };
 
@@ -277,7 +292,7 @@ export default function WebPerformance() {
           className={"tag-area " + (tagSelected === 1 && "tag-selected")}
           onClick={() => setTagSelected(1)}
         >
-          웹 퍼포먼스
+          내 웹 퍼포먼스
         </div>
         <span className="spacer"></span>
         <img className="tag-img" src={menuTitleArrow} alt="" />
@@ -386,6 +401,7 @@ export default function WebPerformance() {
           </div>
         </div>
       )}
+      {isLoading && <BodyBlackoutStyle />}
     </div>
   );
 }

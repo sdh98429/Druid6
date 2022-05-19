@@ -56,7 +56,7 @@ export default function SideBar() {
         />
         <SideBarMenu
           to={"web-performance"}
-          text={"웹 퍼포먼스"}
+          text={"웹 퍼포먼스 테스트"}
           Icon={SpeedIcon}
         />
         <div className="category">Support</div>
