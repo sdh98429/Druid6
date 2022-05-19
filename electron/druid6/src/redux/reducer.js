@@ -160,6 +160,23 @@ export default function reducer(state = initialState, action) {
       myPageDesktopData: action.payload.myPageDesktopData
     }
   }
+  else if (action.type === 'clearStressTestInputs'){
+    return {
+      ...state,
+      stressTestInputs : {
+        method: 'POST',
+        url: '',
+        body: '',
+        savedResponse: [],
+        savedResponseUnit: '',
+        token: '',
+        scenarioTitle : '',
+      }
+    }
+  }
+
+
+
   return state;
 }
 

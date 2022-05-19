@@ -105,3 +105,8 @@ export function updateMyPageDesktopData(myPageDesktopData) {
     }
   }
 }
+export function clearStressTestInputs() {
+  return {
+    type : 'clearStressTestInputs'
+  }
+}

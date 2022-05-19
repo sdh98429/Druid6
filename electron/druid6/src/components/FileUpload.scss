@@ -5,17 +5,31 @@
   .field-container{   
   background-color: #fcf9f9;
   border-radius: 3vh;
-  height: 10vh;
+  height: 200px;
+  width: 600px;
   margin: 1rem;
+  padding: 20px 10px;
   box-shadow: 0.15rem 0.15rem 4px rgb(194, 193, 193);
  
   }
   .box-item{
-    margin: 1rem ; 
+    margin: 0.5rem 1rem ; 
   }
 
   .text-field-item{
-    margin: 1rem ;
+    margin: 0.5rem 1rem;
+  }
+  .wrapper {
+    margin-left: 66px;
+  }
+  .connect-box {
+    margin: 1.5rem 1rem;
+  }
+  .upper-side-wrapper {
+    margin-top: 10px;
+  }
+  .file-path-input {
+    background: rgb(206, 204, 204);
   }
 
 

@@ -81,46 +81,57 @@ export default function FileUpload() {
   return (
     <div className="FileUpload">
       <div className="field-container">
-        <TextField
-          id="hostname"
-          name="hostname"
-          label="hostname"
-          variant="outlined"
-          size="small"
-          className="text-field-item"
-          onChange={onChangeHostInfo}
-        />
-        <TextField
-          id="username"
-          name="username"
-          label="username"
-          variant="outlined"
-          size="small"
-          className="text-field-item"
-          onChange={onChangeHostInfo}
-        />
-        <Button
-          className="box-item"
-          startIcon={<UploadFileIcon />}
-          onClick={openFile}
-        >
-          pem 확장자 업로드
-        </Button>
-      </div>
-      <div id="filePath" name="filePath" className="field-container">
-        <TextField
-          id="outlined-read-only-input"
-          label="File Path"
-          value={filePath}
-          size="small"
-          className="text-field-item"
-          InputProps={{
-            readOnly: true,
-          }}
-        />{" "}
-        <Button className="box-item" variant="contained" onClick={connectSSH}>
-          접속
-        </Button>
+        <div className="wrapper upper-side-wrapper">
+          <TextField
+            id="hostname"
+            name="hostname"
+            label="hostname"
+            variant="outlined"
+            size="small"
+            className="text-field-item"
+            onChange={onChangeHostInfo}
+          />
+          <TextField
+            id="username"
+            name="username"
+            label="username"
+            variant="outlined"
+            size="small"
+            className="text-field-item"
+            onChange={onChangeHostInfo}
+            style={{ width: "156px", marginLeft: "16px" }}
+          />
+        </div>
+        <div className="wrapper lower-side-wrapper">
+          <TextField
+            id="outlined-read-only-input"
+            label="File Path"
+            value={filePath}
+            size="small"
+            className="text-field-item file-path-input"
+            disabled
+          />
+          <Button
+            className="box-item"
+            startIcon={<UploadFileIcon />}
+            variant="contained"
+            color="green"
+            onClick={openFile}
+          >
+            Pem file 업로드
+          </Button>
+        </div>
+        <div className="wrapper">
+          <Button
+            style={{ width: "420px" }}
+            className="box-item connect-box"
+            variant="contained"
+            onClick={connectSSH}
+            color="blue"
+          >
+            접속
+          </Button>
+        </div>
       </div>
     </div>
     //버튼 클릭하면 ConnectSSH 접속

@@ -17,7 +17,7 @@ export default function NetworkMonitoring() {
     <div className="NetworkMonitoring">
       <div className="badge live-traffic">
         <div className="badge-title">
-          실시간 트래픽
+          <div className="title-area">실시간 트래픽</div>
           <div className="live-traffic-charts">
             <RxTxChart />
             <LiveTrafficChart />
@@ -26,7 +26,7 @@ export default function NetworkMonitoring() {
       </div>
       <div className="badge daily-traffic">
         <div className="badge-title">
-          일별 트래픽
+          <div className="title-area">일별 트래픽</div>
           <DailyTrafficChart />
         </div>
       </div>
