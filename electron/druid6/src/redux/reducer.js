@@ -14,7 +14,8 @@ const initialState = {
     ramInfo: '',
     systemInfo: '',
     kernelVersion: '',
-    kernelRelease: ''
+    kernelRelease: '',
+    isConnect: false,
   },
   traffic:'',
   currentMenuTitle: 'Druid6',

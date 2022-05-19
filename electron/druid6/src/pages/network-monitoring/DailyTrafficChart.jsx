@@ -9,12 +9,9 @@ import {
   PointElement,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import { faker } from "@faker-js/faker";
 import { range } from "../../services/utils";
 import { useSelector } from "react-redux";
-
 import "./DailyTrafficChart.scss";
-import { CommentsDisabledOutlined } from "@mui/icons-material";
 
 ChartJS.register(
   CategoryScale,
@@ -54,7 +51,7 @@ export default function DailyTrafficChart() {
   for (var i = 0; i < dailyTraffic.length; i++) {
     dailyTrafficArray[i] = dailyTraffic[i].split(" ");
   }
-  console.log(dailyTrafficArray);
+
   const dataRx = new Array(32);
   const dataTx = new Array(32);
   for (var i = 0; i < dailyTraffic.length; i++) {
@@ -76,16 +73,13 @@ export default function DailyTrafficChart() {
         0,
         trafficTxKib
       );
-      console.log(trafficRxKib);
     }
   }
   const labels = range(1, 31);
 
   const transmitData = labels.map((idx) => dataTx[idx]);
   const recieveData = labels.map((idx) => dataRx[idx]);
-  const txRxSumData = labels.map(
-    (ele, idx) => transmitData[idx] + recieveData[idx]
-  );
+
   const data = {
     labels,
     datasets: [
