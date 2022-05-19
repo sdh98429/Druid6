@@ -13,7 +13,13 @@ export default function ButtonToOtherPages({ pageName }) {
             <BuildOutlinedIcon />
           </div>
         </div>
-        <div className="chart">chart</div>
+        <div className="chart">
+          <img
+            src={require(`../../static/images/web-performance-${pageName}.png`)}
+            alt="logo"
+            className="logo"
+          />
+        </div>
       </div>
     </div>
   );

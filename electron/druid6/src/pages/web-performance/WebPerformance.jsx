@@ -385,19 +385,19 @@ export default function WebPerformance() {
       ) : (
         <div className="CompareWithOtherPages">
           <div className="center" onClick={() => viewOtherPage("myPage")}>
-            <ButtonToOtherPages pageName={"내 웹"} />
+            <ButtonToOtherPages pageName={"myPage"} />
           </div>
           <div className="left-top" onClick={() => viewOtherPage("google")}>
-            <ButtonToOtherPages pageName={"구글"} />
+            <ButtonToOtherPages pageName={"google"} />
           </div>
           <div className="left-bottom" onClick={() => viewOtherPage("naver")}>
-            <ButtonToOtherPages pageName={"네이버"} />
+            <ButtonToOtherPages pageName={"naver"} />
           </div>
           <div className="right-top" onClick={() => viewOtherPage("daum")}>
-            <ButtonToOtherPages pageName={"다음"} />
+            <ButtonToOtherPages pageName={"daum"} />
           </div>
           <div className="right-bottom" onClick={() => viewOtherPage("bing")}>
-            <ButtonToOtherPages pageName={"빙"} />
+            <ButtonToOtherPages pageName={"bing"} />
           </div>
         </div>
       )}
