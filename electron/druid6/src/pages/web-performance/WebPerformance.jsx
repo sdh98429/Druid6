@@ -252,6 +252,7 @@ export default function WebPerformance() {
         });
       }
     }
+    setTagSelected(1);
   };
 
   return (
