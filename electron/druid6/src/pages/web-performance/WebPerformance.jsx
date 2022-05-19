@@ -40,6 +40,7 @@ const initialState = {
   desktopData: "",
   mobileData: "",
   displayData: "",
+  isMyPage: false,
   url: "",
 };
 
@@ -53,6 +54,7 @@ export default function WebPerformance() {
     desktopData,
     mobileData,
     displayData,
+    isMyPage,
     url,
   } = performanceState;
 
@@ -65,9 +67,12 @@ export default function WebPerformance() {
         performanceReport: parseSpeedData(mobileData),
         displayData: mobileData,
       });
+      if (isMyPage) {
+        dispatch(updateMyPageMobileData(mobileData));
+      }
     }
-    dispatch(updateMyPageMobileData(mobileData));
-    console.log("hihihi  ", myPageDesktopData);
+    // dispatch(updateMyPageMobileData(mobileData));
+    // console.log("hihihi  ", myPageMobileData);
   }, [mobileData]);
 
   useEffect(() => {
@@ -77,13 +82,16 @@ export default function WebPerformance() {
         performanceReport: parseSpeedData(desktopData),
         displayData: desktopData,
       });
+      if (isMyPage) {
+        dispatch(updateMyPageDesktopData(desktopData));
+      }
     }
-    dispatch(
-      updateMyPageDesktopData({
-        key: "body",
-        value: desktopData,
-      })
-    );
+    // dispatch(
+    //   updateMyPageDesktopData({
+    //     key: "body",
+    //     value: desktopData,
+    //   })
+    // );
   }, [desktopData]);
 
   //input에 입력될 때마다 account state값 변경되게 하는 함수
@@ -103,6 +111,7 @@ export default function WebPerformance() {
 
     setPerformanceState({
       ...performanceState,
+      isMyPage: true,
       mobileData: mobileResult,
       desktopData: desktopResult,
     });
@@ -224,24 +233,28 @@ export default function WebPerformance() {
         ...performanceState,
         mobileData: naverMobileData,
         desktopData: naverDesktopData,
+        isMyPage: false,
       });
     } else if (name === "google") {
       setPerformanceState({
         ...performanceState,
         mobileData: googleMobileData,
         desktopData: googleDesktopData,
+        isMyPage: false,
       });
     } else if (name === "bing") {
       setPerformanceState({
         ...performanceState,
         mobileData: bingMobileData,
         desktopData: bingDesktopData,
+        isMyPage: false,
       });
     } else if (name === "daum") {
       setPerformanceState({
         ...performanceState,
         mobileData: daumMobileData,
         desktopData: daumDesktopData,
+        isMyPage: false,
       });
     } else if (name === "myPage") {
       if (myPageMobileData && myPageDesktopData) {
@@ -249,6 +262,7 @@ export default function WebPerformance() {
           ...performanceState,
           mobileData: myPageMobileData,
           desktopData: myPageDesktopData,
+          isMyPage: false,
         });
       }
     }
