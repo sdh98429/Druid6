@@ -1,7 +1,6 @@
 import DailyTrafficChart from "./DailyTrafficChart";
 import RxTxChart from "./RxTxChart";
 import LiveTrafficChart from "./LiveTrafficChart";
-
 import "../../styles/badge.scss";
 import "./NetworkMonitoring.scss";
 import { useEffect } from "react";

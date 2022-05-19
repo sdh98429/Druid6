@@ -25,18 +25,6 @@ export default function ServerMonitoring() {
     setMemoryUsage(arg);
   });
 
-  const [networkRealTime, setNetworkRealTime] = useState("");
-  window.ipcRenderer.on("networkRealTime", (event, arg) => {
-    setNetworkRealTime(arg);
-  });
-
-  const [networkHours, setNetworkHours] = useState("");
-  window.ipcRenderer.on("networkHours", (event, arg) => {
-    let h = arg.split("|");
-    console.log(h);
-    setNetworkHours(h);
-  });
-
   const cpuData = {
     labels: ["used", "unuse"],
     datasets: [
@@ -121,8 +109,6 @@ export default function ServerMonitoring() {
           </div>
         </div>
       </div>
-
-      {/* <div>하루 트래픽 : {networkHours}</div> */}
     </div>
   );
 }

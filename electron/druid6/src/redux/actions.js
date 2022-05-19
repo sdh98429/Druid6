@@ -89,7 +89,6 @@ export function updateResponseScenarioCount(scenarioCount) {
     }
   }
 }
-
 export function updateMyPageMobileData(myPageMobileData) {
   return {
     type : 'updateMyPageMobileData',
@@ -98,7 +97,6 @@ export function updateMyPageMobileData(myPageMobileData) {
     }
   }
 }
-
 export function updateMyPageDesktopData(myPageDesktopData) {
   return {
     type : 'updateMyPageDesktopData',
@@ -107,4 +105,3 @@ export function updateMyPageDesktopData(myPageDesktopData) {
     }
   }
 }
-
