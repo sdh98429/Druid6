@@ -4,8 +4,6 @@ const path = require('path');
 const isDev = require('electron-is-dev');
 const install = require('./Install');
 const network = require('./network');
-const { FloodTwoTone, Login } = require('@mui/icons-material');
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 const sshClient = require('./sshClient');
 
 remote.initialize()
@@ -18,8 +16,7 @@ function createWindow() {
         webPreferences: {
           nodeIntegration: false,
           contextIsolation: false,
-          preload:__dirname +'/preload.js'
-         
+          preload:__dirname +'/preload.js',
         }
     })
  
@@ -30,9 +27,6 @@ function createWindow() {
 
 let filePath;
 let hostInfo;
-let scenarioInfo;
-let baseURL;
-let vusers;
 
 ipcMain.on("OpenFile", (event, arg)=>{ 
   const {dialog} = require('electron');
@@ -56,7 +50,7 @@ ipcMain.on("AllowInstall", (event, arg)=>{
     buttons: ['Cancel', 'Yes, please', 'No, thanks'],
     defaultId: 2,
     title: 'Question',
-    message: 'vnstat를 사용 하시겠습니까?',
+    message: 'vnstat를 다운로드를 하시겠습니까?',
     detail: 'vnstat를 사용하지 않으면 네트워크 모니터링 서비스를 제공받으실수 없습니다.',
     
   };
@@ -65,57 +59,21 @@ ipcMain.on("AllowInstall", (event, arg)=>{
   }).then(result=>{
     if(result.response === 1){
       install(event,hostInfo,filePath);
+      setTimeout(function(){
+        network(event,hostInfo,filePath);
+      },5000);
     }else{
-      console.log('노다운');
+      console.log('다운로드 하지 않습니다.');
     }
   })
 }) 
 
-ipcMain.on("ConnectSSH", (event, arg)=>{ 
+ipcMain.on("ConnectSSH", async (event, arg)=>{ 
   hostInfo=arg;
   sshClient(event,hostInfo,filePath);
   network(event,hostInfo,filePath);
-})
-
-ipcMain.on("StartScenario", async (event, arg)=>{ 
-  scenarioInfo = arg;
-  baseURL = scenarioInfo.domainname + ":" + scenarioInfo.portname;
-  vusers = scenarioInfo.vusers;
-  let flows = scenarioInfo.flows;
-  let response = await something(flows[0]);
-  console.log("response: ", response);
   
-// login(baseURL, data){
-//   return apiController({
-//     url: baseURL + '/' + data.flows[0].name,
-//     method: data.flows[0].method,
-//     data : data.flow[0].data
-//   })
-// };
-  // for (i = 0; i < scenarioInfo.flows.length; i++){
-  //   instance[i] = axios.create({
-  //     method : scenarioInfo.flows[i].method,
-      
-  //     data: scenarioInfo.flows[i].data
-  //   });
-    
-  // }
-
-}) 
-
-const something = async (e) => {
-  console.log(e.name)
-  console.log(e.method)
-  console.log(e.data)
-  const res = await fetch(baseURL + '/' + e.name, {
-    method: e.method,
-    headers: {
-      'Content-type' : 'application/json'
-    },
-    body: JSON.stringify(e.data)
-  })
-  return res.json()
-}
+})
 
 app.on('ready', function(){
     createWindow();

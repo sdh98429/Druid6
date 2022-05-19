@@ -1,3 +1,5 @@
+import { naverMobileData, naverDesktopData, googleDesktopData, googleMobileData, bingMobileData, bingDesktopData, daumMobileData, daumDesktopData } from "../static/otherPageData";
+
 const initialState = {
   stressTestInputs: {
     method: 'POST',
@@ -14,7 +16,8 @@ const initialState = {
     ramInfo: '',
     systemInfo: '',
     kernelVersion: '',
-    kernelRelease: ''
+    kernelRelease: '',
+    isConnect: false,
   },
   traffic:'',
   currentMenuTitle: 'Druid6',
@@ -31,7 +34,17 @@ const initialState = {
     responseLatencies : [0],
     vuserCount : 0,
     scenarioCount : 0
-  }
+  },
+  naverMobileData: naverMobileData,
+  naverDesktopData: naverDesktopData,
+  googleDesktopData: googleDesktopData,
+  googleMobileData: googleMobileData,
+  bingMobileData: bingMobileData,
+  bingDesktopData: bingDesktopData,
+  daumMobileData: daumMobileData,
+  daumDesktopData: daumDesktopData,
+  myPageMobileData: '',
+  myPageDesktopData: '',
 };
 
 export default function reducer(state = initialState, action) {
@@ -135,6 +148,34 @@ export default function reducer(state = initialState, action) {
       }
     }
   }
+  else if (action.type === 'updateMyPageMobileData') {
+    return {
+      ...state,
+      myPageMobileData: action.payload.myPageMobileData
+    }
+  }
+  else if (action.type === 'updateMyPageDesktopData') {
+    return {
+      ...state,
+      myPageDesktopData: action.payload.myPageDesktopData
+    }
+  }
+  else if (action.type === 'clearStressTestInputs'){
+    return {
+      ...state,
+      stressTestInputs : {
+        method: 'POST',
+        url: '',
+        body: '',
+        savedResponse: [],
+        savedResponseUnit: '',
+        token: '',
+        scenarioTitle : '',
+      }
+    }
+  }
+
+
 
   return state;
 }

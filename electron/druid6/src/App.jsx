@@ -25,6 +25,20 @@ function App() {
       ].join(","),
       fontWeightRegular: 600,
     },
+    palette: {
+      blue: {
+        light: "#1E7CC9",
+        main: "#1d75bdc5",
+        dark: "#134D7D",
+        contrastText: "#ffffff",
+      },
+      green: {
+        light: "#44CF67",
+        main: "#2b8140c4",
+        dark: "#236934",
+        contrastText: "#ffffff",
+      },
+    },
   });
 
   return (

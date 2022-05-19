@@ -10,12 +10,9 @@ import {
   LineElement,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import { faker } from "@faker-js/faker";
 import { range } from "../../services/utils";
 import { useState } from "react";
 import "./LiveTrafficChart.scss";
-import { ConstructionOutlined } from "@mui/icons-material";
-
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -61,14 +58,12 @@ export default function LiveTrafficChart() {
         realTimeArray.push(realtimeArraySplit[i]);
       }
     }
-    console.log(realTimeArray);
     let rxkib = realTimeArray[1] * 1;
     let txkib = realTimeArray[6] * 1;
     if (realTimeArray[2] === "Mbit/s") rxkib *= 1000;
     if (realTimeArray[7] === "Mbit/s") txkib *= 1000;
     if (txArray.length >= 32) {
       setRxArray(rxArray.filter((value, index) => index !== 0));
-
       setTxArray(txArray.filter((value, index) => index !== 0));
     } else {
       setRxArray([...rxArray, rxkib]);
@@ -76,11 +71,6 @@ export default function LiveTrafficChart() {
     }
   });
   const labels = range(1, 31);
-  // const transmitData = labels.map((idx) => txArray[idx]);
-  // const recieveData = labels.map((idx) => rxArray[idx]);
-  // const txRxSumData = labels.map(
-  //   (ele, idx) => transmitData[idx] + recieveData[idx]
-  // );
 
   const data = {
     labels,
@@ -95,13 +85,6 @@ export default function LiveTrafficChart() {
         data: rxArray,
         backgroundColor: "rgb(75, 192, 192)",
       },
-      // {
-      //   label: "TxRxSum",
-      //   data: txRxSumData,
-      //   borderColor: "#FF6801",
-      //   backgroundColor: "#E64E00",
-      //   type: "line",
-      // },
     ],
   };
   return (

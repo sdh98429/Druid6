@@ -89,4 +89,24 @@ export function updateResponseScenarioCount(scenarioCount) {
     }
   }
 }
-
+export function updateMyPageMobileData(myPageMobileData) {
+  return {
+    type : 'updateMyPageMobileData',
+    payload : {
+      myPageMobileData
+    }
+  }
+}
+export function updateMyPageDesktopData(myPageDesktopData) {
+  return {
+    type : 'updateMyPageDesktopData',
+    payload : {
+      myPageDesktopData
+    }
+  }
+}
+export function clearStressTestInputs() {
+  return {
+    type : 'clearStressTestInputs'
+  }
+}
