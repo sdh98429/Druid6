@@ -6,6 +6,7 @@ import NoUrl from "./NoUrl";
 
 // redux
 import ButtonToOtherPages from "./ButtonToOtherPages";
+import BodyBlackoutStyle from "../../components/BodyBlackoutStyle";
 import { useSelector, useDispatch } from "react-redux";
 import {
   updateMyPageMobileData,
@@ -40,6 +41,8 @@ const initialState = {
   desktopData: "",
   mobileData: "",
   displayData: "",
+  isMyPage: false,
+  isLoading: false,
   url: "",
 };
 
@@ -53,6 +56,8 @@ export default function WebPerformance() {
     desktopData,
     mobileData,
     displayData,
+    isMyPage,
+    isLoading,
     url,
   } = performanceState;
 
@@ -65,9 +70,16 @@ export default function WebPerformance() {
         performanceReport: parseSpeedData(mobileData),
         displayData: mobileData,
       });
+      if (isMyPage) {
+        dispatch(updateMyPageMobileData(mobileData));
+      }
+      // setPerformanceState({
+      //   ...performanceState,
+      //   isLoading: false,
+      // });
     }
-    dispatch(updateMyPageMobileData(mobileData));
-    console.log("hihihi  ", myPageDesktopData);
+    // dispatch(updateMyPageMobileData(mobileData));
+    // console.log("hihihi  ", myPageMobileData);
   }, [mobileData]);
 
   useEffect(() => {
@@ -77,13 +89,20 @@ export default function WebPerformance() {
         performanceReport: parseSpeedData(desktopData),
         displayData: desktopData,
       });
+      if (isMyPage) {
+        dispatch(updateMyPageDesktopData(desktopData));
+      }
+      // setPerformanceState({
+      //   ...performanceState,
+      //   isLoading: false,
+      // });
     }
-    dispatch(
-      updateMyPageDesktopData({
-        key: "body",
-        value: desktopData,
-      })
-    );
+    // dispatch(
+    //   updateMyPageDesktopData({
+    //     key: "body",
+    //     value: desktopData,
+    //   })
+    // );
   }, [desktopData]);
 
   //input에 입력될 때마다 account state값 변경되게 하는 함수
@@ -103,12 +122,17 @@ export default function WebPerformance() {
 
     setPerformanceState({
       ...performanceState,
+      isMyPage: true,
       mobileData: mobileResult,
       desktopData: desktopResult,
     });
   };
 
   const drawWebPerformanceResult = async () => {
+    setPerformanceState({
+      ...performanceState,
+      isLoading: true,
+    });
     await handleClickDetermineWebPerformance();
   };
 
@@ -224,24 +248,28 @@ export default function WebPerformance() {
         ...performanceState,
         mobileData: naverMobileData,
         desktopData: naverDesktopData,
+        isMyPage: false,
       });
     } else if (name === "google") {
       setPerformanceState({
         ...performanceState,
         mobileData: googleMobileData,
         desktopData: googleDesktopData,
+        isMyPage: false,
       });
     } else if (name === "bing") {
       setPerformanceState({
         ...performanceState,
         mobileData: bingMobileData,
         desktopData: bingDesktopData,
+        isMyPage: false,
       });
     } else if (name === "daum") {
       setPerformanceState({
         ...performanceState,
         mobileData: daumMobileData,
         desktopData: daumDesktopData,
+        isMyPage: false,
       });
     } else if (name === "myPage") {
       if (myPageMobileData && myPageDesktopData) {
@@ -249,6 +277,7 @@ export default function WebPerformance() {
           ...performanceState,
           mobileData: myPageMobileData,
           desktopData: myPageDesktopData,
+          isMyPage: false,
         });
       }
     }
@@ -263,7 +292,7 @@ export default function WebPerformance() {
           className={"tag-area " + (tagSelected === 1 && "tag-selected")}
           onClick={() => setTagSelected(1)}
         >
-          웹 퍼포먼스
+          내 웹 퍼포먼스
         </div>
         <span className="spacer"></span>
         <img className="tag-img" src={menuTitleArrow} alt="" />
@@ -372,6 +401,7 @@ export default function WebPerformance() {
           </div>
         </div>
       )}
+      {isLoading && <BodyBlackoutStyle />}
     </div>
   );
 }
