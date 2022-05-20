@@ -60,8 +60,12 @@ export default function LiveTrafficChart() {
     }
     let rxkib = realTimeArray[1] * 1;
     let txkib = realTimeArray[6] * 1;
+    if (realTimeArray[2] === "bit/s") rxkib *= 0.001;
+    if (realTimeArray[7] === "bit/s") txkib *= 0.001;
     if (realTimeArray[2] === "Mbit/s") rxkib *= 1000;
     if (realTimeArray[7] === "Mbit/s") txkib *= 1000;
+    if (realTimeArray[2] === "Gbit/s") rxkib *= 1000000;
+    if (realTimeArray[7] === "Gbit/s") txkib *= 1000000;
     if (txArray.length >= 32) {
       setRxArray(rxArray.filter((value, index) => index !== 0));
       setTxArray(txArray.filter((value, index) => index !== 0));

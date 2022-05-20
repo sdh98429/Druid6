@@ -67,7 +67,6 @@ export default function SavingsMsChart({ overallSavingsMs, xScaleMaxValue }) {
     labels,
     datasets: [
       {
-        // label: "Dataset 1",
         data: labels.map(() => overallSavingsMs),
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",

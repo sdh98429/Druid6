@@ -1,10 +1,8 @@
 .WebPerformance {
   text-align: center;
-  // width: 95%;
   width: 100%;
   height: 89vh;
   margin: 0 auto;
-  // 추가
   display: flex;
   flex-direction: column;
   justify-content: stretch;
@@ -13,34 +11,25 @@
     display: flex;
     flex-direction: row;
     height: 100%;
-    // position: relative;
   }
 
   .api-graph {
     display: flex;
     flex-direction: column;
     text-align: center;
-    // position: absolute;
     width: 35%;
     margin: 0 auto;
-    // position: relative;
   }
 
 
   .represent {
-    // float: left;
     text-align: center;
     display: flex;
   }
 
   .final-image {
-    // position: absolute;
-    // top: 300px;
-    // top: 100px;
     height: 27vh;
-    // width: 25vh;
     align-content: center;
-    // left: 25%;
     margin: 0px auto 0px;
     display: flex;
     justify-content: center;
@@ -63,11 +52,6 @@
     height: 100%;
     position: relative;
   }
-
-  // .tab {
-  //   height: 50px;
-  //   border-bottom: 1px solid gray;
-  // }
 
   .container-desktop-mobile {
     display: flex;
@@ -139,7 +123,6 @@
     box-shadow:  0.1rem 0.1rem 4px rgb(194, 193, 193);
     &:hover {
       cursor: default;
-      // transform: translateY(-0.3rem);
       transform:none;
     }
   }
