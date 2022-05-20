@@ -7,9 +7,9 @@ export default function ResultContents({ performanceReport }) {
   const [coreValueDetail, setCoreValueDetail] = useState(
     "각 메트릭을 클릭하면 세부 설명을 볼 수 있습니다."
   );
+
+  // 핵심 값 버튼 클릭시 세부 설명 보여줌
   const handleClick = (detail) => {
-    console.log("click");
-    console.log(detail);
     setCoreValueDetail(detail);
   };
 
