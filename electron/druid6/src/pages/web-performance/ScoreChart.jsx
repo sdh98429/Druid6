@@ -9,8 +9,10 @@ export default function ScoreChart({ performanceScore, Color }) {
     "rgba(232, 232, 232, 1)"
   );
 
+  // 퍼포먼스 점수에 따른 등급
   const [grade, setGrade] = useState("X");
 
+  // 퍼포먼스 점수에 따라 도넛 차트 색 바꾸기
   useEffect(() => {
     if (performanceScore >= 90) {
       setDoughnutColorState("rgba(0, 255, 0, 0.2)");
