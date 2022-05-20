@@ -6,9 +6,9 @@
 
 # 2. 프로그램 설치
 
-1. **druid6-0.1.0.exe** 파일 클릭.(관리자 권한 실행 요망)
+1. **druid6-0.1.0.exe** 파일 클릭.(관리자 권한 실행 요망)<br>
    ![실행1](https://user-images.githubusercontent.com/20656314/169436529-2f7ab689-ec0e-4ad4-a320-ef7a2b6f5f8a.png)
-2. 설치 프로그램이 druid6를 자동으로 설치
+2. 설치 프로그램이 druid6를 자동으로 설치<br>
    ![실행2](https://user-images.githubusercontent.com/20656314/169436531-92d914d6-8aac-4a7d-8554-ecf5d04c2930.png)
-3. 설치가 완료되면 **마침** 버튼을 눌러 실행 가능.
+3. 설치가 완료되면 **마침** 버튼을 눌러 실행 가능.<br>
    ![실행3](https://user-images.githubusercontent.com/20656314/169436532-0fe67e62-3b11-4894-860f-efbb23e455db.png)
