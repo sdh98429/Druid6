@@ -73,13 +73,7 @@ export default function WebPerformance() {
       if (isMyPage) {
         dispatch(updateMyPageMobileData(mobileData));
       }
-      // setPerformanceState({
-      //   ...performanceState,
-      //   isLoading: false,
-      // });
     }
-    // dispatch(updateMyPageMobileData(mobileData));
-    // console.log("hihihi  ", myPageMobileData);
   }, [mobileData]);
 
   useEffect(() => {
@@ -92,17 +86,7 @@ export default function WebPerformance() {
       if (isMyPage) {
         dispatch(updateMyPageDesktopData(desktopData));
       }
-      // setPerformanceState({
-      //   ...performanceState,
-      //   isLoading: false,
-      // });
     }
-    // dispatch(
-    //   updateMyPageDesktopData({
-    //     key: "body",
-    //     value: desktopData,
-    //   })
-    // );
   }, [desktopData]);
 
   //input에 입력될 때마다 account state값 변경되게 하는 함수
@@ -111,7 +95,6 @@ export default function WebPerformance() {
   };
 
   const handleClickDetermineWebPerformance = async () => {
-    console.log(`hi`);
 
     // 병렬처리
     const getMobileResult = requestWebPerformanceResult(url, "MOBILE");

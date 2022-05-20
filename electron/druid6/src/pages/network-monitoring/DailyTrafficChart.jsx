@@ -59,9 +59,9 @@ export default function DailyTrafficChart() {
       let trafficRxKib = dailyTrafficArray[i][1];
       let trafficTxKib = dailyTrafficArray[i][3];
       if (dailyTrafficArray[i][2] === "MiB") trafficRxKib *= 1000;
-      if (dailyTrafficArray[i][2] === "TiB") trafficRxKib *= 1000000;
+      if (dailyTrafficArray[i][2] === "GiB") trafficRxKib *= 1000000;
       if (dailyTrafficArray[i][4] === "MiB") trafficTxKib *= 1000;
-      if (dailyTrafficArray[i][4] === "TiB") trafficTxKib *= 1000000;
+      if (dailyTrafficArray[i][4] === "GiB") trafficTxKib *= 1000000;
 
       dataRx.splice(
         dailyTrafficArray[i][0].slice(-2, dailyTrafficArray.length + 1),

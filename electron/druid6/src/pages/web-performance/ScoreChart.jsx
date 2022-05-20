@@ -25,12 +25,9 @@ export default function ScoreChart({ performanceScore, Color }) {
   }, [performanceScore]);
 
   const data = {
-    // labels: ["Red", "Blue"],
     datasets: [
       {
-        // label: "# of Votes",
         data: [performanceScore, 100 - performanceScore],
-        // backgroundColor: ["rgba(0, 255, 0, 0.2)", "rgba(232, 232, 232, 1)"],
         backgroundColor: [doughnutColorState, "rgba(232, 232, 232, 1)"],
         borderColor: ["rgba(255, 255, 255, 1)", "rgba(255, 255, 255, 0.2)"],
         borderWidth: 1,
@@ -48,7 +45,6 @@ export default function ScoreChart({ performanceScore, Color }) {
           position: "absolute",
           textAlign: "center",
           top: "27%",
-          // left: "36.25%",
           left: "33rem",
           fontSize: "100px",
         }}
@@ -61,7 +57,6 @@ export default function ScoreChart({ performanceScore, Color }) {
           position: "absolute",
           textAlign: "center",
           top: "42%",
-          // left: "36.8%",
           left: "33.25rem",
           fontSize: "50px",
         }}
