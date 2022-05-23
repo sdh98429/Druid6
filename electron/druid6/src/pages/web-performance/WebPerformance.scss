@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   justify-content: stretch;
+  overflow: hidden;
 
   .api-result {
     display: flex;
@@ -87,6 +88,17 @@
   }
 
   .btn-mobile:hover {
+    background-color: #F3F4F9;
+  }
+
+  .btn-active {
+    color: blue;
+    border-right: none;
+    font-weight: bolder;
+  }
+
+  .btn-inactive {
+    color: gray;
     background-color: #F3F4F9;
   }
 

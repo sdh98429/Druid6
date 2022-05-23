@@ -43,6 +43,7 @@ const initialState = {
   mobileData: "", // pagespeed에서 받아온 모바일 접속시 json 테스트 결과
   displayData: "", // 현재 화면에서 보여주는 데이터 값 (desktopData or mobileData)
   isMyPage: false, // 현재 보고 있는게 내가 입력한 url로 보는 페이지 결과값인지, false인 경우 '다른 사이트와 비교'에서 클릭하여 구글, 네이버, 빙 등을 보고 있는 경우
+  isTabDesktop: true,
   isLoading: false, // 현재 url 요청을 보내고 api 응답값을 기다리고 있는 중인지
   url: "", // 사용자가 요청한 url 주소
 };
@@ -58,6 +59,7 @@ export default function WebPerformance() {
     mobileData,
     displayData,
     isMyPage,
+    isTabDesktop,
     isLoading,
     url,
   } = performanceState;
@@ -72,7 +74,8 @@ export default function WebPerformance() {
         performanceReport: parseSpeedData(mobileData), // 파싱한 모바일 데이터 저장
         displayData: mobileData, // 현재 보여주는 데이터 모바일 데이터로
       });
-      if (isMyPage) { // 만약 내 웹 페이지 입력했다면
+      if (isMyPage) {
+        // 만약 내 웹 페이지 입력했다면
         dispatch(updateMyPageMobileData(mobileData)); // 리덕스의 mobileData에 현재 모바일 데이터 저장
       }
     }
@@ -86,7 +89,8 @@ export default function WebPerformance() {
         performanceReport: parseSpeedData(desktopData), // 파싱한 데스크톱 데이터 저장
         displayData: desktopData, // 현재 보여주는 데이터 데스크톱 데이터로
       });
-      if (isMyPage) { // 만약 내 웹 페이지 입력했다면
+      if (isMyPage) {
+        // 만약 내 웹 페이지 입력했다면
         dispatch(updateMyPageDesktopData(desktopData)); // 리덕스의 desktopData에 현재 데스크톱 데이터 저장
       }
     }
@@ -97,10 +101,8 @@ export default function WebPerformance() {
     setPerformanceState({ ...performanceState, url: e.target.value });
   };
 
-
   // url 입력하고 분석 버튼 누르거나 엔터를 누른 경우
   const handleClickDetermineWebPerformance = async () => {
-
     // 병렬처리
     const getMobileResult = requestWebPerformanceResult(url, "MOBILE");
     const getDesktopResult = requestWebPerformanceResult(url, "DESKTOP");
@@ -113,6 +115,7 @@ export default function WebPerformance() {
       isMyPage: true, // 내 웹 페이지를 보는 중
       mobileData: mobileResult, // 모바일 데이터에 api 응답값 저장
       desktopData: desktopResult, // 데스크톱 데이터에 api 응답값 저장
+      isTabDesktop: true, // 선택한 탭이 데스크톱으로 초기화
     });
   };
 
@@ -145,7 +148,8 @@ export default function WebPerformance() {
     performanceReport["TBT"] = audit["total-blocking-time"];
     performanceReport["CLS"] = audit["cumulative-layout-shift"];
 
-    performanceReport["performanceScore"] = parseInt( // 점수 계산 로직
+    performanceReport["performanceScore"] = parseInt(
+      // 점수 계산 로직
       10 * audit["first-contentful-paint"].score +
         10 * audit["interactive"].score +
         25 * audit["speed-index"].score +
@@ -176,23 +180,47 @@ export default function WebPerformance() {
     }
   };
 
+  const changeBtnStyle = (isBorder) => {
+    if (isBorder === "Mobile") {
+      return "none";
+    } else {
+      return "1px solid #d0d0d0";
+    }
+  };
+
   // 퍼포먼스 점수에 따라 글자색 변경
   const Color = changeColor();
 
   // 현재 보여주는 데이터값 변경
   const changeDisplayData = (displayDataName) => {
     if (mobileData && desktopData) {
-      if (displayDataName === "displayDesktop") { // 데스크톱 데이터 보여줌
+      if (displayDataName === "displayDesktop") {
+        // 데스크톱 데이터 보여줌
         setPerformanceState({
           ...performanceState,
           performanceReport: parseSpeedData(desktopData),
           displayData: desktopData,
+          isTabDesktop: true,
         });
-      } else if (displayDataName === "displayMobile") { // 모바일 데이터 보여줌
+      } else if (displayDataName === "displayMobile") {
+        // 모바일 데이터 보여줌
         setPerformanceState({
           ...performanceState,
           performanceReport: parseSpeedData(mobileData),
           displayData: mobileData,
+          isTabDesktop: false,
+        });
+      }
+    } else {
+      if (displayDataName === "displayDesktop") {
+        setPerformanceState({
+          ...performanceState,
+          isTabDesktop: true,
+        });
+      } else if (displayDataName === "displayMobile") {
+        setPerformanceState({
+          ...performanceState,
+          isTabDesktop: false,
         });
       }
     }
@@ -236,7 +264,6 @@ export default function WebPerformance() {
     myPageMobileData: state.myPageMobileData,
     myPageDesktopData: state.myPageDesktopData,
   }));
-
 
   // 다른 웹 사이트 결과 보여주기
   const viewOtherPage = (name) => {
@@ -305,14 +332,18 @@ export default function WebPerformance() {
           <div className="container-desktop-mobile">
             <Button
               variant="text"
-              className="btn-desktop"
+              className={
+                "btn-desktop " + (isTabDesktop ? "btn-active" : "btn-inactive")
+              }
               onClick={() => changeDisplayData("displayDesktop")}
             >
               <span>Desktop</span>
             </Button>
             <Button
               variant="text"
-              className="btn-mobile"
+              className={
+                "btn-mobile " + (isTabDesktop ? "btn-inactive" : "btn-active")
+              }
               onClick={() => changeDisplayData("displayMobile")}
             >
               <span>Mobile</span>
