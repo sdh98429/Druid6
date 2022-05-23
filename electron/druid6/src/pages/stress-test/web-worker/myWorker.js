@@ -34,6 +34,7 @@ const sendRequest = async(e) => {
   // body 검사
 
   if (e.body) { 
+    e.body = JSON.parse(e.body)
 
     for (let [key, value] of Object.entries(e.body)){
       if (typeof value === 'string' && value.substr(0,2) === "$.") {
@@ -47,7 +48,6 @@ const sendRequest = async(e) => {
 
   // latency 측정용 startTime
   const startTime = Date.now()
-  console.log(myRequest.body)
   try {
     const response = await fetch(e.url, myRequest)
     postMessage( { "latencySended" : Date.now()-startTime } )

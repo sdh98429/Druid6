@@ -174,9 +174,15 @@ export default function reducer(state = initialState, action) {
       }
     }
   }
+  else if (action.type === 'replaceStressTestScenarios') {
+    return {
+      ...state,
+      stressTestScenarios: action.payload.scenarios
+    }
+  }
 
 
-
+  
   return state;
 }
 

@@ -110,3 +110,11 @@ export function clearStressTestInputs() {
     type : 'clearStressTestInputs'
   }
 }
+export function replaceStressTestScenarios(scenarios) {
+  return {
+    type : 'replaceStressTestScenarios',
+    payload : {
+      scenarios
+    }
+  }
+}

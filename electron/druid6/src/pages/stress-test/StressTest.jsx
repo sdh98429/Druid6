@@ -23,6 +23,7 @@ import ScenarioArea from "./components/ScenarioArea";
 import VusersArea from "./components/VusersArea";
 import ResponseInputArea from "./components/ResponseInputArea";
 import BodyBlackoutStyle from "../../components/BodyBlackoutStyle";
+import JsonTextAreaReset from "./components/JsonTextAreaReseter";
 // mui
 import Switch from "@mui/material/Switch";
 import FormGroup from "@mui/material/FormGroup";
@@ -55,28 +56,6 @@ export default function StressTest() {
     dispatch(updateMenuTitle("시나리오 테스트"));
   }, []);
 
-  // const [scenarioInfo, setScenarioInfo] = useState({
-  //   vusers: 1,
-  //   flows: [
-  //     {
-  //       url: "http://k6s2041.p.ssafy.io:8080/api/v1/users/login",
-  //       method: "POST",
-  //       token: "",
-  //       savedResponse: ["accessToken"],
-  //       body: {
-  //         email: "test1@test.com",
-  //         password: "~!Q1q2w3e4r",
-  //       },
-  //     },
-  //     {
-  //       url: "http://k6s2041.p.ssafy.io:8080/api/v1/users/bonus",
-  //       method: "POST",
-  //       token: "$.accessToken",
-  //       savedResponse: [],
-  //     },
-  //   ],
-  // });
-
   let WorkerArr = [];
   const responseStatus = {
     1: 0,
@@ -89,26 +68,25 @@ export default function StressTest() {
 
   const startScenario = async function () {
     setIsLoading(true);
-    const startTime = Date.now();
     for (let i = 0; i < vusers; i++) {
       WorkerArr[i] = new Worker(
         new URL("./web-worker/myWorker.js", import.meta.url)
       );
       WorkerArr[i].onmessage = (message) => {
-        checkPostMessage(message, startTime);
+        checkPostMessage(message);
       };
       WorkerArr[i].postMessage(stressTestScenarios);
     }
   };
 
-  const checkPostMessage = (message, startTime) => {
+  const checkPostMessage = (message) => {
     const [key, value] = Object.entries(message.data)[0];
 
     if (key === "workEnd") {
-      // TODO : 워커 한명이 일을 끝냈을 때
+      // 워커 한명이 일을 끝냈을 때
       WorkerArr.pop();
       if (WorkerArr.length === 0) {
-        // TODO : worker가 모두 일을 끝낼을때 무엇을 할지
+        // worker가 모두 일을 끝낼을때 redux값을 바꿔준 뒤 결과페이지로 이동
         dispatch(updateResponseStatus(responseStatus));
         dispatch(updateResponseLatencies(responseLatencies));
         dispatch(updateResponseVuserCount(vusers));
@@ -117,7 +95,7 @@ export default function StressTest() {
         navigate("/stress-test-result");
       }
     } else if (key === "latencySended") {
-      // TODO: worker가 request를 완료할때마다 responseLatencies 배열에 추가해줘야 함.
+      // worker가 request를 완료할때마다 responseLatencies 배열에 추가.
       responseLatencies.push(value);
     } else {
       // 그것도 아닐 경우 받아올 postMessage가 status 하나밖에 없으므로 responseStatus 객체 값에 + 1을 해줌.
@@ -141,6 +119,10 @@ export default function StressTest() {
     } else {
       dispatch(updateStressTestScenarios(stressTestInputs));
       dispatch(clearStressTestInputs());
+      setTagActivated("reset");
+      setTimeout(() => {
+        setTagActivated("body");
+      }, 0);
     }
   };
   return (
@@ -176,7 +158,13 @@ export default function StressTest() {
             </FormGroup>
           </div>
           <div className="main-area">
-            {tagActivated === "body" ? <JsonTextArea /> : <ResponseInputArea />}
+            {tagActivated === "body" ? (
+              <JsonTextArea />
+            ) : tagActivated === "response" ? (
+              <ResponseInputArea />
+            ) : (
+              <JsonTextAreaReset />
+            )}
           </div>
           <div className="footer-area">
             <MyInput
