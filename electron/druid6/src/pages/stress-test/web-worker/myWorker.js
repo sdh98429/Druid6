@@ -32,9 +32,12 @@ const sendRequest = async(e) => {
   myRequest['headers'] = headers
 
   // body 검사
-
   if (e.body) { 
-    e.body = JSON.parse(e.body)
+    try{
+      e.body = JSON.parse(e.body)
+    } catch (error) {
+      console.error(error)
+    }
 
     for (let [key, value] of Object.entries(e.body)){
       if (typeof value === 'string' && value.substr(0,2) === "$.") {

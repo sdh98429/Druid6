@@ -11,7 +11,7 @@ export default function ResultIcon({ status }) {
     return sumStatus;
   };
 
-  const isAllClear = checkStatusClear(status) === status[2];
+  const isAllClear = checkStatusClear(status) === status[2] && status[2];
 
   return (
     <div className="badgeResult">

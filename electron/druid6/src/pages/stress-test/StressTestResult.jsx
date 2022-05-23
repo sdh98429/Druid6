@@ -22,15 +22,19 @@ export default function StressTestResult() {
     return sum + currValue;
   },
   0);
+  let [latencyAvg, minLatency, maxLatency, p95, p99] = [0, 0, 0, 0, 0];
 
-  const latencyAvg = Math.round(totalLatencies / responseLatencies.length);
-  const minLatency = Math.min.apply(Math, responseLatencies);
-  const maxLatency = Math.max.apply(Math, responseLatencies);
-  responseLatencies.sort(function (a, b) {
-    return a - b;
-  });
-  const p95 = responseLatencies[Math.floor(responseLatencies.length * 0.95)];
-  const p99 = responseLatencies[Math.floor(responseLatencies.length * 0.99)];
+  // infinity 값이 나오지 않게 총합 값이 0이 아닐경우에만 계산
+  if (totalLatencies) {
+    latencyAvg = Math.round(totalLatencies / responseLatencies.length);
+    minLatency = Math.min.apply(Math, responseLatencies);
+    maxLatency = Math.max.apply(Math, responseLatencies);
+    responseLatencies.sort(function (a, b) {
+      return a - b;
+    });
+    p95 = responseLatencies[Math.floor(responseLatencies.length * 0.95)];
+    p99 = responseLatencies[Math.floor(responseLatencies.length * 0.99)];
+  }
 
   const latencies = {
     totalLatencies,

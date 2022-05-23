@@ -67,15 +67,19 @@ export default function StressTest() {
   const responseLatencies = [];
 
   const startScenario = async function () {
-    setIsLoading(true);
-    for (let i = 0; i < vusers; i++) {
-      WorkerArr[i] = new Worker(
-        new URL("./web-worker/myWorker.js", import.meta.url)
-      );
-      WorkerArr[i].onmessage = (message) => {
-        checkPostMessage(message);
-      };
-      WorkerArr[i].postMessage(stressTestScenarios);
+    if (stressTestScenarios.length) {
+      setIsLoading(true);
+      for (let i = 0; i < vusers; i++) {
+        WorkerArr[i] = new Worker(
+          new URL("./web-worker/myWorker.js", import.meta.url)
+        );
+        WorkerArr[i].onmessage = (message) => {
+          checkPostMessage(message);
+        };
+        WorkerArr[i].postMessage(stressTestScenarios);
+      }
+    } else {
+      alert("시나리오를 추가해주세요!");
     }
   };
 
