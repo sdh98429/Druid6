@@ -12,9 +12,6 @@ import {
   updateResponseScenarioCount,
   clearStressTestInputs,
 } from "../../redux/actions";
-// worker javascript files
-import myWorker from "./web-worker/myWorker";
-import WorkerBuilder from "./web-worker/WorkerBuilder";
 // scss
 import "./StressTest.scss";
 // components
@@ -94,7 +91,9 @@ export default function StressTest() {
     setIsLoading(true);
     const startTime = Date.now();
     for (let i = 0; i < vusers; i++) {
-      WorkerArr[i] = new WorkerBuilder(myWorker);
+      WorkerArr[i] = new Worker(
+        new URL("./web-worker/myWorker.js", import.meta.url)
+      );
       WorkerArr[i].onmessage = (message) => {
         checkPostMessage(message, startTime);
       };
