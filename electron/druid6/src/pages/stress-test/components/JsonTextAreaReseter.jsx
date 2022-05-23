@@ -15,7 +15,6 @@ export default function JsonTextArea() {
   const editorRef = useRef(null);
 
   function handleEditorDidMount(editor, monaco) {
-    console.log(editor);
     editorRef.current = editor;
   }
 

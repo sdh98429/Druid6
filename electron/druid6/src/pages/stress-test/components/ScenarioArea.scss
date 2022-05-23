@@ -17,8 +17,16 @@
     border-bottom: 0.5px solid rgb(202, 202, 202);
     width: 80%;
     margin: 0 auto;
+
+    .remove-icon {
+      color: red;
+      position: absolute;
+      margin-left: 100px;
+      cursor: pointer;
+    }
     
     .scenario-name-area {
+      cursor: default;
       padding: 0 0 10px 0;
       width: 5vw;
       margin-left: 10px;
@@ -29,6 +37,7 @@
     }
   
     .method-area {
+      cursor: default;
       margin-right: 5px;
       font-weight: 600;
       font-size: 16px;
