@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 
+import "../../static/fonts/font_hahmlet.css";
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function ScoreChart({ performanceScore, Color }) {
@@ -47,8 +49,9 @@ export default function ScoreChart({ performanceScore, Color }) {
           position: "absolute",
           textAlign: "center",
           top: "27%",
-          left: "33rem",
+          left: "32.6rem",
           fontSize: "100px",
+          fontFamily: "Hahmlet",
         }}
       >
         {grade}

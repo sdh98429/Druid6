@@ -15,6 +15,7 @@ import DashBoard from "./pages/dashboard/DashBoard";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 function App() {
+  // mui에 폰트 적용
   const theme = createTheme({
     typography: {
       fontFamily: [
