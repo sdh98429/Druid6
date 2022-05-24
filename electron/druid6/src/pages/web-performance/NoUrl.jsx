@@ -2,7 +2,7 @@ import docsLogo from "../../static/images/icon.png";
 
 import "./NoUrl.scss";
 
-export default function Intro() {
+export default function NoUrl() {
   function setSheenPosition(xRatio, yRatio) {
     // This creates a "distance" up to 400px each direction to offset the sheen
     const xOffset = 1 - (xRatio - 0.5) * 800;
