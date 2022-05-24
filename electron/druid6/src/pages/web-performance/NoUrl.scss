@@ -6,6 +6,10 @@
   align-items: center;
   height: 100%;
 
+  .perspective-container {
+    perspective: 800px;
+  }
+
   .no-url-intro {
     font-size: 25px;
   }
