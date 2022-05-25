@@ -39,7 +39,7 @@ export default function RxTxChart() {
     setNetworkTx(txkib);
   });
   const data = {
-    labels: ["transmit", "recieve"],
+    labels: ["Transmit", "Receive"],
     datasets: [
       {
         label: "# of Votes",
