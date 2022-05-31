@@ -1,16 +1,6 @@
-# Druid6
-
-<br>
-
------
-
-<br>
-
-
-
 ![대문](README.assets/대문2.jpg)
 
-
+<br>
 
 # Druid6
 
@@ -113,18 +103,6 @@
 |                   시나리오 테스트                    |                     시나리오 테스트 결과                     |
 | :--------------------------------------------------: | :----------------------------------------------------------: |
 | ![시나리오 테스트](README.assets/시나리오테스트.gif) | ![시나리오 테스트 결과](README.assets/시나리오테스트결과.gif) |
-
-<br>
-
------
-
-<br>
-
-## ⚙ 개발 설정
-
-- [Wiki - 개발 환경 가이드](https://lab.ssafy.com/ssafy_opensource/5th_blockai/-/wikis/%EA%B0%9C%EB%B0%9C-%ED%99%98%EA%B2%BD-%EA%B0%80%EC%9D%B4%EB%93%9C), [Wiki - 서버 배포 가이드](https://lab.ssafy.com/ssafy_opensource/5th_blockai/-/wikis/%EC%84%9C%EB%B2%84-%EB%B0%B0%ED%8F%AC-%EA%B0%80%EC%9D%B4%EB%93%9C)탭 확인.
-- MacOS 미지원 상태(2022.05.30 기준)
-- Windows는 Wiki 대로 진행.
 
 <br>
 
