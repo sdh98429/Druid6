@@ -8,7 +8,7 @@
 
 
 
-![대문](README.assets/대문.jpg)
+![대문](README.assets/대문2.jpg)
 
 
 
@@ -151,17 +151,17 @@
 
 ---
 
-|               김태호               |              박윤지               |                 서형준                  |
-| :--------------------------------: | :-------------------------------: | :-------------------------------------: |
-| ![thkim](README.assets/thkim.png)  | ![yunji](README.assets/yunji.png) | ![hyungjun](README.assets/hyungjun.png) |
-|         **Leader & UI/UX**         |  **MicroSIte & WebPerformance**   |     **Server & Network Monitoring**     |
-| https://github.com/onys-programmer |  https://github.com/underwater2   |       https://github.com/kenny397       |
+|               김태호               |                박윤지                |                 서형준                  |
+| :--------------------------------: | :----------------------------------: | :-------------------------------------: |
+| ![thkim](README.assets/thkim.png)  |  ![yunji](README.assets/yunji.png)   | ![hyungjun](README.assets/hyungjun.png) |
+|         **Leader & UI/UX**         | **MicroSIte <br />& WebPerformance** |  **Server <br />& Network Monitoring**  |
+| https://github.com/onys-programmer |    https://github.com/underwater2    |       https://github.com/kenny397       |
 
-|               신동호                |              오윤기               |               현종일                |
-| :---------------------------------: | :-------------------------------: | :---------------------------------: |
-| ![dongho](README.assets/dongho.png) | ![yungi](README.assets/yungi.png) | ![jongil](README.assets/jongil.png) |
-|   **MicroSIte & WebPerformance**    |         **Scenario Test**         |          **Scenario Test**          |
-|     https://github.com/sdh98429     |    https://github.com/Yun-GiOh    |  https://github.com/Leo-SingleDay   |
+|                신동호                |              오윤기               |               현종일                |
+| :----------------------------------: | :-------------------------------: | :---------------------------------: |
+| ![dongho](README.assets/dongho.png)  | ![yungi](README.assets/yungi.png) | ![jongil](README.assets/jongil.png) |
+| **MicroSIte <br />& WebPerformance** |         **Scenario Test**         |          **Scenario Test**          |
+|     https://github.com/sdh98429      |    https://github.com/Yun-GiOh    |  https://github.com/Leo-SingleDay   |
 
 
 
