@@ -138,7 +138,7 @@
 |                박윤지                |                 서형준                  |                신동호                |
 | :----------------------------------: | :-------------------------------------: | :----------------------------------: |
 |  ![yunji](README.assets/yunji.png)   | ![hyungjun](README.assets/hyungjun.png) | ![dongho](README.assets/dongho.png)  |
-| **MicroSIte <br />& WebPerformance** |  **Server <br />& Network Monitoring**  | **MicroSIte <br />& WebPerformance** |
+| **MicroSite <br />& WebPerformance** |  **Server <br />& Network Monitoring**  | **MicroSite <br />& WebPerformance** |
 |    https://github.com/underwater2    |       https://github.com/kenny397       |     https://github.com/sdh98429      |
 
 <br>
