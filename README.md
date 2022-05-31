@@ -106,9 +106,9 @@
 | :-------------------------------------: | :---------------------------------------------: |
 | ![대시보드](README.assets/대시보드.gif) | ![서버모니터링](README.assets/서버모니터링.gif) |
 
-|                     네트워크 모니터링                     |                   웹 퍼포먼스 테스트                    |
-| :-------------------------------------------------------: | :-----------------------------------------------------: |
-| ![네트워크 모니터링](README.assets/네트워크 모니터링.gif) | ![웹퍼포먼스테스트](README.assets/웹퍼포먼스테스트.gif) |
+|                    네트워크 모니터링                     |                   웹 퍼포먼스 테스트                    |
+| :------------------------------------------------------: | :-----------------------------------------------------: |
+| ![네트워크 모니터링](README.assets/네트워크모니터링.gif) | ![웹퍼포먼스테스트](README.assets/웹퍼포먼스테스트.gif) |
 
 |                   시나리오 테스트                    |                     시나리오 테스트 결과                     |
 | :--------------------------------------------------: | :----------------------------------------------------------: |
@@ -151,11 +151,19 @@
 
 ---
 
-|               김태호               |              박윤지               |                 서형준                  |               신동호                |              오윤기               |               현종일                |
-| :--------------------------------: | :-------------------------------: | :-------------------------------------: | :---------------------------------: | :-------------------------------: | :---------------------------------: |
-| ![thkim](README.assets/thkim.png)  | ![yunji](README.assets/yunji.png) | ![hyungjun](README.assets/hyungjun.png) | ![dongho](README.assets/dongho.png) | ![yungi](README.assets/yungi.png) | ![jongil](README.assets/jongil.png) |
-|         **Leader & UI/UX**         |  **MicroSIte & WebPerformance**   |     **Server & Network Monitoring**     |   **MicroSIte & WebPerformance**    |         **Scenario Test**         |          **Scenario Test**          |
-| https://github.com/onys-programmer |  https://github.com/underwater2   |       https://github.com/kenny397       |     https://github.com/sdh98429     |    https://github.com/Yun-GiOh    |  https://github.com/Leo-SingleDay   |
+|               김태호               |              박윤지               |                 서형준                  |
+| :--------------------------------: | :-------------------------------: | :-------------------------------------: |
+| ![thkim](README.assets/thkim.png)  | ![yunji](README.assets/yunji.png) | ![hyungjun](README.assets/hyungjun.png) |
+|         **Leader & UI/UX**         |  **MicroSIte & WebPerformance**   |     **Server & Network Monitoring**     |
+| https://github.com/onys-programmer |  https://github.com/underwater2   |       https://github.com/kenny397       |
+
+|               신동호                |              오윤기               |               현종일                |
+| :---------------------------------: | :-------------------------------: | :---------------------------------: |
+| ![dongho](README.assets/dongho.png) | ![yungi](README.assets/yungi.png) | ![jongil](README.assets/jongil.png) |
+|   **MicroSIte & WebPerformance**    |         **Scenario Test**         |          **Scenario Test**          |
+|     https://github.com/sdh98429     |    https://github.com/Yun-GiOh    |  https://github.com/Leo-SingleDay   |
+
+
 
 <br>
 
@@ -174,15 +182,15 @@
 
 ### 기여방법
 
-Druid6에 기여하고 싶으신가요?
+> Druid6에 기여하고 싶으신가요?
 
-<br>
+
 
 ### **가이드라인**
 
 이 문서는 목적이 다른 여러 섹션으로 나뉘게 됩니다. 문장을 추가할 계획이라면, 적절한 섹션에 대한 [가이드라인](https://github.com/Druid6/druid6)을 숙지하는 것이 도움이 될 것입니다.
 
-<br>
+
 
 ### **브랜치(branch) 만들기**
 
@@ -190,21 +198,21 @@ Druid6에 기여하고 싶으신가요?
 2. `git pull origin master`를 실행하여 최신 원본 코드를 보장할 수 있습니다.
 3. `git checkout -c the-name-of-my-branch` (`the-name-of-my-branch` 를 적절한 이름으로 교체)를 실행하여 브랜치를 만들고 그 브랜치로 이동합니다.
 
-<br>
+
 
 ### **수정하기**
 
 1. "개발 서버 실행하기" 부분을 따릅니다.
 2. 파일을 저장하고 일렉트론 앱에서 확인합니다. 
 
-<br>
+
 
 ### **수정사항 체크하기**
 
 1. 변경한 부분에 대해서 가능하다면 많은 서버에서 제대로 작동하는지 확인해주세요.
 2. 프로젝트 루트에서 `yarn check-all`를 실행합니다. (이 명령어는 Prettier, ESLint, 그리고 Flow를 실행합니다.)
 
-<br>
+
 
 ### **Push 하기**
 
